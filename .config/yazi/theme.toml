@@ -121,7 +121,7 @@ selected = { reversed = true }
 [cmp]
 border   = { fg = "blue" }
 active   = { fg = "red", reversed = true }
-inactive = {}
+inactive = { bg ="blue" }
 
 icon_file    = ""
 icon_folder  = ""
