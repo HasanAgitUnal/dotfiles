@@ -1,0 +1,43 @@
+* {
+  bg: #111117;
+  bg-alt: #222230;
+
+  fg: #bfbfbf;
+  fg-alt: #424242;
+
+  window-border-color: #dddddd;
+  
+  background-color: @bg;
+
+  text-color: @fg;
+  font: "CaskaydiaCove Nerd Font 11";
+
+  border: 1;
+  margin: 0;
+  padding: 10;
+  spacing: 0;
+}
+
+window {
+  transparency: "real";
+  border-radius: 10px;
+  border: 2;
+  border-color: @bg-alt;
+  height: 500px;
+  padding: 15px;
+}
+
+element {
+  padding: 12;
+  text-color: @fg-alt;
+}
+
+element selected {
+  background-color: @bg;
+  text-color: @fg;
+}
+
+element-text {
+  background-color: inherit;
+  text-color: inherit;
+}

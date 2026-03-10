@@ -1,0 +1,225 @@
+#!/bin/bash
+set -euo pipefail
+
+#
+# CONFIG
+#
+
+ROOT_D="$HOME/.config/rofi/ansi-picker"
+
+COLOR_T="$ROOT_D/colors.rasi"
+STYLE_T="$ROOT_D/style.rasi"
+MENU_T="$ROOT_D/menu.rasi"
+
+VALUES_COLORS="Default
+Black
+Red
+Green
+Yellow
+Blue
+Magenta
+Cyan
+White"
+
+VALUES_BRIGHT="Bright
+No Bright"
+
+VALUES_RESET="Reset
+Dont reset"
+
+VALUES_STYLES="- Generate -
+Bold
+Dim
+Italic
+Underline
+Blink
+Reverse
+Strikethrough"
+
+declare -A map_codes
+map_codes["Reset"]="0"
+
+map_codes["Default"]="39"
+map_codes["Black"]="30"
+map_codes["Red"]="31"
+map_codes["Green"]="32"
+map_codes["Yellow"]="33"
+map_codes["Blue"]="34"
+map_codes["Magenta"]="35"
+map_codes["Cyan"]="36"
+map_codes["White"]="37"
+
+map_codes["Bright_Black"]="90"
+map_codes["Bright_Red"]="91"
+map_codes["Bright_Green"]="92"
+map_codes["Bright_Yellow"]="93"
+map_codes["Bright_Blue"]="94"
+map_codes["Bright_Magenta"]="95"
+map_codes["Bright_Cyan"]="96"
+map_codes["Bright_White"]="97"
+
+map_codes["Bold"]="1"
+map_codes["Dim"]="2"
+map_codes["Italic"]="3"
+map_codes["Underline"]="4"
+map_codes["Blink"]="5"
+map_codes["Reverse"]="7"
+map_codes["Strikethrough"]="9"
+
+declare -A ansi_to_hex_map
+ansi_to_hex_map["Default"]="#bfbfbf"
+ansi_to_hex_map["Black"]="#151515"
+ansi_to_hex_map["Red"]="#fe1858"
+ansi_to_hex_map["Green"]="#50ea7b"
+ansi_to_hex_map["Yellow"]="#e1ea8c"
+ansi_to_hex_map["Blue"]="#207d8a"
+ansi_to_hex_map["Magenta"]="#ee79c6"
+ansi_to_hex_map["Cyan"]="#6bc7dd"
+ansi_to_hex_map["White"]="#dddddd"
+
+ansi_to_hex_map["Bright_Black"]="#555555"
+ansi_to_hex_map["Bright_Red"]="#ff3979"
+ansi_to_hex_map["Bright_Green"]="#71ff9c"
+ansi_to_hex_map["Bright_Yellow"]="#ffffaa"
+ansi_to_hex_map["Bright_Blue"]="#308e9b"
+ansi_to_hex_map["Bright_Magenta"]="#ff90d7"
+ansi_to_hex_map["Bright_Cyan"]="#8be9fd"
+ansi_to_hex_map["Bright_White"]="#ffffff"
+
+#####################################################################################################
+
+#
+# FUNCTIONS
+#
+
+reset_menu() {
+	echo "$(echo "$VALUES_RESET" | rofi -dmenu -i -p "$1" -theme "$MENU_T")"
+}
+
+bright_menu() {
+	echo "$(echo "$VALUES_BRIGHT" | rofi -dmenu -i -p "Bright color?" -theme "$MENU_T")"
+}
+
+color_menu() {
+    local pango_colors=""
+    local color_name
+    for color_name in $VALUES_COLORS; do
+        local hex_code="${ansi_to_hex_map["$color_name"]}"
+        if [[ -n "$hex_code" ]]; then
+            pango_colors+="<span foreground=\"${hex_code}\">${color_name}</span>\n"
+        else
+            pango_colors+="${color_name}\n" # Fallback if no hex code found
+        fi
+    done
+    pango_colors="${pango_colors%\\n}" # Remove trailing newline
+
+	local choice
+	choice=$(echo -ne "$pango_colors" | rofi -dmenu -i -p "Pick a color:" -markup-rows -theme "$COLOR_T")
+
+	# If choice empty exit 1
+	if [[ -z "$choice" ]]; then
+		exit 1
+	fi
+
+    # Extract the plain color name from Rofi's output (remove Pango markup)
+    local plain_choice
+    plain_choice=$(echo "$choice" | sed -E 's/<span foreground="#[0-9a-fA-F]{6}">([^<]+)<\/span>/\1/')
+
+	if [[ -z "${map_codes["$plain_choice"]}" ]]; then # Check if choice is a valid color
+		echo "Error: Invalid color selected: $plain_choice" >&2
+		exit 1
+	fi
+
+	# For default color skip bright menu and just return code
+	if [[ "$plain_choice" == "Default" ]]; then
+		echo "${map_codes["$plain_choice"]}"
+		return
+	fi
+
+	# Select from bright or non-bright palette
+	local bright_choice
+	bright_choice=$(bright_menu)
+	if [[ "$bright_choice" == "Bright" ]]; then
+		echo "${map_codes["Bright_$plain_choice"]}"
+	else
+		echo "${map_codes["$plain_choice"]}"
+	fi
+}
+
+style_menu() {
+    local pango_styles=""
+    local style_name_raw
+    while IFS= read -r style_name_raw; do
+        local style_name_trimmed=$(echo "$style_name_raw" | xargs) # Trim whitespace
+
+        case "$style_name_trimmed" in
+            "Bold") pango_styles+="<b>${style_name_trimmed}</b>\n" ;;
+            "Dim") pango_styles+="<span weight=\"light\">${style_name_trimmed}</span>\n" ;;
+            "Italic") pango_styles+="<i>${style_name_trimmed}</i>\n" ;;
+            "Underline") pango_styles+="<u>${style_name_trimmed}</u>\n" ;;
+            "Strikethrough") pango_styles+="<s>${style_name_trimmed}</s>\n" ;;
+            "Blink"|"Reverse") pango_styles+="${style_name_trimmed}\n" ;; # Skip them
+            "- Generate -") pango_styles+="${style_name_trimmed}\n" ;;
+            *) pango_styles+="${style_name_trimmed}\n" ;; # Fallback
+        esac
+    done <<< "$VALUES_STYLES" # Use here-string to feed multi-line string
+    pango_styles="${pango_styles%\\n}" # Remove trailing newline
+
+	local codes=""
+	local choice
+
+	while true; do
+		choice=$(echo -ne "$pango_styles" | rofi -dmenu -i -p "Additional Style?: " -markup-rows -theme "$STYLE_T")
+
+		if [[ -z "$choice" ]]; then
+			break
+
+		elif [[ "$choice" == "- Generate -" ]]; then
+			break
+
+		else
+            # Extract the plain style name from Rofi's output (remove Pango markup)
+            local plain_choice
+            plain_choice=$(echo "$choice" | sed -E 's/<[^>]+>//g')
+
+			if [[ -z "${map_codes["$plain_choice"]}" ]]; then
+				echo "Warning: Invalid style selected: $plain_choice, skipping." >&2
+				continue
+			fi
+
+			codes="${codes};${map_codes["$plain_choice"]}"
+		fi
+	done
+	echo "$codes"
+}
+
+#####################################################################################################
+
+#
+# MAIN
+#
+
+code="\\033["
+
+# Add reset code
+if [[ "$( reset_menu "Reset style?" )" == "Reset" ]]; then
+    code+="${map_codes["Reset"]};"
+fi
+
+# Add color
+color_code=$(color_menu)
+code="${code}${color_code}"
+
+# Add style if user entered
+styles_code=$(style_menu)
+if [[ -n "$styles_code" ]]; then
+	code="${code}${styles_code}"
+fi
+
+# Reset at end of text
+if [[ "$( reset_menu "Reset at end of text?" )" == "Reset" ]]; then
+	echo -n "${code}mTEXT HERE\\033[${map_codes["Reset"]}m" | xclip -selection clipboard
+else
+	# dont reset just give the code
+	echo -n "${code}m" | xclip -selection clipboard
+fi

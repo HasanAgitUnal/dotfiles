@@ -1,0 +1,11 @@
+@theme "../global.rasi"
+
+element {
+  children: [ element-text ];
+  orientation: horizontal;
+}
+
+inputbar {
+  children: [];
+}
+

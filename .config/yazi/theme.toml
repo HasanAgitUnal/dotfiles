@@ -1,0 +1,177 @@
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+[mgr]
+# Hovered
+hovered         = { fg = "red",  italic = true, reversed = true, bold = true }
+preview_hovered = { underline = false }
+
+# Marker
+marker_cut      = { fg = "lightblack",    bg = "lightblack" }
+
+# Count
+count_cut      = { fg = "white", bg = "black" }
+
+#############################################################################
+
+[tabs]
+active   = { fg = "white", bg = "lightblue", bold = true }
+inactive = { fg = "lightblack", bg = "reset", italic = true }
+
+# Separator
+sep_inner = { open = "", close = ""}
+sep_outer = { open = "", close = ""}
+
+#############################################################################
+
+[mode]
+normal_main = { bg = "reset", bold = true }
+normal_alt  = { fg = "white", bg = "lightblack" }
+
+# Select mode
+select_main = { fg = "black", bg = "cyan", bold = true }
+select_alt  = { fg = "cyan", bg = "lightblack" }
+
+# Unset mode
+unset_main = { bg = "red", bold = true }
+unset_alt  = { fg = "red", bg = "lightblack" }
+
+#############################################################################
+
+[status]
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# Permissions
+perm_sep   = { fg = "darkgray" }
+
+perm_type  = { fg = "cyan" }
+
+perm_read  = { fg = "lightyellow" }
+perm_write = { fg = "lightred" }
+perm_exec  = { fg = "green" }
+
+# Progress
+progress_label  = { bold = true }
+progress_normal = { fg = "gray", bg = "lightblack" }
+progress_error  = { fg = "red", bg = "black" }
+
+#############################################################################
+
+[which]
+# TODO: learn what are them
+mask            = { bg = "black" } 
+cand            = { fg = "lightcyan" }
+rest            = { fg = "darkgray" }
+desc            = { fg = "lightmagenta" }
+separator       = "  "
+separator_style = { fg = "darkgray" }
+
+#############################################################################
+
+[confirm]
+border     = { fg = "blue" }
+title      = { fg = "lightblue" }
+content    = {}
+list       = { italic = true }
+btn_yes    = { reversed = false, bold = true, italic = true }
+btn_no     = { bold = true, italic = true }
+btn_labels = [ "  [Y]es  ", "  (N)o  " ]
+
+#############################################################################
+
+[spot]
+border = { fg = "blue" }
+title  = { fg = "blue" }
+
+# Table
+tbl_col  = { fg = "cyan" }
+tbl_cell = { fg = "red", reversed = true }
+
+#############################################################################
+
+[notify]
+title_info  = { fg = "green" }
+title_warn  = { fg = "yellow" }
+title_error = { fg = "red" }
+
+# Icons
+icon_info  = ""
+icon_warn  = ""
+icon_error = ""
+
+#############################################################################
+
+[pick]
+border   = { fg = "blue" }
+active   = { fg = "red", bold = true }
+inactive = { italic = true }
+
+#############################################################################
+
+[input]
+border   = { fg = "blue" }
+title    = { fg = "green"  }
+value    = {}
+selected = { reversed = true }
+
+#############################################################################
+
+# What ?
+
+[cmp]
+border   = { fg = "blue" }
+active   = { fg = "red", reversed = true }
+inactive = {}
+
+icon_file    = ""
+icon_folder  = ""
+icon_command = ""
+
+#############################################################################
+
+[tasks]
+border  = { fg = "blue" }
+title   = { fg = "green" }
+hovered = { fg = "red", underline = false }
+
+#############################################################################
+
+[help]
+on      = { fg = "cyan" }
+run     = { fg = "green" }
+desc    = {}
+hovered = { reversed = true }
+footer  = { fg = "white", bg = "lightblack" }
+
+#############################################################################
+
+[filetype]
+rules = [
+
+        # Images
+	{ mime = "image/*", fg = "yellow" },
+
+	# Media
+	{ mime = "{audio,video}/*", fg = "magenta" },
+
+	# Archives
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "red" },
+
+	# Documents
+	{ mime = "application/{pdf,doc,rtf}", fg = "cyan" },
+
+	# Empty files
+	{ mime = "inode/empty", fg = "lightblack" },
+
+	# Special files
+	{ name = "*", is = "orphan", bg = "red" },
+	{ name = "*", is = "exec"  , fg = "green" },
+
+	# Dummy files
+	{ name = "*", is = "dummy", bg = "red" },
+	{ name = "*/", is = "dummy", bg = "red" },
+
+	# Fallback
+	# { name = "*", fg = "white" },
+	{ name = "*/", fg = "blue" }
+]

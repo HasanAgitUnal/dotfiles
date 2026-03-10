@@ -1,0 +1,37 @@
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[mgr]
+ratio          = [ 2, 4, 4 ]
+linemode       = "size"
+
+[preview]
+image_delay     = 15
+
+
+[opener]
+play = [
+	{ run = 'xdg-open "$@"', orphan = true, for = "linux" }
+]
+
+open_shell = [
+        { run = 'alacritty --working-directory "$@"', orphan = true, for = "linux" }
+]
+
+edit = [
+        { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+	{ run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
+	{ run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" }
+]
+
+wine_exe = [
+        { run = 'wine "$@"', orphan = true, for = "linux" }
+]
+
+[open]
+prepend_rules = [
+        # Folder
+        { name = "*/", use = [ "open_shell" ] },
+
+        # Run exe files with wine
+        { name = "*.exe", use = [ "wine_exe" ] }
+]

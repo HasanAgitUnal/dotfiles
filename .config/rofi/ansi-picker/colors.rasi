@@ -1,0 +1,15 @@
+@theme "../global.rasi"
+
+element {
+  children: [ element-text ];
+  orientation: horizontal;
+}
+
+element selected {
+  background-color: @fg-alt;
+  border-radius: 15px;
+}
+
+element-text {
+  markup: true; /* Enable markup for text */
+}

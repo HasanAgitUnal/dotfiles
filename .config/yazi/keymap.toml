@@ -1,0 +1,7 @@
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[mgr]
+
+prepend_keymap = [ 
+    { "on" = "T", "run" = "close", "desc" = "Close current tab or exit if last tab" }
+]
