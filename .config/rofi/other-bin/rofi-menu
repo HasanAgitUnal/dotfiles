@@ -6,18 +6,18 @@ selected=$(echo -ne "$options" | rofi -dmenu -i -p "Select:")
 # rofi-* scripts are at ~/.local/bin (as a symlink)
 case $selected in
 	"App Launcher")
-		rofi-launcher
+		/home/melon/.local/bin/rofi-launcher
 		;;
 
 	"Wifi Manager")
-		rofi-wifi
+		/home/melon/.local/bin/rofi-wifi
 		;;
 
 	"Color Picker")
-		rofi-color-picker
+		/home/melon/.local/bin/rofi-color-picker
 		;;
 	"ANSI Picker")
-		rofi-ansi-picker
+		/home/melon/.local/bin/rofi-ansi-picker
 		;;
 	*) ;;
 esac
