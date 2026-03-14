@@ -6,7 +6,7 @@ general.ipc_socket=false
 padding={ x=10, y=10 }
 dynamic_padding=false
 decorations="None"
-opacity=0.8
+opacity=1
 blur=true
 startup_mode="Windowed"
 
@@ -15,7 +15,7 @@ multiplier=1
 
 [font]
 normal={ family="CaskaydiaCove Nerd Font", style="Regular" }
-size=8.5
+size=9
 builtin_box_drawing=true
 
 [cursor]
@@ -31,5 +31,7 @@ hide_when_typing=true
 
 [keyboard]
 bindings=[
-        { key="+", mods="Control|Shift", action="IncreaseFontSize" }
+        { key="+", mods="Control|Shift", action="IncreaseFontSize" },
+        { key="J", mods="Alt", action="ScrollLineDown" },
+        { key="K", mods="Alt", action="ScrollLineUp" }
 ]

@@ -179,22 +179,6 @@
                     "type": "custom",
                     "format": "{$1}",
                     "outputColor": "separator"
-            },
-            "blank",
-            {
-                    "type": "colors",
-                    "symbol": "█",
-                    "blockCount": 16,
-                    "padding": {
-                        "right": 10,
-                        "left": 10
-                    }
-            },
-            "blank",
-            {
-                    "type": "custom",
-                    "format": "{$1}",
-                    "outputColor": "separator"
             }
-    ]
+   ]
 }
