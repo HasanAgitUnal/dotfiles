@@ -1,11 +1,11 @@
 * {
-  bg: #111117;
-  bg-alt: #222230;
+  bg: #11111770;
+  bg-alt: #11111770;
 
   fg: #bfbfbf;
   fg-alt: #424242;
 
-  window-border-color: #dddddd;
+  window-border-color: #dddddd70;
   
   background-color: @bg;
 

@@ -1,23 +1,18 @@
 #!/bin/bash
 
-options="App Launcher\nWifi Manager\nColor Picker\nANSI Picker"
+options="App Launcher\nWifi Manager"
 selected=$(echo -ne "$options" | rofi -dmenu -i -p "Select:")
-
+which rofi-wifi
 # rofi-* scripts are at ~/.local/bin (as a symlink)
 case $selected in
 	"App Launcher")
-		/home/melon/.local/bin/rofi-launcher
+		rofi -show drun
 		;;
 
 	"Wifi Manager")
-		/home/melon/.local/bin/rofi-wifi
+		~/.local/bin/rofi-wifi
 		;;
-
-	"Color Picker")
-		/home/melon/.local/bin/rofi-color-picker
-		;;
-	"ANSI Picker")
-		/home/melon/.local/bin/rofi-ansi-picker
-		;;
-	*) ;;
+	*) 
+                echo wtf is happening?
+                ;;
 esac
