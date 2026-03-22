@@ -1,0 +1,36 @@
+{
+        "custom/power": {
+                "format": " ⏻ ",
+                "tooltip": false
+        },
+
+        "custom/shutdown": {
+                "format": " ⏻ ",
+                "tooltip": false,
+                "on-click": "shutdown now"
+        },
+
+        "custom/restart": {
+                "format": "  ",
+                "tooltip": false,
+                "on-click": "reboot"
+        },
+
+        "custom/sleep": {
+                "format": " 󰤄 ",
+                "tooltip": false,
+                "on-click": "hyprlock & systemctl suspend"
+        },
+
+        "custom/lock": {
+                "format": " 󰌾 ",
+                "tooltip": false,
+                "on-click": "hyprlock"
+        },
+
+        "custom/logout": {
+                "format": " 󰗽  ",
+                "tooltip": false,
+                "on-click": "hyprctl dispatch exit"
+        }
+}

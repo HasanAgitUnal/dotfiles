@@ -1,0 +1,111 @@
+{
+        "clock": {
+                "format": "{:%H:%M | %d:%m:%Y}",
+                "interval": 30,
+                "tooltip": false
+        },
+
+        "battery": {
+                "format": "{icon} %{capacity}",
+                "format-icons": {
+                        "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+                        "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+                }
+        },
+
+        "power-profiles-daemon": {
+                "format": "{icon}",
+                "tooltip-format": "{profile}",
+                "format-icons": {
+                        "default": "󱐋",
+                        "performance": "󱐋",
+                        "balanced": " ",
+                        "power-saver": "" //󰚥
+                }
+        },
+
+        "network": {
+                "format-wifi": "{icon} {essid}",
+                "format-ethernet": "󰈀  {ifname}",
+                "format-disconnected": "󰌙",
+                "format-icons": {
+                        "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+                },
+                "tooltip": false
+        },
+
+        "backlight": {
+                "format": "{icon} %{percent}",
+                "format-icons": ["󰃞", "󰃟", "󰃠"],
+                "tooltip": false
+        },
+
+        "pulseaudio": {
+                "format": "<span size='12500' rise='-1000'>{icon}</span> %{volume}",
+                "format-muted": "󰝟",
+                "format-icons": ["󰕿", "󰖀", "󰕾"],
+                "tooltip": false
+        },
+
+        "keyboard-state": {
+                "capslock": true,
+                "numlock": true,
+                "format": {
+                        "capslock": "󰪛 {icon}",
+                        "numlock": "󰽾 {icon}"
+                },
+                "format-icons": {
+                        "locked": "",
+                        "unlocked": ""
+                }
+        },
+
+        "cpu": {
+                "format": "  %{usage}"
+        },
+
+        "load": {
+                "format": "  {load5}"
+        },
+
+        "memory": {
+                "format": "  %{percentage}",
+                "tooltip-format": "RAM:  {used:0.2f}GiB / {total}GiB\nSwap: {swapUsed:0.2f}GiB / {swapTotal}GiB"
+        },
+
+        "disk": {
+                "format": "  {free} / {total}",
+                "tooltip-format": "Total: {total}\nUsed: {used}\nFree: {free}"
+        },
+
+        /*
+        "hyprland/workspaces": {
+                "persistent-workspaces": {
+                        "*": 10
+                },
+                "all-outputs": true,
+                "format": "{id}",
+                "format-icons": {
+                        "active": "{id}",
+                        "occupied": "{id}",
+                        "default": "{id}",
+                        "urgent": "󱈸"
+                        "persistent": ""
+                }
+        }*/
+
+        "privacy": {
+                "icon-spacing":5,
+                "icon-size": 16,
+                "modules": [
+                        {
+                                "type": "screenshare",
+                                "tooltip":true
+                        },
+                        {
+                                "type": "audio-in",
+                                "tooltip": true
+                        }
+                ]
+        }
+}
