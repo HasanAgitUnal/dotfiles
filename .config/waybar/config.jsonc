@@ -1,6 +1,7 @@
 {
         // Position and Size
         "layer": "top",
+        "position": "top",
         "margin-top": "2",
         "margin-bottom": "0",
         "height": 20,

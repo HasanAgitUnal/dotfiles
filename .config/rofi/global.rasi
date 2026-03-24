@@ -1,8 +1,8 @@
 * {
-  bg: #11111770;
-  bg-alt: #11111770;
+  bg: #111117;
+  bg-alt: #171720;
 
-  fg: #bfbfbf;
+  fg: #e0e0e0;
   fg-alt: #424242;
 
   window-border-color: #dddddd70;
