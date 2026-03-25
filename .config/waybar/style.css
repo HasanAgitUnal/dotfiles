@@ -100,14 +100,14 @@ button:hover {
 @keyframes blink {
         to {
                 background-color: #ffffff;
-                color: #000000;
+                color: @fg4;
         }
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-        background-color: #f53c3c;
-        color: #ffffff;
+        background-color: @bg-alt2;
+        color: @fg4;
         animation-name: blink;
         animation-duration: 0.5s;
         animation-timing-function: steps(12);
