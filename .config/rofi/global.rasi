@@ -1,5 +1,5 @@
 * {
-  bg: #111117;
+  bg: #00000000;
   bg-alt: #171720;
 
   fg: #e0e0e0;
@@ -12,7 +12,6 @@
   text-color: @fg;
   font: "CaskaydiaCove Nerd Font 11";
 
-  border: 1;
   margin: 0;
   padding: 10;
   spacing: 0;
@@ -22,7 +21,9 @@ window {
   transparency: "real";
   border-radius: 10px;
   border: 2;
-  border-color: @bg-alt;
+  background-color: #111117bb;
+  border: 1;
+  border-color: #171720bb;
   height: 500px;
   padding: 15px;
 }
