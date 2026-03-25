@@ -1,0 +1,6 @@
+set show-mode-in-prompt on
+#set vi-ins-mode-string \1\e[s\e[1A\e[32m> \e[36mI\e[u\e[0m\2
+#set vi-cmd-mode-string \1\e[s\e[1A\e[32m> \e[33mN\e[u\e[0m\2
+set vi-ins-mode-string \1\e[36m\2I \1\e[0m\2
+set vi-cmd-mode-string \1\e[33m\2N \1\e[0m\2
+set keyseq-timeout 50

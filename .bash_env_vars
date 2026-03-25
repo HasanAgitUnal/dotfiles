@@ -1,0 +1,10 @@
+export EXT="/storage/emulated/091F-EDCF"
+export INT="/storage/emulated/0"
+export INTD="$INT/Download"
+
+export JAVA_HOME="/data/data/com.termux/files/usr/lib/jvm"
+export PATH="$JAVA_HOME/bin:$HOME/.local/bin:$PATH"
+export LD_LIBRARY_PATH="/data/data/com.termux/files/usr/lib"
+export EDITOR=nvim
+export BROWSER=app.zen_browser.zen
+export TERMINAL=alacritty
