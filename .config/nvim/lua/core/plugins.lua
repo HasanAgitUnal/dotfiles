@@ -664,10 +664,10 @@ require('lazy').setup({
                                                 unchecked = { icon = '󰄱 ' },
                                                 checked = { icon = '󰄲 ' },
                                                 custom = {
-                                                        important = { raw = '[!]', rendered = ' ', highlight = 'RenderMarkdownUnchecked' },
-                                                        doing = { raw = '[/]', rendered = ' ', highlight = 'RenderMarkdownUnchecked' },
+                                                        important = { raw = '[!]', rendered = ' ', highlight = 'RenderMarkdownChecked' },
+                                                        doing = { raw = '[/]', rendered = ' ', highlight = 'RenderMarkdownCurrent' },
                                                         cancelled = { raw = '[~]', rendered = '󰜺 ', highlight = 'RenderMarkdownUnchecked' },
-                                                        postponed = { raw = '[>]', rendered = '󱑂 ', highlight = 'RenderMarkdownUnchecked' },
+                                                        postponed = { raw = '[>]', rendered = '󱑂 ', highlight = 'RenderMarkdownChecked' },
                                                 },
                                         },
                                 },

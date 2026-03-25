@@ -29,7 +29,7 @@ hl("MatchParen", { fg = colors.cyan, bg = colors.yellow, bold = true})
 
 -- Git
 hl("GitSignsAdd", { fg = colors.green, bg = "NONE" })
-hl("GitSignsChange", { fg = colors.yellow, bg = "NONE" })
+hl("GitSignsChange", { fg = colors.blue, bg = "NONE" })
 hl("GitSignsDelete", { fg = colors.red, bg = "NONE" })
 
 -- Unused Code
@@ -69,6 +69,9 @@ hl("RenderMarkdownH5Bg", { fg = colors.yellow,   bg = "#1e220c", bold = true })
 hl("RenderMarkdownH6Bg", { fg = colors.magenta,  bg = "#2e0916", bold = true })
 
 hl("RenderMarkdownCode", { bg = "#171720" })
+hl("RenderMarkdownUnchecked", {fg = colors.blue})
+hl("RenderMarkdownChecked", {fg = colors.cyan})
+hl("RenderMarkdownCurrent", {fg = colors.magenta})
 
 -- LSP
 hl("LspReferenceText",  { bg = colors.selection, underline = true })
