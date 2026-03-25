@@ -28,3 +28,16 @@ autocmd('CmdlineLeave', {
         pattern = '/,\\?',
         command = [[ :set nohlsearch ]],
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    local hl_groups = {
+      "Normal", "NonText", "SignColumn", "NormalFloat", "StatusLine", "Pmenu"
+    }
+    for _, group in ipairs(hl_groups) do
+      vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
+    end
+    require("core.theme").apply()
+  end,
+})

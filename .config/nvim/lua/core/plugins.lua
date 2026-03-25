@@ -419,15 +419,15 @@ require('lazy').setup({
                                 end,
                         },
 
-                        {
-                                "baliestri/aura-theme",
-                                lazy = false,
-                                priority = 1000,
-                                config = function(plugin)
-                                        vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
-                                        vim.cmd([[colorscheme aura-dark]])
-                                end
-                        },
+                        --{
+                        --        "baliestri/aura-theme",
+                        --        lazy = false,
+                        --        priority = 1000,
+                        --        config = function(plugin)
+                        --                vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+                        --                vim.cmd([[colorscheme aura-dark]])
+                        --        end
+                        --},
 
                         -- Highlight todo, notes, etc in comments
                         { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -451,8 +451,8 @@ require('lazy').setup({
                                         require('mini.surround').setup()
 
                                         --  Check out: https://github.com/echasnovski/mini.nvim
-                                        vim.cmd('hi MiniStatuslineInactive guibg=#30105a guifg=#111117')
-                                        vim.cmd('hi MiniStatuslineFilename guibg=#54c59f guifg=#111117')
+                                        --vim.cmd('hi MiniStatuslineInactive guibg=#6bc7dd guifg=#111117')
+                                        --vim.cmd('hi MiniStatuslineFilename guibg=#50ea8c guifg=#111117')
                                         local statusline = require 'mini.statusline'
                                         statusline.setup {
                                                 use_icons = vim.g.have_nerd_font,
@@ -486,6 +486,27 @@ require('lazy').setup({
                                         statusline.section_location = function()
                                                 return '%2l:%-2v'
                                         end
+
+                                        require('mini.base16').setup({
+                                                palette = {
+                                                        base00 = '#111117',
+                                                        base01 = '#171720',
+                                                        base02 = '#272740',
+                                                        base03 = '#424242',
+                                                        base04 = '#a0a0a0',
+                                                        base05 = '#e0e0e0',
+                                                        base06 = '#f0f0f0',
+                                                        base07 = '#ffffff',
+                                                        base08 = '#6bc7dd',
+                                                        base09 = '#207d8a',
+                                                        base0A = '#e1ea8c',
+                                                        base0B = '#50ea7b',
+                                                        base0C = '#6bc7dd',
+                                                        base0D = '#207d8a',
+                                                        base0E = '#ee79c6',
+                                                        base0F = '#cfcfcf',
+                                                }
+                                        })
 
                                 end,
                         },
@@ -620,7 +641,7 @@ require('lazy').setup({
                                                 vim.fn.jobstart({ "xdg-open", url })
                                         end,
 
-                                        ui = { enable = false },
+                                        ui = { enable = false }, -- Set to false to allow render-markdown to work correctly
                                 },
                         },
 
@@ -651,6 +672,19 @@ require('lazy').setup({
                                         },
                                 },
                         },
+                        -- {
+                        --         "3rd/image.nvim",
+                        --         build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+                        --         opts = {
+                        --                 backend = "ueberzug",
+                        --                 processor = "magick_cli",
+                        --                 max_height_window_percentage = 100, -- Changed from math.huge to avoid crash
+                        --                 max_width_window_percentage = 100,  -- Changed from math.huge to avoid crash
+                        --                 window_overlap_clear_enabled = true,
+                        --                 editor_only_render_when_focused = true,
+                        --                 tmux_show_boundary = false,
+                        --         }
+                        -- },
                 }, {
                         ui = {
                                 icons = vim.g.have_nerd_font and {} or {
