@@ -1,0 +1,56 @@
+{
+  "general": {
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d",
+      "warningAcknowledged": true
+    },
+    "preferredEditor": "neovim",
+    "vimMode": true,
+    "enableAutoUpdate": false
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ui": {
+    "theme": "ANSI",
+    "inlineThinkingMode": "off",
+    "showStatusInTitle": true,
+    "dynamicWindowTitle": true,
+    "showShortcutsHint": false,
+    "hideBanner": true,
+    "footer": {
+      "hideCWD": false,
+      "hideSandboxStatus": true
+    },
+    "showMemoryUsage": true,
+    "showLineNumbers": false,
+    "showUserIdentity": false,
+    "useBackgroundColor": true,
+    "loadingPhrases": "tips",
+    "errorVerbosity": "low",
+    "hideWindowTitle": true
+  },
+  "output": {
+    "format": "text"
+  },
+  "model": {
+    "name": "auto"
+  },
+  "tools": {
+    "shell": {
+      "showColor": true
+    }
+  },
+  "privacy": {
+        "usageStatisticsEnabled": false
+  },
+  "experimental": {
+    "directWebFetch": true
+  },
+  "context":  {
+          "includeDirectories": ["~/.gemini/gems"]
+  }
+}
