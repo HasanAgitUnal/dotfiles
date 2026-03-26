@@ -22,6 +22,13 @@ end
 hl("FloatBorder", { fg = colors.cyan, bg = "NONE" })
 hl("WinSeparator", { fg = colors.comment, bg = "NONE" })
 hl("NormalFloat", { bg = "#171720" })
+hl("CursorLineNr", { fg = cyan, bg = "NONE", bold = true })
+hl("LineNrAbove",   { fg = "#555577", bg = "NONE" })
+hl("LineNrBelow",   { fg = "#555577", bg = "NONE" })
+hl("CursorLineSign", { bg = "NONE" })
+hl("CursorLineFold", { bg = "NONE" })
+hl("SignColumn",                { bg = "NONE" })
+hl("LineNr",                    { bg = "NONE" })
 
 -- Things
 hl("Search", { fg = colors.bg, bg = colors.yellow })
@@ -102,13 +109,12 @@ hl("MiniStatuslineModeCommand", { fg = colors.yellow,  bg = "NONE", bold = true}
 hl("MiniStatuslineModeOther",   { fg = colors.yellow,  bg = "NONE", bold = true})
 
 hl("MiniStatuslineFilename",    { fg = colors.fg_dark, bg = colors.cyan})
-hl("MiniStatuslineInactive",    { fg = colors.fg_dark, bg = "NONE" })
+hl("MiniStatuslineInactive",    { fg = colors.fg, bg = "NONE", italic = true })
 hl("StatusLine",                { bg = "#171720",         reverse = false })
 hl("CursorLine",                { bg = colors.cursorline })
 hl("CursorLineNr",              { fg = colors.cyan })
 
 hl("Normal", { fg = colors.fg, bg = "NONE" })
-hl("NormalFloat", { bg = "#171720" })
 hl("NoneText", { fg = colors.comment, bg = "NONE" })
 
 hl("Visual", { bg = colors.selection })
@@ -146,6 +152,7 @@ hl("StorageClass", { fg = colors.magenta })  -- static, const
 hl("Special", { fg = colors.cyan })          -- escapes etc.
 hl("Delimiter", { fg = colors.fg })          -- ; { } ( ) :
 
+hl("Error", { fg = colors.red, bg = "NONE", italic = true, underline = true, reverse = false })
 -- TreeSitter
 hl("@variable", { fg = colors.fg })
 hl("@variable.builtin", { fg = colors.cyan })
