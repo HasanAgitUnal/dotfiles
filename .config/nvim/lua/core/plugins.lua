@@ -652,7 +652,7 @@ require('lazy').setup({
                                 opts = {
                                         heading = {
                                                 sign = true,
-                                                icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+                                                icons = { " ", " ", " ", " ", " ", " " },
                                         },
                                         code = {
                                                 sign = false,
