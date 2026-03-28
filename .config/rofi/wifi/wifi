@@ -16,7 +16,7 @@ rofiprompt=~/.config/rofi/wifi/prompt.rasi
 # normal rofi menu
 rofidmenu=~/.config/rofi/wifi/dmenu.rasi
 # rofi config for password
-rofipass=~/.config/rofi/wifi/passwd.rasi
+rofipass=~/.config/rofi/passwd.rasi
 
 # ┌─┐┌┬┐┌─┐┌┬┐┬ ┬┌─┐
 # └─┐ │ ├─┤ │ │ │└─┐

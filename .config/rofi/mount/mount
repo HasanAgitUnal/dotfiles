@@ -1,0 +1,80 @@
+#!/bin/bash
+# ~/.config/rofi/mount/mount
+
+THEME="$HOME/.config/rofi/mount/mount.rasi"
+GLOBAL_PROMPT="$HOME/.config/rofi/wifi/prompt.rasi"
+PASS_THEME="$HOME/.config/rofi/passwd.rasi"
+
+# Check dependencies
+for cmd in rofi sudo jq lsblk; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        notify-send "Error: $cmd is not installed."
+        exit 1
+    fi
+done
+
+action=$(printf "Mount\nUnmount" | rofi -dmenu -i -p "Action:" -theme "$THEME")
+[ -z "$action" ] && exit
+
+# Filter devices for action
+if [ "$action" = "Mount" ]; then
+    devices=$(lsblk -Jp -o NAME,FSTYPE,MOUNTPOINT,SIZE,LABEL | jq -r '.. | objects | select(.fstype != null and .mountpoint == null and .fstype != "swap") | "\(.name) (\(.size)) \(.label // "")"' | sed 's/ *$//')
+    prompt="Mount:"
+else
+    devices=$(lsblk -Jp -o NAME,FSTYPE,MOUNTPOINT,SIZE,LABEL | jq -r '.. | objects | select(.mountpoint != null and (.mountpoint | test("/$|/boot|/home|swap|SWAP") | not)) | "\(.name) (\(.size)) [\(.mountpoint)] \(.label // "")"' | sed 's/ *$//')
+    prompt="Unmount:"
+fi
+
+if [ -z "$devices" ]; then
+    printf "No devices found" | rofi -dmenu -i -p "Error:" -theme "$GLOBAL_PROMPT"
+    exit
+fi
+
+selected=$(echo "$devices" | rofi -dmenu -i -p "$prompt" -theme "$THEME")
+if [ -z "$selected" ] || [ "$selected" = "No devices found" ]; then
+    exit
+fi
+
+dev_path=$(echo "$selected" | awk '{print $1}')
+
+# Robust metadata extraction
+LABEL=""
+FSTYPE=""
+eval $(lsblk -P -o LABEL,FSTYPE "$dev_path")
+[ -z "$LABEL" ] && LABEL=$(basename "$dev_path")
+mount_point="/run/media/$USER/$LABEL"
+
+# Get Password
+passwd=$(echo "" | rofi -dmenu -password -i -p "Sudo Password:" -theme "$PASS_THEME")
+if [ -z "$passwd" ]; then
+    exit
+fi
+
+# Mount/Unmount logic
+if [ "$action" = "Mount" ]; then
+    # Create mount point
+    echo "$passwd" | sudo -S mkdir -p "$mount_point" >/dev/null 2>&1
+    echo "$passwd" | sudo -S chown "$USER:$USER" "$mount_point" >/dev/null 2>&1
+    
+    # Try mounting
+    if [ "$FSTYPE" = "ntfs" ] || [[ "$selected" == *"ntfs"* ]]; then
+        res=$(echo "$passwd" | sudo -S mount -t ntfs-3g "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
+    else
+        res=$(echo "$passwd" | sudo -S mount "$dev_path" "$mount_point" 2>&1)
+    fi
+    status=$?
+else
+    res=$(echo "$passwd" | sudo -S umount "$dev_path" 2>&1)
+    status=$?
+    # Remove empty mount point
+    echo "$passwd" | sudo -S rmdir "$mount_point" >/dev/null 2>&1
+fi
+
+# Notification
+if [ $status -eq 0 ]; then
+    msg="SUCCESS: $action completed."
+else
+    msg="ERROR: $res"
+fi
+
+printf "Exit" | rofi -dmenu -i -p "$msg" -theme "$GLOBAL_PROMPT"

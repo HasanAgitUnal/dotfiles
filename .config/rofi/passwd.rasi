@@ -1,0 +1,30 @@
+@theme "global.rasi"
+
+configuration {
+    sort:               true;
+    sorting-method:     "normal";
+    disable-history:    false;
+}
+
+window {
+    width:              400px;
+    height:             130px;
+}
+
+mainbox {
+    children:           [ inputbar ];
+}
+
+inputbar {
+    children:           [ prompt, entry ];
+    padding:            25px 20px 45px 20px;
+}
+
+prompt {
+    enabled:            true;
+}
+
+entry {
+    enabled:            true;
+    cursor:             text;
+}

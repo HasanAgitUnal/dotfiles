@@ -1,6 +1,6 @@
 #!/bin/bash
 
-options="App Launcher\nWifi Manager"
+options="App Launcher\nWifi Manager\nMount Disk"
 selected=$(echo -ne "$options" | rofi -dmenu -i -p "Select:")
 which rofi-wifi
 # rofi-* scripts are at ~/.local/bin (as a symlink)
@@ -10,8 +10,11 @@ case $selected in
 		;;
 
 	"Wifi Manager")
-		~/.local/bin/rofi-wifi
+		~/dotfiles/.config/rofi/wifi/wifi
 		;;
+        "Mount Disk")
+                ~/dotfiles/.config/rofi/mount/mount
+                ;;
 	*) 
                 echo wtf is happening?
                 ;;

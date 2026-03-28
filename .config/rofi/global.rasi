@@ -20,9 +20,8 @@
 window {
   transparency: "real";
   border-radius: 10px;
-  border: 2;
   background-color: #111117bb;
-  border: 1;
+  border: 3;
   border-color: #171720bb;
   height: 500px;
   padding: 15px;
