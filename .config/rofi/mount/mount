@@ -1,9 +1,8 @@
 #!/bin/bash
 # ~/.config/rofi/mount/mount
 
-THEME="$HOME/.config/rofi/mount/mount.rasi"
-GLOBAL_PROMPT="$HOME/.config/rofi/wifi/prompt.rasi"
-PASS_THEME="$HOME/.config/rofi/passwd.rasi"
+LIST_THEME="$HOME/.config/rofi/list.rasi"
+INPUT_THEME="$HOME/.config/rofi/input.rasi"
 
 # Check dependencies
 for cmd in rofi sudo jq lsblk; do
@@ -13,7 +12,8 @@ for cmd in rofi sudo jq lsblk; do
     fi
 done
 
-action=$(printf "Mount\nUnmount" | rofi -dmenu -i -p "Action:" -theme "$THEME")
+# Action Selection
+action=$(printf "Mount\nUnmount" | rofi -dmenu -i -p "Action:" -theme "$LIST_THEME")
 [ -z "$action" ] && exit
 
 # Filter devices for action
@@ -26,11 +26,11 @@ else
 fi
 
 if [ -z "$devices" ]; then
-    printf "No devices found" | rofi -dmenu -i -p "Error:" -theme "$GLOBAL_PROMPT"
+    printf "No devices found" | rofi -dmenu -i -p "Error:" -theme "$INPUT_THEME"
     exit
 fi
 
-selected=$(echo "$devices" | rofi -dmenu -i -p "$prompt" -theme "$THEME")
+selected=$(echo "$devices" | rofi -dmenu -i -p "$prompt" -theme "$LIST_THEME")
 if [ -z "$selected" ] || [ "$selected" = "No devices found" ]; then
     exit
 fi
@@ -45,7 +45,7 @@ eval $(lsblk -P -o LABEL,FSTYPE "$dev_path")
 mount_point="/run/media/$USER/$LABEL"
 
 # Get Password
-passwd=$(echo "" | rofi -dmenu -password -i -p "Sudo Password:" -theme "$PASS_THEME")
+passwd=$(echo "" | rofi -dmenu -password -i -p "Sudo Password:" -theme "$INPUT_THEME")
 if [ -z "$passwd" ]; then
     exit
 fi
@@ -77,4 +77,4 @@ else
     msg="ERROR: $res"
 fi
 
-printf "Exit" | rofi -dmenu -i -p "$msg" -theme "$GLOBAL_PROMPT"
+printf "Exit" | rofi -dmenu -i -p "$msg" -theme "$INPUT_THEME"

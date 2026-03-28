@@ -1,0 +1,30 @@
+@theme "global.rasi"
+
+mainbox { 
+  children: [ inputbar, listview ]; 
+}
+
+inputbar {
+  children: [ prompt, entry ];
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0 0 10px 0;
+}
+
+prompt { 
+  enabled: true; 
+  padding: 10px;
+  text-color: @fg;
+}
+
+entry {
+  padding: 10px;
+  text-color: @fg;
+}
+
+listview {
+  columns: 1;
+  lines: 8;
+  fixed-height: false;
+  spacing: 5px;
+}

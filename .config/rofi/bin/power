@@ -1,0 +1,25 @@
+#!/bin/bash
+
+menu="⏻   Shutdown\n   Reboot\n󰤄   Sleep\n󰌾   Lock\n󰗽   Log Out"
+selection=$(echo -e $menu | rofi -dmenu -i -p "⏻ ")
+
+case $selection in
+        *Shutdown)
+                 shutdown now
+                 ;;
+        *Reboot)
+                reboot
+                ;;
+        *Sleep)
+                hyprlock & systemctl suspend
+                ;;
+        *Lock)
+                hyprlock
+                ;;
+        *Log*)
+                hyprctl dispatch exit
+                ;;
+        *)
+                echo "wtf?"
+                ;;
+esac

@@ -1,9 +1,8 @@
 #!/bin/bash
 
-options="App Launcher\nWifi Manager\nMount Disk"
+options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nPower"
 selected=$(echo -ne "$options" | rofi -dmenu -i -p "Select:")
-which rofi-wifi
-# rofi-* scripts are at ~/.local/bin (as a symlink)
+
 case $selected in
 	"App Launcher")
 		rofi -show drun
@@ -14,6 +13,15 @@ case $selected in
 		;;
         "Mount Disk")
                 ~/dotfiles/.config/rofi/mount/mount
+                ;;
+        "Nerd Font Icons")
+                ~/dotfiles/.config/rofi/bin/nerd-icons
+                ;;
+        "Emojis")
+                ~/dotfiles/.config/rofi/bin/emoji
+                ;;
+        "Power")
+                ~/dotfiles/.config/rofi/bin/power
                 ;;
 	*) 
                 echo wtf is happening?
