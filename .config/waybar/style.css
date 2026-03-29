@@ -1,15 +1,26 @@
-@define-color bg      rgba(17, 17, 23, 0.4);
-@define-color bg-alt1 rgba(23, 23, 32, 0.3);
-@define-color bg-alt2 rgba(34, 34, 42, 0.3);
-@define-color bg-alt3 rgba(39, 39, 64, 0.3);
-@define-color fg1     #E0E0E0;
-@define-color fg2     #50EA7B;
-@define-color fg3     #6BC7DD;
-@define-color fg4     #FE1858;
+@define-color bg         rgba(17, 17, 23, 0.4);
+@define-color bg-opaque  rgba(17, 17, 23, 0.9);
+@define-color bg-alt1    rgba(23, 23, 32, 0.3);
+@define-color bg-alt2    rgba(34, 34, 42, 0.3);
+@define-color bg-alt3    rgba(39, 39, 64, 0.3);
+@define-color bg3-opaque rgba(39, 39, 64, 1  );
+@define-color fg1        #E0E0E0;
+@define-color fg2        #50EA7B;
+@define-color fg3        #6BC7DD;
+@define-color fg4        #FE1858;
 
 * {
         font-family: "CaskaydiaCove Nerd Font", "Caskaydia Cove";
         font-size: 13px;
+}
+
+tooltip {
+        background-color: @bg-opaque;
+        border: 2px solid @bg-alt3;
+}
+
+tooltip label {
+        color: @fg;
 }
 
 window#waybar {
@@ -64,6 +75,7 @@ button:hover {
         color: @fg1
 }
 
+#custom-syncthing,
 #clock,
 #battery,
 #cpu,
@@ -75,6 +87,7 @@ button:hover {
 #power-profiles-daemon {
         padding: 0px 10px;
         color: @fg3;
+        background-color: @bg-alt1;
 }
 
 #window,
@@ -104,7 +117,6 @@ button:hover {
         }
 }
 
-/* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
         background-color: @bg-alt2;
         color: @fg4;
@@ -211,6 +223,18 @@ button:hover {
 
 #privacy-item.audio-in {
         background-color: #1ca000;
+}
+
+#custom-syncthing {
+        padding-right: 14px;
+}
+
+#custom-syncthing.synched {
+        color: @fg3;
+}
+
+#custom-syncthing.synching {
+        color: @fg2;
 }
 
 #statistics {
