@@ -75,6 +75,7 @@ button:hover {
         color: @fg1
 }
 
+#privacy,
 #custom-syncthing,
 #clock,
 #battery,
@@ -210,19 +211,13 @@ button:hover {
 
 #privacy {
         padding: 0;
+        border-radius: 30px;
+        background-color: @bg-alt3;
 }
 
 #privacy-item {
         padding: 0 5px;
-        color: white;
-}
-
-#privacy-item.screenshare {
-        background-color: #cf5700;
-}
-
-#privacy-item.audio-in {
-        background-color: #1ca000;
+        color: @fg2;
 }
 
 #custom-syncthing {

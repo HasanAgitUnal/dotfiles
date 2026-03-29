@@ -38,7 +38,7 @@
                 "format": "{}",
                 "return-type": "json",
                 "exec": "~/dotfiles/scripts/waybar/syncthing.sh",
-                "interval": 3,
+                "interval": 1,
                 "on-click": "syncthing browser",
                 "tooltip": true
         }
