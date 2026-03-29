@@ -1,0 +1,35 @@
+[global]
+width = 250
+height = (50, 200)
+notification_limit = 10
+offset = (20, 20)
+frame_width = 2
+gap_size = 7
+sort = false
+font = Caskaydia Cove NF 9
+format = "<span weight='bold' size='9928'>%s</span>\n<span foreground='#222244'>─────────────────────────────────</span>\n%b"
+# icon_theme =
+enable_recursive_icon_lookup = true
+dmenu = "rofi -dmenu -i -p 'Notifications'"
+corner_radius = 4
+progress_bar_height = 8
+progress_bar_frame_width = 1
+progress_bar_corner_radius = 3
+highlight = "#50EA7B,#6bc7dd"
+#highlight = "#FE1858,#6bc7dd,#50EA7B"
+
+[urgency_low]
+background = "#111117bb"
+foreground = "#909090"
+frame_color = "#171720ee"
+
+[urgency_normal]
+background = "#111117bb"
+foreground = "#6BC7DD"
+frame_color = "#171720ee"
+
+[urgency_critical]
+background = "#111117bb"
+foreground = "#FE1858"
+frame_color = "#171720ee"
+timeout = 10
