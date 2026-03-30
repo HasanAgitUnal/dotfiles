@@ -57,8 +57,8 @@ if [ "$action" = "Mount" ]; then
     echo "$passwd" | sudo -S chown "$USER:$USER" "$mount_point" >/dev/null 2>&1
     
     # Try mounting
-    if [ "$FSTYPE" = "ntfs" ] || [[ "$selected" == *"ntfs"* ]]; then
-        res=$(echo "$passwd" | sudo -S mount -t ntfs-3g "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
+    if [[ "$FSTYPE" =~ ^(ntfs|exfat|vfat)$ ]] || [[ "$selected" =~ (ntfs|exfat|vfat) ]]; then
+        res=$(echo "$passwd" | sudo -S mount "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
     else
         res=$(echo "$passwd" | sudo -S mount "$dev_path" "$mount_point" 2>&1)
     fi
