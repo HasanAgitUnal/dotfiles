@@ -8,7 +8,7 @@ if [ ! -s "$CACHE_FILE" ]; then
     curl -s "$JSON_URL" | jq -r 'to_entries | .[] | "\(.key)   \(.value | join(", "))"' > "$CACHE_FILE"
 fi
 
-selected=$(cat "$CACHE_FILE" | rofi -dmenu -i -p "Select Emoji:" -theme-str "* { font: \"CaskaydiaCove Nerd Font 14\"; } window { height : 600; width : 900px; } listview { columns : 5; } element { text-color : #a0a0a0;}")
+selected=$(cat "$CACHE_FILE" | rofi -dmenu -i -p "Emojis   " -theme-str "* { font: \"CaskaydiaCove Nerd Font 14\"; } window { height : 600; width : 900px; } listview { columns : 5; } element { text-color : #a0a0a0;}")
 
 if [ -n "$selected" ]; then
     emoji=$(echo "$selected" | awk '{print $1}')

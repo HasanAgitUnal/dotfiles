@@ -13,20 +13,20 @@ for cmd in rofi sudo jq lsblk; do
 done
 
 # Action Selection
-action=$(printf "Mount\nUnmount" | rofi -dmenu -i -p "Action:" -theme "$LIST_THEME")
+action=$(printf "Mount\nUnmount" | rofi -dmenu -i -p "Action   " -theme "$LIST_THEME")
 [ -z "$action" ] && exit
 
 # Filter devices for action
 if [ "$action" = "Mount" ]; then
     devices=$(lsblk -Jp -o NAME,FSTYPE,MOUNTPOINT,SIZE,LABEL | jq -r '.. | objects | select(.fstype != null and .mountpoint == null and .fstype != "swap") | "\(.name) (\(.size)) \(.label // "")"' | sed 's/ *$//')
-    prompt="Mount:"
+    prompt="Mount   "
 else
     devices=$(lsblk -Jp -o NAME,FSTYPE,MOUNTPOINT,SIZE,LABEL | jq -r '.. | objects | select(.mountpoint != null and (.mountpoint | test("/$|/boot|/home|swap|SWAP") | not)) | "\(.name) (\(.size)) [\(.mountpoint)] \(.label // "")"' | sed 's/ *$//')
-    prompt="Unmount:"
+    prompt="Unmount   "
 fi
 
 if [ -z "$devices" ]; then
-    printf "No devices found" | rofi -dmenu -i -p "Error:" -theme "$INPUT_THEME"
+    rofi -dmenu -i -p "No devices found" -theme "$INPUT_THEME"
     exit
 fi
 
@@ -70,11 +70,10 @@ else
     echo "$passwd" | sudo -S rmdir "$mount_point" >/dev/null 2>&1
 fi
 
-# Notification
 if [ $status -eq 0 ]; then
-    msg="SUCCESS: $action completed."
+    msg="Success: $action completed."
 else
-    msg="ERROR: $res"
+    msg="Error: $res"
 fi
 
 printf "Exit" | rofi -dmenu -i -p "$msg" -theme "$INPUT_THEME"

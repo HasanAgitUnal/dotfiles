@@ -1,7 +1,7 @@
 #!/bin/bash
 
 options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nPower"
-selected=$(echo -ne "$options" | rofi -dmenu -i -p "Select:")
+selected=$(echo -ne "$options" | rofi -dmenu -i -p "Main Menu   ")
 
 case $selected in
 	"App Launcher")

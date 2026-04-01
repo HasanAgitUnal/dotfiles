@@ -46,7 +46,7 @@ connections() {
         formatted_list+="$icon    $lock    $ssid\n"
     done <<< "$raw_list"
 
-    selected_net=$(printf "$formatted_list" | rofi -dmenu -i -p "Select Network [$status]" -theme "$LIST_THEME" -theme-str 'window { width: 800px; } listview { columns: 2; spacing: 0px; }')
+    selected_net=$(printf "$formatted_list" | rofi -dmenu -i -p "Select Network [$status]   " -theme "$LIST_THEME" -theme-str 'window { width: 800px; } listview { columns: 2; spacing: 0px; }')
     [ -z "$selected_net" ] && exit
     
     wifi_name=$(echo "$selected_net" | sed -E 's/^[^ ]+ +[^ ]+ +//')
@@ -75,7 +75,7 @@ get_status
 powertoggle=$([ "$power" = " " ] && echo "  Turn Off" || echo "  Turn On")
 
 options="$powertoggle\n󰖩  Connections\n󰖪  Disconnect\n󰌌  Manual Connect"
-chosen=$(printf "$options" | rofi -dmenu -i -p "WiFi $power" -theme "$LIST_THEME")
+chosen=$(printf "$options" | rofi -dmenu -i -p "WiFi $power   " -theme "$LIST_THEME")
 
 case "$chosen" in
     *Turn\ Off)
@@ -91,7 +91,7 @@ case "$chosen" in
             nmcli device disconnect $(nmcli -t -f DEVICE,TYPE device | grep :wifi | cut -d: -f1 | head -n1)
             ;;
     *Manual\ Connect)
-        ssid=$(rofi -dmenu -p "SSID:" -theme "$LIST_THEME")
+        ssid=$(rofi -dmenu -p "SSID:" -theme "$INPUT_THEME")
         [ -z "$ssid" ] && exit
         pass=$(echo "" | rofi -dmenu -password -i -p "Password:" -theme "$INPUT_THEME")
         nmcli device wifi connect "$ssid" password "$pass"

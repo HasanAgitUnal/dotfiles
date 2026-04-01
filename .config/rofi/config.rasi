@@ -1,5 +1,5 @@
 configuration {
-  display-drun: "Run App:";
+  display-drun: "Applications";
   display-window: "Switch to Window:";
   drun-display-format: "{icon} {name}";
   modi: "window,run,drun";
