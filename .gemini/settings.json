@@ -42,15 +42,18 @@
   "tools": {
     "shell": {
       "showColor": true
-    }
+    },
+    "truncateToolOutputThreshold": 100000
   },
   "privacy": {
-        "usageStatisticsEnabled": false
+    "usageStatisticsEnabled": false
   },
   "experimental": {
     "directWebFetch": true
   },
-  "context":  {
-          "includeDirectories": ["~/.gemini/gems"]
+  "context": {
+    "includeDirectories": [
+      "~/.gemini/gems"
+    ]
   }
 }
