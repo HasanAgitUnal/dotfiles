@@ -1,15 +1,26 @@
 "$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
 [mgr]
-# Hovered
-hovered         = { fg = "red",  italic = true, reversed = true, bold = true }
-preview_hovered = { underline = false }
+hovered = { bg = "blue", fg = "white", underline = false }
+current = { bg = "blue", fg = "white", underline = false }
 
 # Marker
 marker_cut      = { fg = "lightblack",    bg = "lightblack" }
 
 # Count
 count_cut      = { fg = "white", bg = "black" }
+
+#############################################################################
+
+[manager]
+hovered = { bg = "blue", fg = "white", underline = false }
+current = { bg = "blue", fg = "white", underline = false }
+
+#############################################################################
+
+[indicator]
+current = { fg = "blue", italic = true, reversed = true, bold = true }
+preview = { fg = "lightblue", italic = true, reversed = false, bold = true}
 
 #############################################################################
 
