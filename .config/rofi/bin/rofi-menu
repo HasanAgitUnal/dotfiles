@@ -7,12 +7,11 @@ case $selected in
 	"App Launcher")
 		rofi -show drun
 		;;
-
 	"Wifi Manager")
-		~/dotfiles/.config/rofi/wifi/wifi
+		~/dotfiles/.config/rofi/bin/wifi
 		;;
         "Mount Disk")
-                ~/dotfiles/.config/rofi/mount/mount
+                ~/dotfiles/.config/rofi/bin/mount
                 ;;
         "Nerd Font Icons")
                 ~/dotfiles/.config/rofi/bin/nerd-icons

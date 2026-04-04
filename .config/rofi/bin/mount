@@ -1,0 +1,79 @@
+#!/bin/bash
+# ~/.config/rofi/mount/mount
+
+LIST_THEME="$HOME/.config/rofi/list.rasi"
+INPUT_THEME="$HOME/.config/rofi/input.rasi"
+
+# Check dependencies
+for cmd in rofi sudo jq lsblk; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        notify-send "Error: $cmd is not installed."
+        exit 1
+    fi
+done
+
+# Action Selection
+action=$(printf "Mount\nUnmount" | rofi -dmenu -i -p "Action   " -theme "$LIST_THEME")
+[ -z "$action" ] && exit
+
+# Filter devices for action
+if [ "$action" = "Mount" ]; then
+    devices=$(lsblk -Jp -o NAME,FSTYPE,MOUNTPOINT,SIZE,LABEL | jq -r '.. | objects | select(.fstype != null and .mountpoint == null and .fstype != "swap") | "\(.name) (\(.size)) \(.label // "")"' | sed 's/ *$//')
+    prompt="Mount   "
+else
+    devices=$(lsblk -Jp -o NAME,FSTYPE,MOUNTPOINT,SIZE,LABEL | jq -r '.. | objects | select(.mountpoint != null and (.mountpoint | test("/$|/boot|/home|swap|SWAP") | not)) | "\(.name) (\(.size)) [\(.mountpoint)] \(.label // "")"' | sed 's/ *$//')
+    prompt="Unmount   "
+fi
+
+if [ -z "$devices" ]; then
+    rofi -dmenu -i -p "No devices found" -theme "$INPUT_THEME"
+    exit
+fi
+
+selected=$(echo "$devices" | rofi -dmenu -i -p "$prompt" -theme "$LIST_THEME")
+if [ -z "$selected" ] || [ "$selected" = "No devices found" ]; then
+    exit
+fi
+
+dev_path=$(echo "$selected" | awk '{print $1}')
+
+# Robust metadata extraction
+LABEL=""
+FSTYPE=""
+eval $(lsblk -P -o LABEL,FSTYPE "$dev_path")
+[ -z "$LABEL" ] && LABEL=$(basename "$dev_path")
+mount_point="/run/media/$USER/$LABEL"
+
+# Get Password
+passwd=$(echo "" | rofi -dmenu -password -i -p "Sudo Password:" -theme "$INPUT_THEME")
+if [ -z "$passwd" ]; then
+    exit
+fi
+
+# Mount/Unmount logic
+if [ "$action" = "Mount" ]; then
+    # Create mount point
+    echo "$passwd" | sudo -S mkdir -p "$mount_point" >/dev/null 2>&1
+    echo "$passwd" | sudo -S chown "$USER:$USER" "$mount_point" >/dev/null 2>&1
+    
+    # Try mounting
+    if [[ "$FSTYPE" =~ ^(ntfs|exfat|vfat)$ ]] || [[ "$selected" =~ (ntfs|exfat|vfat) ]]; then
+        res=$(echo "$passwd" | sudo -S mount "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
+    else
+        res=$(echo "$passwd" | sudo -S mount "$dev_path" "$mount_point" 2>&1)
+    fi
+    status=$?
+else
+    res=$(echo "$passwd" | sudo -S umount "$dev_path" 2>&1)
+    status=$?
+    # Remove empty mount point
+    echo "$passwd" | sudo -S rmdir "$mount_point" >/dev/null 2>&1
+fi
+
+if [ $status -eq 0 ]; then
+    msg="Success: $action completed."
+else
+    msg="Error: $res"
+fi
+
+printf "Exit" | rofi -dmenu -i -p "$msg" -theme "$INPUT_THEME"
