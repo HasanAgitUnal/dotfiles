@@ -151,7 +151,7 @@ case $ACTION in
         mute-mic)
                 pamixer --default-source -t
                 MUTE=$(pamixer --default-source --get-mute)
-                ICON=$([ "$MUTE" = "true" ] && echo "󰍭" || echo "󰍬")
+                ICON=$([ "$MUTE" = "true" ] && echo "" || echo "")
                 show_toggle "$ICON"
                 ;;
         *)
