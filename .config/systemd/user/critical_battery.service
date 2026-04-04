@@ -1,0 +1,11 @@
+[Unit]
+Description=Critical Battery Level Monitor
+After=dbus.service
+
+[Service]
+ExecStart=/usr/bin/bash %h/.local/bin/critical_battery.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

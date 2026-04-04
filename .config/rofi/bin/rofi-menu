@@ -1,6 +1,6 @@
 #!/bin/bash
 
-options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nPower"
+options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nPower Profiles\nPower"
 selected=$(echo -ne "$options" | rofi -dmenu -i -p "Main Menu   ")
 
 case $selected in
@@ -18,6 +18,9 @@ case $selected in
                 ;;
         "Emojis")
                 ~/dotfiles/.config/rofi/bin/emoji
+                ;;
+        "Power Profiles")
+                ~/dotfiles/.config/rofi/bin/powerprofiles
                 ;;
         "Power")
                 ~/dotfiles/.config/rofi/bin/power

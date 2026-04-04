@@ -1,0 +1,49 @@
+#!/bin/bash
+
+PROFILE="$(powerprofilesctl get)"
+case $PROFILE in
+        "performance")
+                ICON="󱐋"
+                ;;
+        "balanced")
+                ICON=" "
+                ;;
+        "power-saver")
+                ICON=" "
+                ;;
+        *)
+                ICON="?"
+                ;;
+esac
+
+# ~/.powerlock is a lock for my auto power profile changer script. not important for normal usage
+if [ -f ~/.powerlock ];then
+        LOCK="locked"
+        LOCK_TOGGLE="  Unlock"
+        PROMPT="Power Profiles $ICON     "
+else
+        LOCK="unlocked"
+        LOCK_TOGGLE="  Lock"
+        PROMPT="Power Profiles $ICON     "
+fi
+
+MENU="$LOCK_TOGGLE\n󱐋  Performance\n  Balanced\n  Power Saver"
+selection=$(echo -e "$MENU" | rofi -dmenu -i -p "$PROMPT")
+
+case $selection in
+        *"Unlock")
+                rm ~/.powerlock
+                ;;
+        *"Lock")
+                touch ~/.powerlock
+                ;;
+        *"Performance")
+                powerprofilesctl set performance
+                ;;
+        *"Balanced")
+                powerprofilesctl set balanced
+                ;;
+        *"Power Saver")
+                powerprofilesctl set power-saver
+                ;;
+esac
