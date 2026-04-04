@@ -121,6 +121,7 @@ if [ -x $PREFIX/bin/dircolors ]; then
         alias grep='grep --color=auto'
         alias fgrep='fgrep --color=auto'
         alias egrep='egrep --color=auto'
+        alias yay='yay --color=auto'
         
         # ls aliasses
         alias ll='ls -alF'
