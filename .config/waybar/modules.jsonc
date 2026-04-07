@@ -65,16 +65,19 @@
         },
 
         "cpu": {
-                "format": "  %{usage}"
+                "format": "  %{usage}",
+                "interval" : 2
         },
 
         "load": {
-                "format": "  {load5}"
+                "format": "  {load1}",
+                "interval" : 2
         },
 
         "memory": {
                 "format": "  %{percentage}",
-                "tooltip-format": "RAM:  {used:0.2f}GiB / {total}GiB\nSwap: {swapUsed:0.2f}GiB / {swapTotal}GiB"
+                "tooltip-format": "RAM:  {used:0.2f}GiB / {total}GiB\nSwap: {swapUsed:0.2f}GiB / {swapTotal}GiB",
+                "interval" : 2
         },
 
         "disk": {
