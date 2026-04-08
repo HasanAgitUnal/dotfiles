@@ -114,19 +114,25 @@ PS1='$(exit_code) \[\033[1;3;36m\]\w\[\033[0m\]$(git_branch) \[\033[32m\]> \[\03
 # Enable color support of ls and grep commands
 if [ -x $PREFIX/bin/dircolors ]; then
         test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-        
-        # colored commands
-        alias ls='ls --color=auto'
+
+        if [[ -f /usr/bin/eza ]];then
+                alias eza='eza --icons'
+                alias ls='eza --icons'
+                alias ll='ls -alF -h --git'
+        else
+                alias ls='ls --color=auto'
+                alias ll='ls -alF -h'
+        fi
+
+        alias la='ls -A'
+        alias l='ls -F'
+
         alias dir='dir --color=auto'
         alias grep='grep --color=auto'
         alias fgrep='fgrep --color=auto'
         alias egrep='egrep --color=auto'
         alias yay='yay --color=auto'
-        
-        # ls aliasses
-        alias ll='ls -alF'
-        alias la='ls -A'
-        alias l='ls -CF'
+
 fi
 
 # colored GCC warnings and errors

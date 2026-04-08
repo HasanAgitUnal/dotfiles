@@ -8,7 +8,6 @@
 @define-color fg2        #50EA7B;
 @define-color fg3        #6BC7DD;
 @define-color fg4        #FE1858;
-@define-color fg-dark    #333337;
 
 * {
         font-family: "CaskaydiaCove Nerd Font", "Caskaydia Cove";
@@ -174,6 +173,7 @@ button:hover {
 
 #network {
         background-color: @bg;
+        padding-right: 13px;
 }
 
 #network.connected {
@@ -181,7 +181,7 @@ button:hover {
 }
 
 #network.disconnected {
-        color: @fg-dark;
+        color: @fg4;
 }
 
 #pulseaudio {
