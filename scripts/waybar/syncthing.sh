@@ -36,7 +36,7 @@ if [ "$IS_SYNCED" = true ]; then
     CLASS="synced"
     TEXT="Synced"
 else
-    ICON="󰚰"
+    ICON=""
     CLASS="syncing"
     TEXT="Syncing..."
 fi

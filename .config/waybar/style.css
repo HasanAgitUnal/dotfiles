@@ -35,7 +35,7 @@ window#waybar.hidden {
 }
 
 .modules-right {
-        min-width: 955px;
+        min-width: 880px;
 }
 
 button {
@@ -173,7 +173,7 @@ button:hover {
 
 #network {
         background-color: @bg;
-        padding-right: 13px;
+        padding-right: 14px;
 }
 
 #network.connected {

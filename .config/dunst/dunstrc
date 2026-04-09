@@ -7,7 +7,7 @@ frame_width = 2
 gap_size = 7
 sort = false
 font = Caskaydia Cove NF 9
-format = "<span weight='bold' size='9928'>%s</span>\n<span foreground='#222244'>─────────────────────────────────</span>\n%b"
+format = "<span weight='bold' size='9928'>%s</span>\n%b"
 # icon_theme =
 enable_recursive_icon_lookup = true
 dmenu = "rofi -dmenu -i -p 'Notifications'"
