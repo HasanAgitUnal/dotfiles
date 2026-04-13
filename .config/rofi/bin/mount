@@ -57,7 +57,9 @@ if [ "$action" = "Mount" ]; then
     echo "$passwd" | sudo -S chown "$USER:$USER" "$mount_point" >/dev/null 2>&1
     
     # Try mounting
-    if [[ "$FSTYPE" =~ ^(ntfs|exfat|vfat)$ ]] || [[ "$selected" =~ (ntfs|exfat|vfat) ]]; then
+    if [[ "$FSTYPE" == "ntfs" ]] || [[ "$selected" =~ "ntfs" ]]; then
+        res=$(echo "$passwd" | sudo -S mount -t ntfs-3g "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
+    elif [[ "$FSTYPE" =~ ^(exfat|vfat)$ ]] || [[ "$selected" =~ (exfat|vfat) ]]; then
         res=$(echo "$passwd" | sudo -S mount "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
     else
         res=$(echo "$passwd" | sudo -S mount "$dev_path" "$mount_point" 2>&1)
@@ -69,6 +71,9 @@ else
     # Remove empty mount point
     echo "$passwd" | sudo -S rmdir "$mount_point" >/dev/null 2>&1
 fi
+
+# Log output
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Action: $action | Device: $dev_path | Status: $status | Result: $res" >> /tmp/rofi-mount.log
 
 if [ $status -eq 0 ]; then
     msg="Success: $action completed."
