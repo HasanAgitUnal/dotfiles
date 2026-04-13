@@ -48,8 +48,8 @@ fi
 HISTCONTROL=ignoreboth
 
 # History lenght
-HISTSIZE=100
-HISTFILESIZE=1000
+HISTSIZE=500
+HISTFILESIZE=5000
 
 # Append to the history file don't overwrite it
 shopt -s histappend
@@ -118,7 +118,7 @@ if [ -x $PREFIX/bin/dircolors ]; then
         if [[ -f /usr/bin/eza ]];then
                 alias eza='eza --icons'
                 alias ls='eza --icons'
-                alias ll='ls -alF -h --git'
+                alias ll='ls -algF -h --git'
         else
                 alias ls='ls --color=auto'
                 alias ll='ls -alF -h'

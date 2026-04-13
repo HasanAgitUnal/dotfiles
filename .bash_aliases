@@ -2,6 +2,11 @@
 # ALIASES
 #
 
+if [[ -f ~/.zoxide_aliases ]]; then
+        . ~/.zoxide_aliases
+        alias cd='z'
+fi
+
 alias open='termux-open'
 alias up="pkg update && pkg upgrade"
 
