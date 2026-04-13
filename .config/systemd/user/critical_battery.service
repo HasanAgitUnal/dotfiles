@@ -3,7 +3,7 @@ Description=Critical Battery Level Monitor
 After=dbus.service
 
 [Service]
-ExecStart=/usr/bin/bash %h/.local/bin/critical_battery.sh
+ExecStart=/usr/bin/bash %h/dotfiles/scripts/critical_battery.sh
 Restart=always
 RestartSec=10
 

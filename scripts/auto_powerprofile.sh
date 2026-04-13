@@ -1,12 +1,13 @@
 #!/bin/bash
 
 BATTERY_PATH="/sys/class/power_supply/BAT0"
-INTERVAL=60
+INTERVAL=30
 
 while true; do
     if [ -d "$BATTERY_PATH" ]; then
         STATUS=$(cat "$BATTERY_PATH/status")
         LEVEL=$(cat "$BATTERY_PATH/capacity")
+        
         # Check for lock file
         if [ -f "$HOME/.powerlock" ]; then
             sleep "$INTERVAL"
