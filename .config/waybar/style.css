@@ -35,7 +35,7 @@ window#waybar.hidden {
 }
 
 .modules-right {
-        min-width: 880px;
+        min-width: 860px;
 }
 
 button {
@@ -53,9 +53,10 @@ button:hover {
 
 
 #workspaces button {
-        padding: 0 5px;
         background-color: @bg-alt1;
         color: @fg3;
+        padding: 0 5px;
+        padding-right: 7.5px;
 }
 
 #workspaces button:hover {
@@ -69,6 +70,10 @@ button:hover {
 #workspaces button.urgent {
         background-color: @fg4;
         color: @fg1;
+}
+
+#workspaces button.empty {
+        color: @bg-alt3;
 }
 
 #window {
@@ -247,7 +252,7 @@ button:hover {
         color: @fg3;
         font-size: 19;
         font-weight: bold;
-        margin: 0 10px;
+        margin: 0 5px;
 }
 
 #custom-logout {

@@ -81,25 +81,31 @@
         },
 
         "disk": {
-                "format": "  {free} / {total}",
+                "format": "  {free}/{total}",
                 "tooltip-format": "Total: {total}\nUsed: {used}\nFree: {free}"
         },
 
-        /*
         "hyprland/workspaces": {
-                "persistent-workspaces": {
-                        "*": 10
+                "persistent-workspaces" : {
+                        "*":4
                 },
                 "all-outputs": true,
-                "format": "{id}",
+                "format": "{icon}",
                 "format-icons": {
-                        "active": "{id}",
-                        "occupied": "{id}",
-                        "default": "{id}",
-                        "urgent": "󱈸"
-                        "persistent": ""
+                        "1": "<span size='12000' rise='-1000'></span>",
+                        "2": "",
+                        "3": "<span size='12500' rise='-1000'>󰈹</span>",
+                        "4": "<span size='9730' rise='-8000'></span>",
+
+                        "5": "<span size='13000' rise='-8000'>󰎱</span>",
+                        "6": "<span size='13000' rise='-8000'>󰎳</span>",
+                        "7": "<span size='13000' rise='-8000'>󰎶</span>",
+                        "8": "<span size='13000' rise='-8000'>󰎹</span>",
+                        "9": "<span size='13000' rise='-8000'>󰎼</span>",
+
+                        "10": "󰥔"
                 }
-        }*/
+        },
 
         "privacy": {
                 "icon-spacing":5,
