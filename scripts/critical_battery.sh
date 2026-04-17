@@ -16,9 +16,9 @@ while true; do
         if [ "$STATUS" = "Discharging" ]; then
             # Priority 1: 1% - Shutdown
             if [ "$LEVEL" -le 1 ]; then
-                notify-send -u critical "Battery Is Critical" "You should listen me..."
+                notify-send  -a critical_battery_service_WARN -u critical "Battery Is Critical" "You should listen me..."
                 sleep 5
-                notify-send -u critical "Battery Is Critical" "Shutting down..."
+                notify-send -a critical_battery_service --u critical "Battery Is Critical" "Shutting down..."
                 sleep 2
                 systemctl poweroff 
                 exit 0
@@ -26,14 +26,14 @@ while true; do
             # Priority 2: 2% - Closing Computer Warning
             elif [ "$LEVEL" -le 2 ]; then
                 if [ "$SENT_2" = false ]; then
-                    notify-send -u critical "Battery Is Critical" "Closing Computer!!"
+                    notify-send -a critical_battery_service -u critical "Battery Is Critical" "Closing Computer!!"
                     SENT_2=true
                 fi
             
             # Priority 3: 15% - Battery Low Warning
             elif [ "$LEVEL" -le 15 ]; then
                 if [ "$SENT_15" = false ]; then
-                    notify-send -u critical "Battery Is Critical" "Battery level reached %15"
+                    notify-send -a critical_battery_service -u critical "Battery Is Critical" "Battery level reached %15"
                     SENT_15=true
                 fi
             fi

@@ -5,19 +5,19 @@ selection=$(echo -e $menu | rofi -dmenu -i -p "Power   ")
 
 case $selection in
         *Shutdown)
-                 shutdown now
-                 ;;
+                ~/dotfiles/scripts/power.sh shutdown
+                ;;
         *Reboot)
-                reboot
+                ~/dotfiles/scripts/power.sh reboot
                 ;;
         *Sleep)
-                hyprlock & systemctl suspend
+                ~/dotfiles/scripts/power.sh sleep
                 ;;
         *Lock)
-                hyprlock
+                ~/dotfiles/scripts/power.sh lock
                 ;;
         *Log*)
-                hyprctl dispatch exit
+                ~/dotfiles/scripts/power.sh logout
                 ;;
         *)
                 echo "wtf?"

@@ -1,0 +1,11 @@
+[Unit]
+Description=USB Device Connection Sound Monitor
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/dotfiles/scripts/device_monitor.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

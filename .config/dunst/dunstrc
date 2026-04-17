@@ -16,7 +16,7 @@ progress_bar_height = 8
 progress_bar_frame_width = 1
 progress_bar_corner_radius = 3
 highlight = "#50EA7B,#6bc7dd"
-#highlight = "#FE1858,#6bc7dd,#50EA7B"
+script = ~/dotfiles/.config/dunst/sounds/default.sh
 
 [urgency_low]
 background = "#111117bb"
@@ -33,3 +33,15 @@ background = "#111117bb"
 foreground = "#FE1858"
 frame_color = "#171720ee"
 timeout = 10
+
+#
+# Custom Rules
+#
+
+[critical_battery_service_WARN]
+appname = "critical_battery_service_WARN"
+script = "~/dotfiles/.config/dunst/sounds/bat_warn.sh"
+
+[critical_battery_service]
+appname = "critical_battery_service"
+script = "~/dotfiles/.config/dunst/sounds/bat_cri.sh"

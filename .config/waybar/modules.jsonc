@@ -1,6 +1,6 @@
 {
         "clock": {
-                "format": "{:%H:%M | %d:%m:%Y}",
+                "format": "{:%H:%M | %d.%m.%Y}",
                 "interval": 30,
                 "tooltip": false
         },
@@ -10,7 +10,7 @@
                 "states": {
                         "critical": 15
                 },
-                "interval": 1,
+                "interval": 10,
                 "format-icons": {
                         "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
                         "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
@@ -66,18 +66,18 @@
 
         "cpu": {
                 "format": "  %{usage}",
-                "interval" : 2
+                "interval" : 5
         },
 
         "load": {
                 "format": "  {load1}",
-                "interval" : 2
+                "interval" : 20
         },
 
         "memory": {
                 "format": "  %{percentage}",
                 "tooltip-format": "RAM:  {used:0.2f}GiB / {total}GiB\nSwap: {swapUsed:0.2f}GiB / {swapTotal}GiB",
-                "interval" : 2
+                "interval" : 20
         },
 
         "disk": {
