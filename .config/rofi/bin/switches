@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ $(hyprshade current ) == "night_mode" ]]; then
+        NIGHTMODE=1
+        NIGHTMODE_SWITCH="  Night Mode"
+else
+        NIGHTMODE=0
+        NIGHTMODE_SWITCH="  Night Mode"
+fi
+
+MENU="$NIGHTMODE_SWITCH"
+SELECTION=$(echo -e "$MENU" | rofi -dmenu -i -p "Switches   ")
+
+case $SELECTION in
+        *"Night Mode")
+                if [[ $NIGHTMODE -eq 1 ]]; then
+                        hyprshade off
+                else
+                        hyprshade on night_mode
+                fi
+                ;;
+esac
