@@ -1,16 +1,36 @@
 #!/bin/bash
 
+podman_is_running() {
+        podman inspect -f '{{.State.Running}}' "$1" 2>/dev/null | grep -q "true"
+}
+
 if [[ $(hyprshade current ) == "night_mode" ]]; then
         NIGHTMODE_SWITCH="  Night Mode"
 else
         NIGHTMODE_SWITCH="  Night Mode"
 fi
 
-MENU="$NIGHTMODE_SWITCH"
+FRESHRSS_YML="/home/melon/selfhost/freshrss/docker-compose.yml"
+if podman_is_running freshrss; then
+        FRESHRSS=1
+        FRESHRSS_SWITCH="  FreshRSS"
+else
+        FRESHRSS=0
+        FRESHRSS_SWITCH="  FreshRSS"
+fi
+
+MENU="$NIGHTMODE_SWITCH\n$FRESHRSS_SWITCH"
 SELECTION=$(echo -e "$MENU" | rofi -dmenu -i -p "Switches   ")
 
 case $SELECTION in
         *"Night Mode")
                 hyprshade toggle night_mode
+                ;;
+        *"FreshRSS")
+                if [[ $FRESHRSS -eq 1 ]]; then
+                        podman-compose -f "$FRESHRSS_YML" stop
+                else
+                        podman freshrss start || podman-compose -f "$FRESHRSS_YML" up -d
+                fi
                 ;;
 esac
