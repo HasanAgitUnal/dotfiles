@@ -4,48 +4,39 @@ in vec2 v_texcoord;
 uniform sampler2D tex;
 out vec4 fragColor;
 
-// config
-const float THRESHOLD = 0.12;
+// Kelvin Sıcaklığı: 3000.0 (Sıcak/Gece), 4500.0 (Daha nötr)
+const float TEMP = 5600.0;
 
-const vec3 adj_red     = vec3(1.1, 0.9, 0.8);
-const vec3 adj_green   = vec3(0.9, 0.85, 0.9);
-const vec3 adj_yellow  = vec3(1.1, 1.1, 0.7);
-const vec3 adj_blue    = vec3(0.7, 0.8, 0.85);
-const vec3 adj_magenta = vec3(0.80, 0.8, 0.9);
-const vec3 adj_cyan    = vec3(0.8, 1.1, 0.85);
-const vec3 adj_white   = vec3(0.9, 0.9, 0.8);
+// Tanner Helland algoritması: Kelvin'den RGB katsayılarına dönüşüm
+vec3 get_temp_weight(float k) {
+    float t = k / 100.0;
+    float r, g, b;
 
-// Palette
-const vec3 PAL_BG      = vec3(0.067, 0.067, 0.090);
-const vec3 PAL_BLACK   = vec3(0.082, 0.082, 0.082);
-const vec3 PAL_RED     = vec3(0.996, 0.094, 0.345);
-const vec3 PAL_GREEN   = vec3(0.314, 0.918, 0.482);
-const vec3 PAL_YELLOW  = vec3(0.882, 0.918, 0.549);
-const vec3 PAL_BLUE    = vec3(0.125, 0.490, 0.541);
-const vec3 PAL_MAGENTA = vec3(0.933, 0.475, 0.776);
-const vec3 PAL_CYAN    = vec3(0.420, 0.780, 0.867);
-const vec3 PAL_WHITE   = vec3(0.867, 0.867, 0.867);
+    if (t <= 66.0) {
+        r = 1.0;
+        // Yeşil hesabı
+        g = clamp(0.39008 * log(t) - 0.63184, 0.0, 1.0);
+        // Mavi hesabı
+        if (t <= 19.0) b = 0.0;
+        else b = clamp(0.54320 * log(t - 10.0) - 1.19625, 0.0, 1.0);
+    } else {
+        // 6600K üstü (Soğuk renkler)
+        r = clamp(1.29293 * pow(t - 60.0, -0.13320), 0.0, 1.0);
+        g = clamp(1.12989 * pow(t - 60.0, -0.07551), 0.0, 1.0);
+        b = 1.0;
+    }
+    return vec3(r, g, b);
+}
 
 void main() {
     vec4 pix = texture(tex, v_texcoord);
-    vec3 color = pix.rgb;
-
-    // dont touch black and background color
-    if (distance(color, PAL_BG) < THRESHOLD || distance(color, PAL_BLACK) < THRESHOLD) {
-        fragColor = pix;
-        return;
-    }
-
-    if      (distance(color, PAL_RED)     < THRESHOLD) color *= adj_red;
-    else if (distance(color, PAL_GREEN)   < THRESHOLD) color *= adj_green;
-    else if (distance(color, PAL_YELLOW)  < THRESHOLD) color *= adj_yellow;
-    else if (distance(color, PAL_BLUE)    < THRESHOLD) color *= adj_blue;
-    else if (distance(color, PAL_MAGENTA) < THRESHOLD) color *= adj_magenta;
-    else if (distance(color, PAL_CYAN)    < THRESHOLD) color *= adj_cyan;
-    else if (distance(color, PAL_WHITE)   < THRESHOLD) color *= adj_white;
-
-    // Global filter
-    color.b *= 0.9;
+    
+    // Katsayıları al
+    vec3 weight = get_temp_weight(TEMP);
+    
+    // Siyahları (0.0) çarpsak da sonuç 0.0 kalır, yani siyahlar "ezilmez".
+    // Tüm ekran homojen ve lineer bir işleme tabi tutulduğu için leke yapmaz.
+    vec3 color = pix.rgb * weight;
 
     fragColor = vec4(color, pix.a);
 }

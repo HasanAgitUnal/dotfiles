@@ -1,0 +1,11 @@
+[Unit]
+Description=Hyprshade Automatic Theme Switcher
+After=graphical-session.target
+ConditionPathExists=!%h/.night_mode_lock
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/hyprshade auto
+
+[Install]
+WantedBy=graphical-session.target

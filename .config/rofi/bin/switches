@@ -10,6 +10,16 @@ else
         NIGHTMODE_SWITCH="  Night Mode"
 fi
 
+if [[ -f ~/.night_mode_lock ]]; then
+        NIGHTMODE_LOCK=1
+        echo opened
+        NIGHTMODE_LOCK_SWITCH="  Night Mode Lock"
+else
+        NIGHTMODE_LOCK=0
+        echo closed
+        NIGHTMODE_LOCK_SWITCH="  Night Mode Lock"
+fi
+
 FRESHRSS_YML="/home/melon/selfhost/freshrss/docker-compose.yml"
 if podman_is_running freshrss; then
         FRESHRSS=1
@@ -19,10 +29,13 @@ else
         FRESHRSS_SWITCH="  FreshRSS"
 fi
 
-MENU="$NIGHTMODE_SWITCH\n$FRESHRSS_SWITCH"
+MENU="$NIGHTMODE_LOCK_SWITCH\n$NIGHTMODE_SWITCH\n$FRESHRSS_SWITCH"
 SELECTION=$(echo -e "$MENU" | rofi -dmenu -i -p "Switches   ")
 
 case $SELECTION in
+        *"Night Mode Lock")
+                rm ~/.night_mode_lock || touch ~/.night_mode_lock
+                ;;
         *"Night Mode")
                 hyprshade toggle night_mode
                 ;;
