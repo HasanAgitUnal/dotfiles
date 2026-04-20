@@ -1,6 +1,10 @@
 #!/bin/bash
 
-options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nPower\nPower Profiles\nSwitches"
+if which powerprofilesctl; then
+        options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nPower\nPower Profiles\nSwitches"
+else
+        options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nPower\nSwitches"
+fi
 selected=$(echo -ne "$options" | rofi -dmenu -i -p "Main Menu   ")
 
 case $selected in

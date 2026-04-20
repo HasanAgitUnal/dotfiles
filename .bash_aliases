@@ -9,7 +9,6 @@ fi
 
 alias open='termux-open'
 alias up="pkg update && pkg upgrade"
-
 alias update="up && apt autoremove && pkg clean"
 alias ub='source $HOME/.bashrc'
 alias spp='while true; do clear; sensors; sleep 1; done;'
@@ -46,11 +45,11 @@ function y() {
 
 alert() {
     eject
-    for i in {1..5}; do
-        brightnessctl --device='input3::capslock' set 1 >/dev/null
-        sleep 0.5
-        brightnessctl --device='input3::capslock' set 0 >/dev/null
-        sleep 0.5
-    done
+#    for i in {1..5}; do
+#        brightnessctl --device='input3::capslock' set 1 >/dev/null
+#        sleep 0.5
+#        brightnessctl --device='input3::capslock' set 0 >/dev/null
+#        sleep 0.5
+#    done
 }
 

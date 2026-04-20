@@ -44,8 +44,8 @@ fi
 # Bash History
 #
 
-# Dont add lines starting with space or duplicate lines to history
-HISTCONTROL=ignoreboth
+# Dont add duplicate lines to history
+HISTCONTROL=ignoredups
 
 # History lenght
 HISTSIZE=500
