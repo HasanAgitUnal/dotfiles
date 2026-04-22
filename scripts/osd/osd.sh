@@ -7,7 +7,7 @@
 # and unlicensed everyone can use
 #
 
-RATE_LIMIT=1000
+RATE_LIMIT=250
 LAST_RUN_FILE="/tmp/osd_last_run"
 CURRENT_TIME=$(date +%s%3N)
 
