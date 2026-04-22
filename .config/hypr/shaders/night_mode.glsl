@@ -5,7 +5,7 @@ uniform sampler2D tex;
 out vec4 fragColor;
 
 // Kelvin Sıcaklığı: 3000.0 (Sıcak/Gece), 4500.0 (Daha nötr)
-const float TEMP = 5600.0;
+const float TEMP = 5650.0;
 
 // Tanner Helland algoritması: Kelvin'den RGB katsayılarına dönüşüm
 vec3 get_temp_weight(float k) {

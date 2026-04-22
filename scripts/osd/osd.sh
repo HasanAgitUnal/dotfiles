@@ -7,8 +7,7 @@
 # and unlicensed everyone can use
 #
 
-# Rate limiting (0.2s = 200ms)
-RATE_LIMIT=100
+RATE_LIMIT=1000
 LAST_RUN_FILE="/tmp/osd_last_run"
 CURRENT_TIME=$(date +%s%3N)
 
@@ -128,6 +127,7 @@ case $ACTION in
                 VOL=$(pamixer --get-volume)
                 ICON=$(get_vol_icon "$VOL" "false")
                 show_bar "$ICON" "$VOL"
+                canberra-gtk-play -i audio-volume-change
                 ;;
         brightness)
                 if [[ $PARAM == -* ]]; then

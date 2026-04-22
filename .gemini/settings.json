@@ -6,7 +6,7 @@
       "warningAcknowledged": true
     },
     "preferredEditor": "neovim",
-    "vimMode": true,
+    "vimMode": false,
     "enableAutoUpdate": false
   },
   "security": {
@@ -23,7 +23,8 @@
     "hideBanner": true,
     "footer": {
       "hideCWD": false,
-      "hideSandboxStatus": true
+      "hideSandboxStatus": true,
+      "hideModelInfo": false
     },
     "showMemoryUsage": true,
     "showLineNumbers": false,
@@ -31,7 +32,8 @@
     "useBackgroundColor": true,
     "loadingPhrases": "tips",
     "errorVerbosity": "low",
-    "hideWindowTitle": true
+    "hideWindowTitle": true,
+    "hideTips": false
   },
   "output": {
     "format": "text"
