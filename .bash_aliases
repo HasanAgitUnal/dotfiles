@@ -34,6 +34,9 @@ alias cmatrix='cmatrix -C cyan -b'
 alias sync='apikey=$(syncthing cli config gui apikey get); gui="127.0.0.1:8384"; folders=$(syncthing cli config folders list); devices=$(syncthing cli config devices list); printf "%-15s | %-15s | %s\n" "KLASOR" "CIHAZ" "GUNCEL %"; for f in $folders; do for d in $devices; do name=$(syncthing cli config devices $d name get); completion=$(curl -s -H "X-API-Key: $apikey" "http://$gui/rest/db/completion?folder=$f&device=$d" | grep -oP '\''"completion":\s*\K[0-9.]+'\''); [ ! -z "$completion" ] && printf "%-15s | %-15s | %s%%\n" "$f" "$name" "$completion"; done; done'
 alias onefetch='onefetch --include-hidden'
 alias rr='rm -r'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
