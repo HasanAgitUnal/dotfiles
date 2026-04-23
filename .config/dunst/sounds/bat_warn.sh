@@ -1,4 +1,4 @@
 #/bin/sh
 
-CANBERRA_XDG_SOUND_THEME_NAME=deepin 
-canberra-gtk-play -i battery-low
+THEME_DIR="$HOME/.local/share/sounds/${CANBERRA_XDG_SOUND_THEME_NAME:-modern-minimal-ui-sounds}"
+mpv "$THEME_DIR/stereo/battery-low".* --no-terminal &

@@ -127,7 +127,10 @@ case $ACTION in
                 VOL=$(pamixer --get-volume)
                 ICON=$(get_vol_icon "$VOL" "false")
                 show_bar "$ICON" "$VOL"
-                canberra-gtk-play -i audio-volume-change
+                
+                # Play sound
+                THEME_DIR="$HOME/.local/share/sounds/${CANBERRA_XDG_SOUND_THEME_NAME:-modern-minimal-ui-sounds}"
+                mpv "$THEME_DIR/stereo/audio-volume-change".* --no-terminal &
                 ;;
         brightness)
                 if [[ $PARAM == -* ]]; then

@@ -6,7 +6,7 @@
       "warningAcknowledged": true
     },
     "preferredEditor": "neovim",
-    "vimMode": false,
+    "vimMode": true,
     "enableAutoUpdate": false
   },
   "security": {

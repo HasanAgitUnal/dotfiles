@@ -672,19 +672,25 @@ require('lazy').setup({
                                         },
                                 },
                         },
-                        -- {
-                        --         "3rd/image.nvim",
-                        --         build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
-                        --         opts = {
-                        --                 backend = "ueberzug",
-                        --                 processor = "magick_cli",
-                        --                 max_height_window_percentage = 100, -- Changed from math.huge to avoid crash
-                        --                 max_width_window_percentage = 100,  -- Changed from math.huge to avoid crash
-                        --                 window_overlap_clear_enabled = true,
-                        --                 editor_only_render_when_focused = true,
-                        --                 tmux_show_boundary = false,
-                        --         }
-                        -- },
+                        {
+                                "princejoogie/chafa.nvim",
+                                dependencies = { 
+                                        "nvim-lua/plenary.nvim",
+                                        "m00qek/baleia.nvim" 
+                                },
+                                config = function()
+                                        require("chafa").setup({
+                                                render = {
+                                                        min_width = 10,
+                                                        max_width = 100,
+                                                        max_height = 80,
+                                                },
+                                                events = {
+                                                        update_on_nvim_resize = true,
+                                                },
+                                        })
+                                end
+                        },
                 }, {
                         ui = {
                                 icons = vim.g.have_nerd_font and {} or {
