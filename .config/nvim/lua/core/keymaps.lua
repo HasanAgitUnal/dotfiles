@@ -66,3 +66,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Other
 vim.keymap.set("n", "<leader>w", "<cmd>set wrap!<cr>", { desc = "Toggle Line [W]rap" })
+vim.keymap.set("n", "<leader>f", function()
+    require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "[F]ormat buffer" })

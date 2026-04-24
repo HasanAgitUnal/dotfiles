@@ -30,6 +30,15 @@ hl("CursorLineFold", { bg = "NONE" })
 hl("SignColumn",                { bg = "NONE" })
 hl("LineNr",                    { bg = "NONE" })
 
+-- Blink.cmp
+hl("BlinkCmpMenu", { bg = "#222233" })
+hl("BlinkCmpMenuBorder", { fg = colors.comment, bg = "#222233" })
+hl("BlinkCmpDoc", { bg = "#222233" })
+hl("BlinkCmpDocBorder", { fg = colors.comment, bg = "#222233" })
+hl("BlinkCmpSignatureHelp", { bg = "#222233" })
+hl("BlinkCmpSignatureHelpBorder", { fg = colors.comment, bg = "#222233" })
+hl("BlinkCmpMenuSelection", { bg = colors.selection, bold = true })
+
 -- Things
 hl("Search", { fg = colors.bg, bg = colors.yellow })
 hl("MatchParen", { fg = colors.cyan, bg = colors.yellow, bold = true})

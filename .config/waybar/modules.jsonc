@@ -35,6 +35,7 @@
                 "format-icons": {
                         "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
                 },
+                "tooltip": true,
                 "tooltip-wifi" : "{essid} [{ipaddr}]",
                 "tooltip-ethernet": "{ifname} [{ipaddr}]"
         },

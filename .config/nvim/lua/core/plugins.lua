@@ -142,6 +142,7 @@ require('lazy').setup({
                                         }
 
                                         -- Enable Telescope extensions if they are installed
+                                        pcall(require('telescope').load_extension, 'projects')
                                         pcall(require('telescope').load_extension, 'fzf')
                                         pcall(require('telescope').load_extension, 'ui-select')
 
@@ -156,6 +157,7 @@ require('lazy').setup({
                                         vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
                                         vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
                                         vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+                                        vim.keymap.set('n', '<leader>sp', ":Telescope projects<CR>", { desc = '[S]earch [P]rojects' })
                                         vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
                                         vim.keymap.set('n', '<leader>/', function()
@@ -198,7 +200,29 @@ require('lazy').setup({
 
                                         { 'j-hui/fidget.nvim', opts = {} },
 
-                                        'saghen/blink.cmp',
+                                        {
+                                                'saghen/blink.cmp',
+                                                version = '*',
+                                                opts = {
+                                                        appearance = {
+                                                                use_nvim_cmp_as_default = true,
+                                                                nerd_font_variant = 'mono'
+                                                        },
+                                                        completion = {
+                                                                menu = { 
+                                                                        border = 'none',
+                                                                        draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } } }
+                                                                },
+                                                                documentation = { window = { border = 'single' }, auto_show = true },
+                                                                trigger = { prefetch_on_insert = false },
+                                                                list = { selection = { preselect = false, auto_insert = true } },
+                                                        },
+                                                        sources = {
+                                                                default = { 'lsp', 'path', 'buffer' },
+                                                        },
+                                                        signature = { enabled = true, window = { border = 'single' } }
+                                                }
+                                        },
                                         'saghen/blink.lib'
                                 },
                                 config = function()
@@ -346,7 +370,12 @@ require('lazy').setup({
                                         --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
                                         local servers = {
                                                 clangd = {
-                                                        cmd = { "clangd" },  -- Sistemdeki clangd'yi kullan
+                                                        cmd = {
+                                                                "clangd",
+                                                                "--clang-tidy",
+                                                                "--background-index",
+                                                                "--completion-style=detailed",
+                                                        },
                                                         filetypes = { "c", "cpp", "objc", "objcpp" },
                                                         single_file_support = true,
                                                 },
@@ -543,21 +572,17 @@ require('lazy').setup({
                         },
 
                         {
-                                "mfussenegger/nvim-lint",
-                                config = function()
-                                        require("lint").linters_by_ft = {
-                                                c = { "clang-tidy" },
-                                                cpp = { "clang-tidy" },
-                                        }
-
-                                        vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
-                                                group = vim.api.nvim_create_augroup("lint", { clear = true }),
-                                                callback = function()
-                                                        require("lint").try_lint()
-                                                end,
-                                        })
-                                end,
+                                "stevearc/conform.nvim",
+                                opts = {
+                                        formatters_by_ft = {
+                                                c = { "clang-format" },
+                                                cpp = { "clang-format" },
+                                        },
+                                        -- İstediğin zaman format atmak için (otomatik formatı kapalı tutuyoruz)
+                                        format_on_save = false,
+                                },
                         },
+
                         {
                                 {
                                         "mfussenegger/nvim-dap",
@@ -613,7 +638,20 @@ require('lazy').setup({
                                         end
                                 },
                         },
+                        {
+                                "ahmedkhalf/project.nvim",
+                                config = function()
+                                        require("project_nvim").setup({
+                                                detection_methods = { "lsp", "pattern" },
+                                                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".clang-format" },
 
+                                                update_focused_file = {
+                                                        enable = true,
+                                                        update_root = true,
+                                                },
+                                        })
+                                end,
+                        },
                         {
                                 "epwalsh/obsidian.nvim",
                                 version = "*",
