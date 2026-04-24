@@ -199,6 +199,7 @@ require('lazy').setup({
                                         { 'j-hui/fidget.nvim', opts = {} },
 
                                         'saghen/blink.cmp',
+                                        'saghen/blink.lib'
                                 },
                                 config = function()
                                         vim.api.nvim_create_autocmd('LspAttach', {
@@ -671,25 +672,6 @@ require('lazy').setup({
                                                 },
                                         },
                                 },
-                        },
-                        {
-                                "princejoogie/chafa.nvim",
-                                dependencies = { 
-                                        "nvim-lua/plenary.nvim",
-                                        "m00qek/baleia.nvim" 
-                                },
-                                config = function()
-                                        require("chafa").setup({
-                                                render = {
-                                                        min_width = 10,
-                                                        max_width = 100,
-                                                        max_height = 80,
-                                                },
-                                                events = {
-                                                        update_on_nvim_resize = true,
-                                                },
-                                        })
-                                end
                         },
                 }, {
                         ui = {
