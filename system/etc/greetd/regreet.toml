@@ -1,0 +1,13 @@
+[appearance]
+theme_name = "CybrCyanMateria"
+icon_theme_name = "CybrCyanPapirus"
+cursor_theme_name = "LyraB-cursors"
+font_name = "CaskaydiaCove Nerd Font 11"
+
+[background]
+path = "/etc/greetd/wallpaper.png"
+fit = "Cover"
+
+[commands]
+reboot = [ "systemctl", "reboot" ]
+poweroff = [ "systemctl", "poweroff" ]
