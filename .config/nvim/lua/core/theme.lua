@@ -11,7 +11,7 @@ local colors = {
         red        = "#fe1858",
         magenta    = "#ee79c6",
         yellow     = "#e1ea8c",
-        comment    = "#424242",
+        comment    = "#545465",
 }
 
 local hl = function(group, opts)

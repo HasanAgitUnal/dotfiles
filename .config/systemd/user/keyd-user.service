@@ -1,0 +1,11 @@
+[Unit]
+Description=Keyd User Service (Sudo Wrapper)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sudo /usr/bin/keyd
+Restart=always
+
+[Install]
+WantedBy=default.target

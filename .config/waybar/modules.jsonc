@@ -36,8 +36,8 @@
                         "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
                 },
                 "tooltip": true,
-                "tooltip-wifi" : "{essid} [{ipaddr}]",
-                "tooltip-ethernet": "{ifname} [{ipaddr}]"
+                "tooltip-format-wifi" : "{essid} [{ipaddr}]",
+                "tooltip-format-ethernet": "{ifname} [{ipaddr}]"
         },
 
         "backlight": {

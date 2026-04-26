@@ -29,7 +29,15 @@ else
         FRESHRSS_SWITCH="  FreshRSS"
 fi
 
-MENU="$NIGHTMODE_SWITCH\n$NIGHTMODE_LOCK_SWITCH\n$FRESHRSS_SWITCH"
+if [[ -n $(ps aux | grep qbittorrent-nox | grep -v grep) ]]; then
+        QBIT=1
+        QBIT_SWITCH="  qBittorrent"
+else
+        QBIT=0
+        QBIT_SWITCH="  qBittorrent"
+fi
+
+MENU="$NIGHTMODE_SWITCH\n$NIGHTMODE_LOCK_SWITCH\n$FRESHRSS_SWITCH\n$QBIT_SWITCH"
 SELECTION=$(echo -e "$MENU" | rofi -dmenu -i -p "Switches   ")
 
 case $SELECTION in
@@ -46,4 +54,10 @@ case $SELECTION in
                         podman freshrss start || podman-compose -f "$FRESHRSS_YML" up -d
                 fi
                 ;;
+        *"qBittorrent")
+                if [[ $QBIT -eq 1 ]]; then
+                        pkill qbittorrent-nox
+                else
+                        qbittorrent-nox &
+                fi
 esac
