@@ -37,6 +37,8 @@ alias rr='rm -r'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+alias lsblong='lsblk -o NAME,FSTYPE,SIZE,FSUSE%,FSAVAIL,MOUNTPOINTS,PARTTYPENAME,RM,UUID'
+alias lsblk='lsblk -o NAME,FSTYPE,SIZE,FSUSE%,FSAVAIL,MOUNTPOINTS,RM'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

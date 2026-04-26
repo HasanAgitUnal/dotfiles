@@ -643,7 +643,7 @@ require('lazy').setup({
                                 config = function()
                                         require("project_nvim").setup({
                                                 detection_methods = { "lsp", "pattern" },
-                                                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".clang-format" },
+                                                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".clang-format", ".project" },
 
                                                 update_focused_file = {
                                                         enable = true,
