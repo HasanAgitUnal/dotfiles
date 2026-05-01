@@ -1,4 +1,29 @@
 {
+        "modules-left": [
+                //"group/power",
+                "custom/archlogo",
+                "privacy",
+                "hyprland/window"
+        ],
+
+        "modules-center": [
+                "hyprland/workspaces"
+        ],
+
+        "modules-right": [
+                //"group/statistics",
+                "custom/syncthing",
+                "memory",
+                "cpu",
+                "pulseaudio",
+                "backlight",
+                "network",
+                "power-profiles-daemon",
+                "battery",
+                "clock"
+        ],
+
+
         "clock": {
                 "format": "{:%H:%M | %d.%m.%Y}",
                 "interval": 30,
@@ -29,15 +54,14 @@
         },
 
         "network": {
-                "format-wifi": "{icon}",
-                "format-ethernet": "󰈀",
+                "format-wifi": "{icon} {essid}",
+                "format-ethernet": "󰈀 {ifname}",
                 "format-disconnected": "󰤮",
                 "format-icons": {
                         "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
                 },
                 "tooltip": true,
-                "tooltip-format-wifi" : "{essid} [{ipaddr}]",
-                "tooltip-format-ethernet": "{ifname} [{ipaddr}]"
+                "tooltip-format" : "{ipaddr}"
         },
 
         "backlight": {

@@ -35,7 +35,7 @@ window#waybar.hidden {
 }
 
 .modules-right {
-        min-width: 860px;
+        min-width: 750px;
 }
 
 button {
@@ -80,6 +80,7 @@ button:hover {
         color: @fg1
 }
 
+#custom-archlogo,
 #privacy,
 #custom-syncthing,
 #clock,
@@ -94,6 +95,10 @@ button:hover {
         padding: 0px 10px;
         color: @fg3;
         background-color: @bg-alt1;
+}
+
+#custom-archlogo {
+        padding-right: 4px;
 }
 
 #window,
@@ -151,9 +156,12 @@ button:hover {
 }
 
 #cpu {
+        min-width: 47px;
+ /*
         background-color: @bg-alt3;
         border-radius: 30px;
         color: @fg3;
+*/
 }
 
 #disk,
@@ -167,10 +175,12 @@ button:hover {
         margin-left: 5px;
 }
 
+/*
 #memory {
         background-color: transparent;
         color: @fg3;
 }
+*/
 
 #backlight {
         background-color: @bg-alt1;
@@ -274,7 +284,6 @@ button:hover {
         min-width: 25px;
         min-height: 25px;
 }
-
 
 #power {
         margin-left: 5px;

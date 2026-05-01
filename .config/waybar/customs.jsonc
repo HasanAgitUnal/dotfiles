@@ -41,5 +41,11 @@
                 "interval": 30,
                 "on-click": "syncthing browser",
                 "tooltip": true
+        },
+
+        "custom/archlogo": {
+                "format": "",
+                "on-click": "~/dotfiles/.config/rofi/bin/rofi-menu",
+                "tooltip": false
         }
 }

@@ -12,29 +12,9 @@
         "include": [
                 "~/.config/waybar/modules.jsonc",
                 "~/.config/waybar/customs.jsonc"
-        ],
+        ]
 
-        "modules-left": [
-                "group/power",
-                "privacy",
-                "hyprland/window"
-        ],
-
-        "modules-center": [
-                "hyprland/workspaces"
-        ],
-
-        "modules-right": [
-                "group/statistics",
-                "custom/syncthing",
-                "pulseaudio",
-                "backlight",
-                "network",
-                "power-profiles-daemon",
-                "battery",
-                "clock"
-        ],
-
+/*
         "group/statistics": {
                 "orientation": "inherit",
                 "drawer": {
@@ -63,4 +43,5 @@
                         "custom/logout"
                 ]
         }
+*/
 }
