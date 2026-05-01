@@ -17,8 +17,8 @@
   "ui": {
     "theme": "ANSI",
     "inlineThinkingMode": "off",
-    "showStatusInTitle": true,
-    "dynamicWindowTitle": true,
+    "showStatusInTitle": false,
+    "dynamicWindowTitle": false,
     "showShortcutsHint": false,
     "hideBanner": true,
     "footer": {
@@ -32,8 +32,8 @@
     "useBackgroundColor": true,
     "loadingPhrases": "tips",
     "errorVerbosity": "low",
-    "hideWindowTitle": true,
-    "hideTips": false
+    "hideWindowTitle": false,
+    "hideTips": true
   },
   "output": {
     "format": "text"
