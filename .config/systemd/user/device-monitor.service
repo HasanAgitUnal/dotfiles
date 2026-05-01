@@ -1,6 +1,6 @@
 [Unit]
 Description=USB Device Connection Sound Monitor
-After=graphical-session.target
+After=default.target
 
 [Service]
 ExecStart=%h/dotfiles/scripts/device_monitor.sh

@@ -1,6 +1,6 @@
 [Unit]
 Description=Battery Charging Sound Monitor
-After=graphical-session.target
+After=default.target
 
 [Service]
 ExecStart=%h/dotfiles/scripts/ac_plug.sh
