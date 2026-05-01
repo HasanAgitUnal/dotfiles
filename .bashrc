@@ -132,6 +132,7 @@ if [ -x $PREFIX/bin/dircolors ]; then
         alias fgrep='fgrep --color=auto'
         alias egrep='egrep --color=auto'
         alias yay='yay --color=auto'
+        alias pacman='pacman --color=auto'
 
 fi
 

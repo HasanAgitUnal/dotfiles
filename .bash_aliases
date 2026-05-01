@@ -40,6 +40,8 @@ alias .....='cd ../../../..'
 alias lsblks='lsblk -o NAME,SIZE,FSAVAIL,FSUSE%'
 alias lsblkid='lsblk -o NAME,UUID'
 alias lsblkd='lsblk -o NAME,FSTYPE,MOUNTPOINTS'
+alias n='nvim'
+alias nd='nvim .'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
