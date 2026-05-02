@@ -2,6 +2,7 @@
 Description=Hyprshade Automatic Theme Switcher
 After=graphical-session.target
 ConditionPathExists=!%h/.night_mode_lock
+ConditionPathExists=!%h/.brightnesslock
 
 [Service]
 Type=oneshot

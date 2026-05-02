@@ -32,7 +32,7 @@
     "useBackgroundColor": true,
     "loadingPhrases": "tips",
     "errorVerbosity": "low",
-    "hideWindowTitle": false,
+    "hideWindowTitle": true,
     "hideTips": true
   },
   "output": {

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+INPUT_THEME="$HOME/dotfiles/.config/rofi/input.rasi"
+SCRIPT="$HOME/dotfiles/scripts/extra_brightness.sh"
+MENU="Set Value\nOff"
+
+selection=$(echo -e "$MENU" | rofi -dmenu -i -p "Extra Brightness   ")
+case $selection in
+        "Set Value")
+                value=$(rofi -dmenu -theme "$INPUT_THEME" -p "Value: ")
+                $SCRIPT $value
+                ;;
+
+        "Off")
+                $SCRIPT off
+                ;;
+esac

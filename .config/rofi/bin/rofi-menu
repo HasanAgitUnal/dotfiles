@@ -3,7 +3,7 @@
 if which powerprofilesctl; then
         options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nPower\nPower Profiles\nSwitches"
 else
-        options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nPower\nSwitches"
+        options="App Launcher\nWifi Manager\nMount Disk\nNerd Font Icons\nEmojis\nExtra Brightness\nPower\nSwitches"
 fi
 selected=$(echo -ne "$options" | rofi -dmenu -i -p "Main Menu   ")
 
@@ -25,6 +25,9 @@ case $selected in
                 ;;
         "Power Profiles")
                 ~/dotfiles/.config/rofi/bin/powerprofiles
+                ;;
+        "Extra Brightness")
+                ~/dotfiles/.config/rofi/bin/extra_brightness
                 ;;
         "Power")
                 ~/dotfiles/.config/rofi/bin/power
