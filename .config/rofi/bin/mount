@@ -45,31 +45,40 @@ eval $(lsblk -P -o LABEL,FSTYPE "$dev_path")
 mount_point="/run/media/$USER/$LABEL"
 
 # Get Password
-passwd=$(echo "" | rofi -dmenu -password -i -p "Sudo Password:" -theme "$INPUT_THEME")
-if [ -z "$passwd" ]; then
-    exit
+passwd=$(rofi -dmenu -password -i -p "Sudo Password:" -theme "$INPUT_THEME" </dev/null | tr -d '\r\n')
+[ -z "$passwd" ] && exit
+
+# Validate password once
+auth_res=$(printf '%s\n' "$passwd" | sudo -S -v -p '' 2>&1)
+if [ $? -ne 0 ]; then
+    msg="Auth Error: $auth_res"
+    # Log length for debugging (safe)
+    pass_len=${#passwd}
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Auth Fail | Len: $pass_len | Res: $auth_res" >> /tmp/rofi-mount.log
+    printf "Exit" | rofi -dmenu -i -p "$msg" -theme "$INPUT_THEME"
+    exit 1
 fi
 
 # Mount/Unmount logic
 if [ "$action" = "Mount" ]; then
     # Create mount point
-    echo "$passwd" | sudo -S mkdir -p "$mount_point" >/dev/null 2>&1
-    echo "$passwd" | sudo -S chown "$USER:$USER" "$mount_point" >/dev/null 2>&1
+    printf '%s\n' "$passwd" | sudo -S -p '' mkdir -p "$mount_point" >/dev/null 2>&1
+    printf '%s\n' "$passwd" | sudo -S -p '' chown "$USER:$USER" "$mount_point" >/dev/null 2>&1
     
     # Try mounting
     if [[ "$FSTYPE" == "ntfs" ]] || [[ "$selected" =~ "ntfs" ]]; then
-        res=$(echo "$passwd" | sudo -S mount -t ntfs-3g "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
+        res=$(printf '%s\n' "$passwd" | sudo -S -p '' mount -t ntfs-3g "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
     elif [[ "$FSTYPE" =~ ^(exfat|vfat)$ ]] || [[ "$selected" =~ (exfat|vfat) ]]; then
-        res=$(echo "$passwd" | sudo -S mount "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
+        res=$(printf '%s\n' "$passwd" | sudo -S -p '' mount "$dev_path" "$mount_point" -o "uid=$(id -u),gid=$(id -g)" 2>&1)
     else
-        res=$(echo "$passwd" | sudo -S mount "$dev_path" "$mount_point" 2>&1)
+        res=$(printf '%s\n' "$passwd" | sudo -S -p '' mount "$dev_path" "$mount_point" 2>&1)
     fi
     status=$?
 else
-    res=$(echo "$passwd" | sudo -S umount "$dev_path" 2>&1)
+    res=$(printf '%s\n' "$passwd" | sudo -S -p '' umount "$dev_path" 2>&1)
     status=$?
     # Remove empty mount point
-    echo "$passwd" | sudo -S rmdir "$mount_point" >/dev/null 2>&1
+    printf '%s\n' "$passwd" | sudo -S -p '' rmdir "$mount_point" >/dev/null 2>&1
 fi
 
 # Log output
