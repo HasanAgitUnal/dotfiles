@@ -30,4 +30,4 @@ This repository also contains my some `/etc` configrations.
 
 > You can find GTK and Icon theme [here](https://github.com/HasanAgitUnal/CybrCyanThemes)
 
-[Preview](preview.mp4)
+# [Preview Video](preview.mp4)
