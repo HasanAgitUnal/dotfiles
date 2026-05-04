@@ -7,7 +7,7 @@ if [[ -f ~/.zoxide_aliases ]]; then
         alias cd='z'
 fi
 
-alias open='termux-open'
+alias open='xdg-open'
 alias up="pkg update && pkg upgrade"
 alias update="up && apt autoremove && pkg clean"
 alias ub='source $HOME/.bashrc'
@@ -41,7 +41,6 @@ alias lsblks='lsblk -o NAME,SIZE,FSAVAIL,FSUSE%'
 alias lsblkid='lsblk -o NAME,UUID'
 alias lsblkd='lsblk -o NAME,FSTYPE,MOUNTPOINTS'
 alias n='nvim'
-alias nd='nvim .'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

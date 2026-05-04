@@ -2,7 +2,7 @@
   "general": {
     "sessionRetention": {
       "enabled": true,
-      "maxAge": "30d",
+      "maxAge": "1w",
       "warningAcknowledged": true
     },
     "preferredEditor": "neovim",
@@ -12,6 +12,9 @@
   "security": {
     "auth": {
       "selectedType": "oauth-personal"
+    },
+    "folderTrust": {
+      "enabled": false
     }
   },
   "ui": {
@@ -22,7 +25,7 @@
     "showShortcutsHint": false,
     "hideBanner": true,
     "footer": {
-      "hideCWD": false,
+      "hideCWD": true,
       "hideSandboxStatus": true,
       "hideModelInfo": false
     },
@@ -33,7 +36,9 @@
     "loadingPhrases": "tips",
     "errorVerbosity": "low",
     "hideWindowTitle": true,
-    "hideTips": true
+    "hideTips": true,
+    "hideContextSummary": true,
+    "hideFooter": false
   },
   "output": {
     "format": "text"
