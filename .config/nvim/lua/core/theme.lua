@@ -31,13 +31,25 @@ hl("SignColumn",                { bg = "NONE" })
 hl("LineNr",                    { bg = "NONE" })
 
 -- Blink.cmp
-hl("BlinkCmpMenu", { bg = "#222233" })
-hl("BlinkCmpMenuBorder", { fg = colors.comment, bg = "#222233" })
-hl("BlinkCmpDoc", { bg = "#222233" })
-hl("BlinkCmpDocBorder", { fg = colors.comment, bg = "#222233" })
-hl("BlinkCmpSignatureHelp", { bg = "#222233" })
-hl("BlinkCmpSignatureHelpBorder", { fg = colors.comment, bg = "#222233" })
-hl("BlinkCmpMenuSelection", { bg = colors.selection, bold = true })
+-- hl("BlinkCmpMenu", { bg = "#222233" })
+-- hl("BlinkCmpMenuBorder", { fg = colors.comment, bg = "#222233" })
+-- hl("BlinkCmpDoc", { bg = "#222233" })
+-- hl("BlinkCmpDocBorder", { fg = colors.comment, bg = "#222233" })
+-- hl("BlinkCmpSignatureHelp", { bg = "#222233" })
+-- hl("BlinkCmpSignatureHelpBorder", { fg = colors.comment, bg = "#222233" })
+-- hl("BlinkCmpMenuSelection", { bg = colors.selection, bold = true })
+
+-- nvim-cmp
+hl("CmpItemAbbr", { fg = colors.fg })
+hl("CmpItemAbbrMatch", { fg = colors.yellow, bold = true })
+hl("CmpItemAbbrMatchFuzzy", { fg = colors.yellow, bold = true })
+hl("CmpItemKind", { fg = colors.cyan })
+hl("CmpItemMenu", { fg = colors.comment, italic = true })
+hl("CmpPmenu", { bg = "#202030", fg = colors.fg })
+hl("Pmenu", { bg = "#202030" })
+hl("PmenuSel", { bg = colors.selection, bold = true })
+hl("PmenuSbar", { bg = "#202030" })
+hl("PmenuThumb", { bg = colors.comment })
 
 -- Things
 hl("Search", { fg = colors.bg, bg = colors.yellow })

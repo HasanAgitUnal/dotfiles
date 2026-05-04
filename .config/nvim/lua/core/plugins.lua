@@ -142,7 +142,7 @@ require('lazy').setup({
                                         }
 
                                         -- Enable Telescope extensions if they are installed
-                                        pcall(require('telescope').load_extension, 'projects')
+                                        --pcall(require('telescope').load_extension, 'projects')
                                         pcall(require('telescope').load_extension, 'fzf')
                                         pcall(require('telescope').load_extension, 'ui-select')
 
@@ -157,7 +157,7 @@ require('lazy').setup({
                                         vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
                                         vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
                                         vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-                                        vim.keymap.set('n', '<leader>sp', ":Telescope projects<CR>", { desc = '[S]earch [P]rojects' })
+                                        --vim.keymap.set('n', '<leader>sp', ":Telescope projects<CR>", { desc = '[S]earch [P]rojects' })
                                         vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
                                         vim.keymap.set('n', '<leader>/', function()
@@ -200,48 +200,88 @@ require('lazy').setup({
 
                                         { 'j-hui/fidget.nvim', opts = {} },
 
+                                        -- {
+                                        --         'saghen/blink.cmp',
+                                        --         version = '*',
+                                        --         build = function() require('blink.cmp').build():wait(60000) end,
+                                        --         opts = {
+                                        --                 keymap = {
+                                        --                         preset = 'none',
+                                        --                         ['<A-CR>'] = { 'select_and_accept', 'fallback' },
+                                        --                         ['<Tab>'] = { 'select_next', 'fallback' },
+                                        --                         ['<S-Tab>'] = { 'select_prev', 'fallback' },
+                                        --                         ['<A-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+                                        --                 },
+                                        --                 cmdline = {
+                                        --                         enabled = true,
+                                        --                         keymap = {
+                                        --                                 preset = 'none',
+                                        --                                 ['<A-CR>'] = { 'select_and_accept', 'fallback' },
+                                        --                                 ['<Tab>'] = { 'select_next', 'fallback' },
+                                        --                                 ['<S-Tab>'] = { 'select_prev', 'fallback' },
+                                        --                                 ['<A-Space>'] = { 'show', 'fallback' },
+                                        --                         },
+                                        --                 },
+                                        --                 appearance = {
+                                        --                         use_nvim_cmp_as_default = true,
+                                        --                         nerd_font_variant = 'mono'
+                                        --                 },
+                                        --                 completion = {
+                                        --                         menu = { 
+                                        --                                 border = 'none',
+                                        --                                 draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } } }
+                                        --                         },
+                                        --                         documentation = { window = { border = 'single' }, auto_show = true },
+                                        --                         trigger = { prefetch_on_insert = false },
+                                        --                         list = { selection = { preselect = false, auto_insert = true } },
+                                        --                 },
+                                        --                 sources = {
+                                        --                         default = { 'lsp', 'path', 'buffer' },
+                                        --                 },
+                                        --                 signature = { enabled = true, window = { border = 'single' } }
+                                        --         }
+                                        -- },
+                                        -- 'saghen/blink.lib',
+
                                         {
-                                                'saghen/blink.cmp',
-                                                version = '*',
-                                                build = function() require('blink.cmp').build():wait(60000) end,
-                                                opts = {
-                                                        keymap = {
-                                                                preset = 'none',
-                                                                ['<A-CR>'] = { 'select_and_accept', 'fallback' },
-                                                                ['<Tab>'] = { 'select_next', 'fallback' },
-                                                                ['<S-Tab>'] = { 'select_prev', 'fallback' },
-                                                                ['<A-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-                                                        },
-                                                        cmdline = {
-                                                                enabled = true,
-                                                                keymap = {
-                                                                        preset = 'none',
-                                                                        ['<A-CR>'] = { 'select_and_accept', 'fallback' },
-                                                                        ['<Tab>'] = { 'select_next', 'fallback' },
-                                                                        ['<S-Tab>'] = { 'select_prev', 'fallback' },
-                                                                        ['<A-Space>'] = { 'show', 'fallback' },
+                                                'hrsh7th/nvim-cmp',
+                                                dependencies = {
+                                                        'hrsh7th/cmp-nvim-lsp',
+                                                        'hrsh7th/cmp-buffer',
+                                                        'hrsh7th/cmp-path',
+                                                },
+                                                config = function()
+                                                        local cmp = require('cmp')
+                                                        cmp.setup({
+                                                                snippet = {
+                                                                        expand = function(args)
+                                                                                vim.snippet.expand(args.body)
+                                                                        end,
                                                                 },
-                                                        },
-                                                        appearance = {
-                                                                use_nvim_cmp_as_default = true,
-                                                                nerd_font_variant = 'mono'
-                                                        },
-                                                        completion = {
-                                                                menu = { 
-                                                                        border = 'none',
-                                                                        draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } } }
+                                                                mapping = cmp.mapping.preset.insert({
+                                                                        ['<A-CR>'] = cmp.mapping.confirm({ select = true }),
+                                                                        ['<Tab>'] = cmp.mapping.select_next_item(),
+                                                                        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+                                                                        ['<A-Space>'] = cmp.mapping.complete(),
+                                                                }),
+                                                                sources = cmp.config.sources({
+                                                                        { name = 'nvim_lsp' },
+                                                                        { name = 'buffer' },
+                                                                        { name = 'path' },
+                                                                }),
+                                                                window = {
+                                                                        completion = {
+                                                                                border = 'none',
+                                                                                winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
+                                                                        },
+                                                                        documentation = {
+                                                                                border = 'none',
+                                                                                winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
+                                                                        },
                                                                 },
-                                                                documentation = { window = { border = 'single' }, auto_show = true },
-                                                                trigger = { prefetch_on_insert = false },
-                                                                list = { selection = { preselect = false, auto_insert = true } },
-                                                        },
-                                                        sources = {
-                                                                default = { 'lsp', 'path', 'buffer' },
-                                                        },
-                                                        signature = { enabled = true, window = { border = 'single' } }
-                                                }
+                                                        })
+                                                end
                                         },
-                                        'saghen/blink.lib'
                                 },
                                 config = function()
                                         vim.api.nvim_create_autocmd('LspAttach', {
@@ -375,7 +415,8 @@ require('lazy').setup({
                                         --  By default, Neovim doesn't support everything that is in the LSP specification.
                                         --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
                                         --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-                                        local capabilities = require('blink.cmp').get_lsp_capabilities()
+                                        -- local capabilities = require('blink.cmp').get_lsp_capabilities()
+                                        local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
                                         -- Enable the following language servers
                                         --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -656,20 +697,21 @@ require('lazy').setup({
                                         end
                                 },
                         },
-                        {
-                                "ahmedkhalf/project.nvim",
-                                config = function()
-                                        require("project_nvim").setup({
-                                                detection_methods = { "lsp", "pattern" },
-                                                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".clang-format", ".project" },
+--                        {
+--                                "ahmedkhalf/project.nvim",
+--                                config = function()
+--                                        require("project_nvim").setup({
+--                                                detection_methods = { "lsp", "pattern" },
+--                                                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".clang-format", ".project" },
+--
+--                                                update_focused_file = {
+--                                                        enable = true,
+--                                                        update_root = true,
+--                                                },
+--                                        })
+--                                end,
+--                        },
 
-                                                update_focused_file = {
-                                                        enable = true,
-                                                        update_root = true,
-                                                },
-                                        })
-                                end,
-                        },
                         {
                                 "epwalsh/obsidian.nvim",
                                 version = "*",
