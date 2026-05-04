@@ -34,7 +34,22 @@ else
 fi
 
 # Update shader
-sed -i "s/float multiplier = [0-9.]*;/float multiplier = $BRIGHTNESS;/" "$SHADER_FILE"
+SHADER="#version 300 es
+precision mediump float;
+in vec2 v_texcoord;
+uniform sampler2D tex;
+out vec4 fragColor;
+
+void main() {
+    vec4 pix = texture(tex, v_texcoord);
+    float multiplier = $BRIGHTNESS;
+    pix.rgb *= multiplier;
+    fragColor = pix;
+}"
+
+echo -e "$SHADER" > $SHADER_FILE
+
+#sed -i "s/float multiplier = [0-9.]*;/float multiplier = $BRIGHTNESS;/" "$SHADER_FILE"
 
 # Apply shader and create lock
 hyprshade on "$SHADER_FILE"
