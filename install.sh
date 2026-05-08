@@ -3,6 +3,14 @@
 set -e
 
 DOTFILES_DIR="$HOME/dotfiles"
+NO_ASK=false
+
+# Check for --no-ask parameter
+for arg in "$@"; do
+    if [[ $arg == "--no-ask" ]]; then
+        NO_ASK=true
+    fi
+done
 
 linkm() {
     echo -e "[ \033[3;35mlinking\033[0m ] $1"
@@ -14,6 +22,11 @@ safelink() {
         local name=$(basename "$dest")
 
         if [ -e "$dest" ] || [ -L "$dest" ]; then
+                if [ "$NO_ASK" = true ]; then
+                        rm -rf "$dest"
+                        ln -sf "$src" "$dest"
+                        return
+                fi
                 echo -e "\n[ \033[1;33mWarning\033[0m ] $name already exists"
                 read -p "Delete and relink it? [y/N]: " -n 1 -r
                 echo
