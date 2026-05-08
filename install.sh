@@ -63,7 +63,7 @@ if [[ $(pwd) != "$DOTFILES_DIR" ]]; then
 fi
 
 # ~/.config
-for file in .bashrc .bash_aliases .bash_env_vars .clang-format .inputrc; do
+for file in .bashrc .bash_aliases .bash_env_vars .clang-format .inputrc .gemini; do
         linkm "$file"
         safelink "$DOTFILES_DIR/$file" "$HOME/$file"
 done
