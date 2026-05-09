@@ -27,7 +27,7 @@ safelink() {
                         ln -sf "$src" "$dest"
                         return
                 fi
-                echo -e "\n[ \033[1;33mWarning\033[0m ] $name already exists"
+                echo -e "[ \033[1;33mWarning\033[0m ] $name already exists"
                 read -p "Delete and relink it? [y/N]: " -n 1 -r
                 echo
                 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -54,14 +54,14 @@ root () {
         fi
 }
 
-cat <<EOF
 
-\033[1;36m * CybrCyanDots * \033[0m
-
-\033[3;32mIMPORTANT NOTE: NEVER delete ~/dotfiles directory.
-                Everything is symlink for it\033[0m
-
-EOF
+echo
+echo -e "\033[1;36m * CybrCyanDots * \033[0m"
+echo
+echo -e "\033[3;33mIMPORTANT NOTE:\033[0m" 
+echo "NEVER delete ~/dotfiles directory."
+echo "Everything is symlink for it"
+echo
 
 # Copying only /etc folders
 if [[ $1 == "etc" ]]; then
@@ -76,7 +76,7 @@ if [[ $(pwd) != "$DOTFILES_DIR" ]]; then
 fi
 
 # ~/.config
-for file in .bashrc .bash_aliases .bash_env_vars .clang-format .inputrc .gemini; do
+for file in .bashrc .bash_aliases .zoxide_aliases bash_env_vars .clang-format .inputrc .gemini; do
         linkm "$file"
         safelink "$DOTFILES_DIR/$file" "$HOME/$file"
 done
@@ -92,4 +92,4 @@ done
 # /etc
 root
 
-echo "[ \033[1;32mCompleted\033[0m ] Files are linked to $DOTFILES_DIR. DONT DELETE IT!!"
+echo -e "[ \033[1;32mCompleted\033[0m ] Files are linked to $DOTFILES_DIR. DONT DELETE IT!!"

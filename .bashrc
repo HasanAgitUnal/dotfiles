@@ -122,7 +122,7 @@ fi
 if [ -x $PREFIX/bin/dircolors ]; then
         test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-        if [[ -f /usr/bin/eza ]];then
+        if which eza >/dev/null 2>/dev/null; then
                 alias eza='eza --icons'
                 alias ls='eza --icons'
                 alias ll='ls -algF -h --git'
