@@ -104,12 +104,19 @@ exit_code() {
 }
 
 # PS1
+PROMPT_DIRTRIM=0
+
 # Termux
-#PROMPT_DIRTRIM=0
-#PS1='$(exit_code) \[\033[1;3;36m\]\w\[\033[0m\]$(git_branch)\n\[\033[0;32m\]λ \[\033[0m\]'
-# PC
+if [[ -e ~/.termux ]]; then
+PS1='$(exit_code) \[\033[1;36m\]\w\[\033[0m\]$(git_branch)
+\[\033[0;32m\]λ \[\033[0m\]'
+
+# Normal
+else
 PS1='$(exit_code) \[\033[1;36m\]\w\[\033[0m\]$(git_branch) \[\033[32m\]> \[\033[1;34m\]\h \[\033[0;32m\]> \[\033[1;31m\]\u
 \[\033[0;32m\]λ \[\033[0m\]'
+
+fi
 
 # Enable color support of ls and grep commands
 if [ -x $PREFIX/bin/dircolors ]; then
