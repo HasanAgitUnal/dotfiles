@@ -152,6 +152,10 @@ export GCC_COLORS='error=01;31:warning=01;33:note=01;36:caret=01;32:locus=01:quo
 # Other
 #
 
+# node performance
+export NODE_OPTIONS="--no-warnings --max-old-space-size=512"
+export NODE_COMPILE_CACHE=1
+export GEMINI_CLI_NO_RELAUNCH=1
 
 # Load NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \

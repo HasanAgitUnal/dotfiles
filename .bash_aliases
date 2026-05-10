@@ -7,6 +7,12 @@ if [[ -f ~/.zoxide_aliases ]]; then
         alias cd='z'
 fi
 
+if [[ -e .termux ]]; then
+        GEMINI_TMP="$PREFIX/tmp/gemini"
+        mkdir -p "$GEMINI_TMP"
+        alias gt="cd $GEMINI_TMP && gemini"
+fi
+
 alias open='xdg-open'
 alias up="pkg update && pkg upgrade"
 alias update="up && apt autoremove && pkg clean"
