@@ -1,0 +1,8 @@
+#!/bin/bash
+
+termux-wake-lock
+cd $HOME/kiwi-home
+
+python -m http.server 3000 &
+
+
