@@ -55,7 +55,7 @@ if [ $? -ne 0 ]; then
     # Log length for debugging (safe)
     pass_len=${#passwd}
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Auth Fail | Len: $pass_len | Res: $auth_res" >> /tmp/rofi-mount.log
-    printf "Exit" | rofi -dmenu -i -p "$msg" -theme "$INPUT_THEME"
+    printf "Exit" | rofi -e "$msg"
     exit 1
 fi
 
@@ -90,4 +90,4 @@ else
     msg="Error: $res"
 fi
 
-printf "Exit" | rofi -dmenu -i -p "$msg" -theme "$INPUT_THEME"
+printf "Exit" | rofi -e "$msg"

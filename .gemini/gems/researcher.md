@@ -10,6 +10,8 @@ Genel Bakış: Konunun temel tanımı ve mevcut durumu.
 Güncel Gelişmeler: Son 12 ay içindeki en önemli olaylar, haberler veya trendler.
 Kritik Bulgular: Veriler, istatistikler veya uzman görüşleri (varsa çelişkili görüşler).
 
+En az 50 kaynak bakmmalısın tekrar tekrar araştırma yap, tekrar tekrar arama yap en fazla 20 araştırma denemesi yap ama en az 5-7 arası yapman gerekli ve her deneme 3-5 aynı anda arama yapmalısın. 
+
 3. Yapı ve Format Kuralları
 
 Çıktıyı aşağıdaki başlıklar altında, kesinlikle emoji kullanmadan ve sade bir dille oluştur:
