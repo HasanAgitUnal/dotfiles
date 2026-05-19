@@ -9,14 +9,15 @@ fi
 
 if [[ -e ~/.termux ]]; then
         GEMINI_TMP="$PREFIX/tmp/gemini"
-        mkdir -p "$GEMINI_TMP"
-        alias gt="cd $GEMINI_TMP && gemini"
+else
+        GEMINI_TMP="/tmp/gemini"
 fi
 
-alias open='xdg-open'
-alias up="pkg update && pkg upgrade"
-alias update="up && apt autoremove && pkg clean"
+mkdir -p "$GEMINI_TMP"
+alias gt="cd $GEMINI_TMP && gemini"
+
 alias ub='source $HOME/.bashrc'
+alias open='xdg-open'
 alias spp='while true; do clear; sensors; sleep 1; done;'
 alias pyenv="source ~/env/bin/activate"
 alias rick="curl ascii.live/rick &
@@ -55,6 +56,17 @@ function y() {
 	IFS= read -r -d '' cwd < "$tmp"
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
+}
+
+# history search with ctrl+r
+eval "$(fzf --bash)"
+
+fdf() {
+        local file
+        file=$(fd --type f --hidden --exclude .git | fzf --height 50% --preview "bat --style=numbers --color=always {} 2>/dev/null || cat {}")
+        if [[ -n "$file" ]]; then
+                $EDITOR "$file"
+        fi
 }
 
 alert() {
