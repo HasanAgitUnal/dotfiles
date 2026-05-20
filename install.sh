@@ -54,6 +54,21 @@ root () {
         fi
 }
 
+user () {
+        # ~/.*
+        for file in .bashrc .bash_aliases .zoxide_aliases .bash_env_vars .clang-format .inputrc .gemini .termux; do
+                linkm "$file"
+                safelink "$DOTFILES_DIR/$file" "$HOME/$file"
+        done
+
+        # ~/.config
+        mkdir -p "$HOME/.config"
+        for dir in "$DOTFILES_DIR/.config/"*/; do
+                name=$(basename "$dir")
+                linkm "$name"
+                safelink "$dir" "$HOME/.config/$name"
+        done
+}
 
 echo
 echo -e "\033[1;36m * CybrCyanDots * \033[0m"
@@ -63,33 +78,45 @@ echo "NEVER delete ~/dotfiles directory."
 echo "Everything is symlink for it"
 echo
 
-# Copying only /etc folders
-if [[ $1 == "etc" ]]; then
-        linkm "Linking /etc folders"
-        root
-        exit 0
-fi
-
 if [[ $(pwd) != "$DOTFILES_DIR" ]]; then
         echo -e "[ \033[31mERROR\033[0m ] Please run inside $DOTFILES_DIR directory"
         exit 1
 fi
 
-# ~/.config
-for file in .bashrc .bash_aliases .zoxide_aliases .bash_env_vars .clang-format .inputrc .gemini .termux; do
-        linkm "$file"
-        safelink "$DOTFILES_DIR/$file" "$HOME/$file"
-done
+# Copying only /etc folders
+if [[ $1 == "root" ]]; then
+        linkm "Linking /etc folders"
+        root
+        exit 0
+fi
 
-# ~/.config
-mkdir -p "$HOME/.config"
-for dir in "$DOTFILES_DIR/.config/"*/; do
-        name=$(basename "$dir")
-        linkm "$name"
-        safelink "$dir" "$HOME/.config/$name"
-done
+if [[ $1 == "user" ]]; then
+        linkm "Linking ~ folders"
+        user
+        exit 0
+fi
 
-# /etc
-root
+if [[ $1 == "all" ]]; then
+        root
+        user
+fi
+
+# Run all if not $1 specified
+all=false
+echo -e "\033[33mW:\033[0m No mode specified use \"$0 user\" to install user configs or \"sudo $0 root\" to install system-wide configs or \"sudo $0 all\" to install both"
+if [[ $NO_ASK == "false" ]]; then
+        read confirmall -p "Install all? [Y/n]: "
+        if [[ $confirmall =~ ^[Yy]$ ]]; then
+                all=true
+        fi
+
+else
+        all=true
+fi
+
+if [[ $all == true ]]; then
+        root
+        user
+fi
 
 echo -e "[ \033[1;32mCompleted\033[0m ] Files are linked to $DOTFILES_DIR. DONT DELETE IT!!"
