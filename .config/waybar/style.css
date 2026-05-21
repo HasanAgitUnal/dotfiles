@@ -24,14 +24,16 @@ tooltip label {
 }
 
 window#waybar {
-        background-color: @bg;
-        color: @fg1;
-        transition-property: background-color;
-        transition-duration: .5s;
+       background-color: @bg;
+       color: @fg1;
+       transition-property: all;
+       transition-duration: 400ms;
+       transition-timing-function: cubic-bezier(0.97, 0.74, 0.63, 1);
 }
 
 window#waybar.hidden {
-        opacity: 0.2;
+       margin-top: -45px; 
+       opacity: 0;
 }
 
 .modules-right {
