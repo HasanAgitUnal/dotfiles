@@ -18,7 +18,7 @@ current = { bg = "blue", fg = "white", underline = false }
 
 [indicator]
 current = { fg = "blue", italic = true, reversed = true, bold = true }
-preview = { fg = "lightblue", italic = true, reversed = false, bold = true}
+preview = { fg = "blue", italic = false, reversed = false, bold = true}
 
 #############################################################################
 

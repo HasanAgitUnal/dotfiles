@@ -40,7 +40,7 @@ dev_path=$(echo "$selected" | awk '{print $1}')
 # Robust metadata extraction
 LABEL=""
 FSTYPE=""
-eval $(lsblk -P -o LABEL,FSTYPE "$dev_path")
+eval $(lsblk -Jp -o LABEL,FSTYPE "$dev_path" | jq -r '.blockdevices[0] | "LABEL=\"\(.label // "")\"; FSTYPE=\"\(.fstype // "")\""')
 [ -z "$LABEL" ] && LABEL=$(basename "$dev_path")
 mount_point="/run/media/$USER/$LABEL"
 
