@@ -20,10 +20,6 @@ alias ub='source $HOME/.bashrc'
 alias open='xdg-open'
 alias spp='while true; do clear; sensors; sleep 1; done;'
 alias pyenv="source ~/env/bin/activate"
-alias rick="curl ascii.live/rick &
-mpv ~/rick.mp3 >/dev/null 2>/dev/null
-pkill -f 'curl ascii' >/dev/null 2>/dev/null
-clear"
 alias gs="git status -s"
 alias as="apt search"
 alias lam="am start"
@@ -79,3 +75,19 @@ alert() {
 #    done
 }
 
+tuxrick () {
+        for l in "Never gonna give you up" "Never gona let you down" "Never gonna run around and dessert you" \
+                 "Never gonna make you cry" "Never gonna say goodbye" "Never gonna hurt you"; do
+ 
+                clear
+                echo "$l" | cowsay -f tux | lolcat
+                sleep "$1"
+        done
+}
+
+rick () {
+        echo -e "\e[33m"; curl ascii.live/rick &
+        footclient -o font="CaskaydiaCove Nerd Font:size=18.5" bash -i -c "tuxrick 2.5"
+        pkill -f "curl ascii.live/rick"
+        clear
+}
