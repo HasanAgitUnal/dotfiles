@@ -107,7 +107,7 @@ exit_code() {
 PROMPT_DIRTRIM=0
 
 # Termux
-if [[ -e ~/.termux ]]; then
+if [[ -e /storage/emulated/0 ]]; then
 PS1='$(exit_code) \[\033[1;36m\]\w\[\033[0m\]$(git_branch)
 \[\033[0;32m\]λ \[\033[0m\]'
 
