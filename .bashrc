@@ -161,5 +161,13 @@ export GEMINI_CLI_NO_RELAUNCH=1
 [ -s "$NVM_DIR/nvm.sh" ] && \
         . "$NVM_DIR/nvm.sh"
 
+# Programmable Completion
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+
+elif [ -f $PREFIX/share/bash-completion/bash_completion ]; then
+        . $PREFIX/share/bash-completion/bash_completion
+fi
+
 # Start bash with $? = 0
 true
