@@ -8,6 +8,7 @@ hl.layer_rule({
          name           = "rofi",
          match          = { namespace = "rofi" },
          blur           = true,
+         xray           = true,
          ignore_alpha   = 0.5,
          animation      = "slide left"
 })

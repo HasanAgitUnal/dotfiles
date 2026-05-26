@@ -46,8 +46,9 @@ hl.animation({
 hl.animation({
         leaf    = "workspaces",
         enabled = true,
-        speed   = 2.5,
-        bezier  = "slow"
+        speed   = 4,
+        bezier  = "slow",
+        style   = "slidefadevert 50"
 })
 
 hl.animation({
