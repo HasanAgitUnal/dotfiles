@@ -1,0 +1,15 @@
+--[[
+        General Settings
+--]]
+
+hl.config({
+        misc = {
+                disable_hyprland_logo = true,
+                disable_splash_rendering = true
+        },
+
+        ecosystem = {
+                enforce_permissions = 1,
+                no_donation_nag = true
+        }
+})
