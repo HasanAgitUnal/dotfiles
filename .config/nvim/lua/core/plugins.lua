@@ -637,11 +637,18 @@ require('lazy').setup({
                                                 c = { "clang-format" },
                                                 cpp = { "clang-format" },
                                         },
-                                        -- İstediğin zaman format atmak için (otomatik formatı kapalı tutuyoruz)
-                                        format_on_save = false,
+                                        format_on_save = true,
                                 },
                         },
-
+                        {
+                                'mfussenegger/nvim-lint',
+                                config = function()
+                                        require('lint').linters_by_ft = { c = {'clangtidy'} }
+                                        vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+                                                callback = function() require("lint").try_lint() end,
+                                        })
+                                end
+                        },
                         {
                                 {
                                         "mfussenegger/nvim-dap",
