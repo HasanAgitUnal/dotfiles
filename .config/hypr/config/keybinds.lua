@@ -11,7 +11,7 @@ hl.bind(mainMod .. " + SHIFT + W",      hl.dsp.exec_cmd("pkill -SIGUSR2 waybar")
 
 -- Basic things
 hl.bind(mainMod .. " + BackSpace",      hl.dsp.window.close())
-hl.bind(mainMod .. " + K",              hl.dsp.window.kill())
+hl.bind(mainMod .. " + ALT + K",        hl.dsp.window.kill())
 hl.bind(mainMod .. " + F",              hl.dsp.window.float())
 hl.bind(mainMod .. " + S",              hl.dsp.layout("togglesplit"))
 
