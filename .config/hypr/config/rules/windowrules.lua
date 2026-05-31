@@ -70,6 +70,16 @@ hl.window_rule({
         workspace       = 4
 })
 
+hl.window_rule({
+        name            = "ai-canvas",
+        match = {
+                class     = "canvas",
+        },
+        float     = true,
+        size      = {800, 500},
+        workspace = 4
+})
+
 -- Notes
 hl.window_rule({
         name            = "notes-workspace",

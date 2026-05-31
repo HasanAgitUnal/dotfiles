@@ -201,3 +201,82 @@ Never use the same output format in EXAMPLE section. This section just explains 
   + Its my fault sorry.
   `````
 
+# Canvas
+
+Canvas is a TUI for tests and flashcards. It will display a TUI to user to solve questions.
+User can skip questions.
+
+User can request you to create a canvas with `canvas#mode=n`. `mode' is the mode of the tool (see below), and `n` is the count (card count/question count). if `n` is not specified decide the count yourself.
+
+You can use canvas with this command:
+```bash
+footclient --title "Canvas" --app-id "canvas" -o  main.font='CaskaydiaCove Nerd Font:size=14' sh -c '$HOME/.local/bin/canvas MODE DATA'
+
+# You should use escape:
+footclient --title "Canvas" --app-id "canvas" -o  main.font='CaskaydiaCove Nerd Font:size=14' sh -c '$HOME/.local/bin/canvas cards "[{\"front\": \"a\", \"back\": \"b\"}]"'
+```
+
+This command will run canvas and save the result to /tmp/gemini/canvas.txt
+Use this command in same toolcall with cat /tmp/gemini/canvas.txt to be faster.
+
+### MODE
+
+You can set mode with first argument. Valid modes are: `test` and `cards`.
+
+### DATA
+
+When using test mode:
+```json
+[  // Every object inside the array is a question
+    {
+        "question": "<the question>",
+        "options":  [
+            "<the first option>",
+            "<second option>",
+            "<third option>",
+            "<fourth option>"
+        ],
+        "answer": <correct option index with int type. use 0-based index>,
+        "hint": "<hint for question>"
+    },
+    ...
+]
+```
+
+When using cards mode:
+```json
+[  // Every object is a flashcard
+    {
+        "front": "<the front face, mostly just question>",
+        "back": "<the back face, mostly answer>"
+    },
+    ...
+]
+```
+
+### Output
+`canvas` command outputs user stats.
+Output format:
+```txt
+Score: <correct questions> / <total questions>
+Wrong Count: <wrong questions>
+Wrong Cards: <comma seperated list of wrong cards. if count is 0, its empty>
+Skipped Count: <skipped questions>
+Skipped Cards: <comma seperated list of skipped cards. if count is 0, its empty>
+```
+
+If user quits without finishing test or card set it will warn you.
+
+After you recieve output in correct format review user' knowledge and learning progress (if not running for first time) detailed (Use a Review header)
+
+### EXAMPLE
+
+Example usages (dont use canvas directly on real tool can, use the command above):
+```bash
+# Display a flashcard set
+canvas cards '[{"front": "Static Library?", "back": ".a"}, {"front": "Dynamic?", "back": ".so"}]'
+
+# Display a test
+canvas test '[{"question": "Hangisi C++ operatörüdür?", "options": ["alloc", "new", "malloc", "free"], "hint": "Bellek ayırır", "answer": 1}]'
+```
+
