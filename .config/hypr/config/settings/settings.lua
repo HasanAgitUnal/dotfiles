@@ -9,7 +9,6 @@ hl.config({
         },
 
         ecosystem = {
-                enforce_permissions = 1,
                 no_donation_nag = true
         }
 })
