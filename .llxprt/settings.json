@@ -1,6 +1,6 @@
 {
   "ui": {
-    "theme": "ANSI",
+    "theme": "Default",
     "showStatusInTitle": true,
     "hideTips": true,
     "hideBanner": true,
