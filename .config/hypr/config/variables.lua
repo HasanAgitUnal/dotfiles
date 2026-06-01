@@ -16,7 +16,7 @@ APPS = {
         browser_alt   = "/opt/helium-browser-bin/helium",       -- Chromium based
 
         -- TUI apps
-        gemini = terminal .. " --title 'Gemini' --app-id gemini --working-directory /tmp/gemini gemini",
+        ai = terminal .. " --title 'LLXPRT' --app-id llxprt --working-directory /tmp/llxprt llxprt",
         notes  = terminal .. " --title 'Notes' --app-id notes --working-directory ~/documents/obsidian nvim TODOS.md",
         rogue  = terminal .. " --title 'Rogue' -o tweak.font-monospace-warn=no -o main.font='square:size=12.5' sh -c 'sleep 1; if [ -f ~/rogue.save ]; then rogue -r; else rogue; fi'"
 }

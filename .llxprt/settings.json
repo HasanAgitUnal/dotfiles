@@ -1,0 +1,19 @@
+{
+  "ui": {
+    "theme": "ANSI",
+    "showStatusInTitle": true,
+    "hideTips": true,
+    "hideBanner": true,
+    "footer": {
+      "hideCWD": true,
+      "hideSandboxStatus": true
+    },
+    "showMemoryUsage": true,
+    "wittyPhraseStyle": "default",
+    "showTodoPanel": true,
+    "vimMode": false,
+    "hideContextSummary": false,
+    "ideMode": false
+  },
+  "disableAutoUpdate": true
+}

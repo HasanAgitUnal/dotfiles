@@ -66,7 +66,7 @@ hl.window_rule({
 -- AI
 hl.window_rule({
         name            = "ai-workspace",
-        match           = { class = "gemini" },
+        match           = { class = "llxprt" },
         workspace       = 4
 })
 

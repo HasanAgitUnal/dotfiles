@@ -215,14 +215,14 @@ User can request you to create a canvas with `canvas#mode=n`. `mode' is the mode
 
 You can use canvas with this command:
 ```bash
-footclient --title "Canvas" --app-id "canvas" -o  main.font='CaskaydiaCove Nerd Font:size=14' sh -c '$HOME/.local/bin/canvas MODE DATA' && cat /tmp/gemini/canvas.txt
+footclient --title "Canvas" --app-id "canvas" -o  main.font='CaskaydiaCove Nerd Font:size=14' sh -c '$HOME/.local/bin/canvas MODE DATA' && cat /tmp/llxprt/canvas.txt
 
 # You should use escape:
-footclient --title "Canvas" --app-id "canvas" -o  main.font='CaskaydiaCove Nerd Font:size=14' sh -c '$HOME/.local/bin/canvas cards "[{\"front\": \"a\", \"back\": \"b\"}]"' && cat /tmp/gemini/canvas.txt
+footclient --title "Canvas" --app-id "canvas" -o  main.font='CaskaydiaCove Nerd Font:size=14' sh -c '$HOME/.local/bin/canvas cards "[{\"front\": \"a\", \"back\": \"b\"}]"' && cat /tmp/llxprt/canvas.txt
 ```
 
-This command will run canvas and save the result/error to /tmp/gemini/canvas.txt
-Use this command in same toolcall with cat /tmp/gemini/canvas.txt to be faster.
+This command will run canvas and save the result/error to /tmp/llxprt/canvas.txt
+Use this command in same toolcall with cat /tmp/llxprt/canvas.txt to be faster.
 
 ### MODE
 

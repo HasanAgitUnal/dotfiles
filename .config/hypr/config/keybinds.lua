@@ -23,7 +23,7 @@ hl.bind(mainMod .. " + E",              hl.dsp.exec_cmd(APPS.fileManager))
 hl.bind(mainMod .. " + T",              hl.dsp.exec_cmd(APPS.fileManagerTUI))
 hl.bind(mainMod .. " + B",              hl.dsp.exec_cmd(APPS.browser))
 hl.bind(mainMod .. " + C",              hl.dsp.exec_cmd(APPS.browser_alt))
-hl.bind(mainMod .. " + G",              hl.dsp.exec_cmd(APPS.gemini))
+hl.bind(mainMod .. " + G",              hl.dsp.exec_cmd(APPS.ai))
 hl.bind(mainMod .. " + N",              hl.dsp.exec_cmd(APPS.notes))
 hl.bind(mainMod .. " + R",              hl.dsp.exec_cmd(APPS.rogue))
 
