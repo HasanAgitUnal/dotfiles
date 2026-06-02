@@ -15,5 +15,8 @@
     "hideContextSummary": false,
     "ideMode": false
   },
-  "disableAutoUpdate": true
+  "disableAutoUpdate": true,
+  "oauthEnabledProviders": {
+    "gemini": true
+  }
 }

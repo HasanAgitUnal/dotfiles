@@ -12,11 +12,9 @@ fi
 
 if [[ -f ~/.night_mode_lock ]]; then
         NIGHTMODE_LOCK=1
-        echo opened
         NIGHTMODE_LOCK_SWITCH="  Night Mode Lock"
 else
         NIGHTMODE_LOCK=0
-        echo closed
         NIGHTMODE_LOCK_SWITCH="  Night Mode Lock"
 fi
 
