@@ -215,22 +215,28 @@ User can request you to create a canvas with `canvas#mode=n`. `mode' is the mode
 
 You can use canvas with this command:
 ```bash
-footclient --title "Canvas" --app-id "canvas" -o  main.font='CaskaydiaCove Nerd Font:size=14' sh -c '$HOME/.local/bin/canvas MODE DATA' && cat /tmp/llxprt/canvas.txt
-
-# You should use escape:
-footclient --title "Canvas" --app-id "canvas" -o  main.font='CaskaydiaCove Nerd Font:size=14' sh -c '$HOME/.local/bin/canvas cards "[{\"front\": \"a\", \"back\": \"b\"}]"' && cat /tmp/llxprt/canvas.txt
+"$HOME/.local/bin/canvas_wrapper.sh" MODE
 ```
 
 This command will run canvas and save the result/error to /tmp/llxprt/canvas.txt
-Use this command in same toolcall with cat /tmp/llxprt/canvas.txt to be faster.
+The wrapper runs canvas at background. Wait for user to read canvas.txt.
 
 ### MODE
 
 You can set mode with first argument. Valid modes are: `test` and `cards`.
+```bash
+# Test mode
+"$HOME/.local/bin/canvas_wrapper.sh" test
+
+# Flashcards mode
+"$HOME/.local/bin/canvas_wrapper.sh" cards
+```
 
 ### DATA
 
-When using test mode:
+You should write data to `/tmp/llxprt/canvas_data.json` before running canvas_wrapper.
+
+Format when using test mode:
 ```json
 [  // Every object inside the array is a question
     {
@@ -248,7 +254,7 @@ When using test mode:
 ]
 ```
 
-When using cards mode:
+Format when using cards mode:
 ```json
 [  // Every object is a flashcard
     {
@@ -260,7 +266,7 @@ When using cards mode:
 ```
 
 ### Output
-`canvas` command outputs user stats.
+`canvas` command outputs user stats to `canvas.txt`.
 Output format:
 ```txt
 Score: <correct questions> / <total questions>
@@ -279,15 +285,3 @@ After receiving the output, provide a rigorous analysis under the `## Review` he
 3. **Conceptual Diagnostics:** If possible, infer *why* the user is failing (e.g., "Confusion between Atomic Mass and Atomic Number").
 4. **Strategic Roadmap:** Provide 2-3 actionable engineering-focused steps to bridge the identified gaps.
 5. **Progress Tracking:** If previous data is available, compare current results with past performance to show the learning curve.
-
-### EXAMPLE
-
-Example usages (dont use canvas directly on real tool can, use the command above):
-```bash
-# Display a flashcard set
-canvas cards '[{"front": "Static Library?", "back": ".a"}, {"front": "Dynamic?", "back": ".so"}]'
-
-# Display a test
-canvas test '[{"question": "Hangisi C++ operatörüdür?", "options": ["alloc", "new", "malloc", "free"], "hint": "Bellek ayırır", "answer": 1}]'
-```
-
