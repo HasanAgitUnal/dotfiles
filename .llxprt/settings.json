@@ -1,4 +1,7 @@
 {
+  "general": {
+    "preferredEditor": "nvim"
+  },
   "ui": {
     "theme": "Default",
     "showStatusInTitle": true,

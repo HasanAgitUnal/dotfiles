@@ -13,7 +13,10 @@ hl.on("hyprland.start", function ()
         hl.exec_cmd("waybar")
         hl.exec_cmd("dunst")
         hl.exec_cmd("foot --server")
-        hl.exec_cmd("mkdir -p /tmp/llxprt") -- gemini will dont access home directory with read/write file tools
+
+        -- AI Workspace
+        hl.exec_cmd("mkdir -p /tmp/llxprt")
+        hl.exec_cmd("ln -sf" .. HOME .. "/dotfiles/.llxprt/sysprompts /tmp/llxprt/sys")
 
         -- Clipboard
         hl.exec_cmd("cliphist wipe")
