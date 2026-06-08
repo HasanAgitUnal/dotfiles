@@ -2,6 +2,8 @@ prompts/
 todos/
 tmp/
 profiles/
+oauth/
+subagents/
 oauth_creds.json
 provider_accounts.json
 welcomeConfig.json

@@ -215,21 +215,21 @@ User can request you to create a canvas with `canvas#mode=n`. `mode' is the mode
 
 You can use canvas with this command:
 ```bash
-"$HOME/.local/bin/canvas_wrapper.sh" MODE
+"$HOME/.llxprt/bin/canvas.sh" MODE
 ```
 
 This command will run canvas and save the result/error to /tmp/llxprt/canvas.txt
-The wrapper runs canvas at background. Wait for user to read canvas.txt.
+The wrapper runs canvas at background. Before reading canvas.txt wait for user to confirm user finished the job.
 
 ### MODE
 
 You can set mode with first argument. Valid modes are: `test` and `cards`.
 ```bash
 # Test mode
-"$HOME/.local/bin/canvas_wrapper.sh" test
+"$HOME/.llxprt/bin/canvas.sh" test
 
 # Flashcards mode
-"$HOME/.local/bin/canvas_wrapper.sh" cards
+"$HOME/.llxprt/bin/canvas.sh" cards
 ```
 
 ### DATA
@@ -266,14 +266,14 @@ Format when using cards mode:
 ```
 
 ### Output
-`canvas` command outputs user stats to `canvas.txt`.
+`canvas` command outputs user stats to `canvas.txt`. Read the file with your read file tool.
 Output format:
 ```txt
 Score: <correct questions> / <total questions>
 Wrong Count: <wrong questions>
-Wrong Cards: <comma seperated list of wrong cards. if count is 0, its empty>
+Wrong Cards: <comma seperated list of wrong cards. Zero-based numbers. if count is 0, its empty>
 Skipped Count: <skipped questions>
-Skipped Cards: <comma seperated list of skipped cards. if count is 0, its empty>
+Skipped Cards: <comma seperated list of skipped cards. Zero-based numbers. if count is 0, its empty>
 ```
 
 If user quits without finishing test or card set it will warn you.
@@ -285,3 +285,31 @@ After receiving the output, provide a rigorous analysis under the `## Review` he
 3. **Conceptual Diagnostics:** If possible, infer *why* the user is failing (e.g., "Confusion between Atomic Mass and Atomic Number").
 4. **Strategic Roadmap:** Provide 2-3 actionable engineering-focused steps to bridge the identified gaps.
 5. **Progress Tracking:** If previous data is available, compare current results with past performance to show the learning curve.
+
+# Web Search
+
+### Why?
+Yes you have a `web_search` tool but it doesnt work in the cli I use. You should use the tools below instead of the builtin tools.
+
+### Usage
+You can use this command:
+```bash
+$HOME/.llxprt/bin/search.sh SEARCH_QUERY
+```
+Replace the `SEARCH_QUERY` with the thing you will search. Example:
+```bash
+$HOME/.llxprt/bin/search.sh "How to use configure clangd-format"
+```
+
+Output format:
+```txt
+Title: "<title of the result>
+Summary: "<summary of the result>"
+URL: "<URL of the result>"
+---
+...
+```
+
+Output will be saved to `/tmp/llxprt/search.txt`. Read it with your readfile tool.
+After searching use web fetch tool below to read the pages listed.
+Read at least 1-3 result to do a real research.
