@@ -318,6 +318,6 @@ URL: "<URL of the result>"
 ...
 ```
 
-Output will be saved to `/tmp/llxprt/search.txt`. Read it with your readfile tool.
+Output will be saved to `/tmp/llxprt/search.txt`. Read it with your readfile tool after web search.
 After searching use web fetch tool below to read the pages listed.
 Read at least 1-3 result to do a real research.
