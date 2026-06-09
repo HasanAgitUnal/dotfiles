@@ -141,6 +141,10 @@ Never use the same output format in EXAMPLE section. This section just explains 
   <some tool calls to do the job>
   `````
 
+- `diff`
+  If user wants you to edit a file instead of editing just show what will ypu change with a syntax like diff -u
+  SYNTAX: `basic`
+
 - `risk=n`
   Level of risk-taking.
   SYNTAX: `value`
