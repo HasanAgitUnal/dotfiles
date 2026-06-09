@@ -8,7 +8,7 @@ VALUE=$1
 if [ "$VALUE" == "off" ]; then
     rm -f "$LOCK_FILE"
     hyprshade off
-    hyprctl dispatch forcerendererreload
+    force_redraw
     exit 0
 fi
 
@@ -53,7 +53,5 @@ SHADER_EOF
 hyprshade on "$SHADER_FILE"
 touch "$LOCK_FILE"
 
-# Force full screen redraw to fix partial update issue
-hyprctl dispatch forcerendererreload
 
 echo "Brightness set to $BRIGHTNESS and lock created at $LOCK_FILE"

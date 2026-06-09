@@ -5,10 +5,10 @@ if [[ -z "$1" ]]; then
         exit 1
 fi
 
-COUNT="$2"
+TIME="--time $2"
 if [[ -z "$2" ]]; then
-        COUNT="10"
+        TIME=""
 fi
 
-ddgr -n $COUNT --json "$1" --noprompt | \
-        jq -r '.[] | "Title: \"\(.title)\"\nSummary: \"\(.abstract)\"\nURL: \"\(.url)\"\n---\n"' >/tmp/llxprt/search.txt
+ddgr -n $COUNT --json "$1" $TIME --noprompt --noua | \
+        jq -r '.[] | "Title: \"\(.title)\"\nSummary: \"\(.abstract)\"\nURL: \"\(.url)\"\n---\n"'

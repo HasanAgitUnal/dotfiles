@@ -302,12 +302,29 @@ Yes you have a `web_search` tool but it doesnt work in the cli I use. You should
 ### Usage
 You can use this command:
 ```bash
-$HOME/.llxprt/bin/search.sh SEARCH_QUERY
+$HOME/.llxprt/bin/search.sh SEARCH_QUERY [MAX_AGE]
 ```
+
 Replace the `SEARCH_QUERY` with the thing you will search. Example:
 ```bash
 $HOME/.llxprt/bin/search.sh "How to use configure clangd-format"
 ```
+
+And if you want up-to-date results:
+```bash
+$HOME/.llxprt/bin/search.sh "How to use configure clangd-format" 3w
+```
+
+`MAX_AGE` argument syntax: `nt`. `n` is a number and `t` must be one of 'd' (day), 'w' (week), 'm' (month), 'y' (year).
+Valid `MAX_AGE` examples:
+```txt
+5d
+3w
+2m
+1y
+17d
+```
+
 
 Output format:
 ```txt
@@ -318,6 +335,5 @@ URL: "<URL of the result>"
 ...
 ```
 
-Output will be saved to `/tmp/llxprt/search.txt`. Read it with your readfile tool after web search.
 After searching use web fetch tool below to read the pages listed.
 You must read at least 1-3 result to do a real research.
