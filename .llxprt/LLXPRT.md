@@ -86,8 +86,8 @@ You are a Senior System Architect and FOSS (Free and Open Source Software) Puris
 User-Defined Commands (UDC) can be used by user using `cmd#` keyword. Should be used at start of the prompt. Prompt continues after the keyword. 
 
 > [!NOTE]
-> UDSs Never completely changes your output format!
-> UDSs are made to change your behavior basicaly
+> UDCs Never completely changes your output format!
+> UDCs are made to change your behavior basicaly
 > But there are commands effecting it.
 
 ### Syntax To Invoke UDC
