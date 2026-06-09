@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SHADER_FILE="$HOME/dotfiles/.config/hypr/shaders/extra_brightness.glsl"
+SHADER_FILE="/tmp/extra_brightness.glsl"
 LOCK_FILE="$HOME/.brightnesslock"
 VALUE=$1
 
@@ -8,6 +8,7 @@ VALUE=$1
 if [ "$VALUE" == "off" ]; then
     rm -f "$LOCK_FILE"
     hyprshade off
+    hyprctl dispatch forcerendererreload
     exit 0
 fi
 
@@ -19,8 +20,8 @@ fi
 
 # value should be int or float
 if [[ ! $VALUE =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
-        echo "Value should be int or float"
-        exit 1
+    echo "Value should be int or float"
+    exit 1
 fi
  
 # Check value range 1-3
@@ -33,8 +34,9 @@ else
     BRIGHTNESS="$VALUE"
 fi
 
-# Update shader
-SHADER="#version 300 es
+# Generate shader (Modern GLSL ES 3.00)
+cat << SHADER_EOF > "$SHADER_FILE"
+#version 300 es
 precision mediump float;
 in vec2 v_texcoord;
 uniform sampler2D tex;
@@ -42,17 +44,16 @@ out vec4 fragColor;
 
 void main() {
     vec4 pix = texture(tex, v_texcoord);
-    float multiplier = $BRIGHTNESS;
-    pix.rgb *= multiplier;
+    pix.rgb *= $BRIGHTNESS;
     fragColor = pix;
-}"
-
-echo -e "$SHADER" > $SHADER_FILE
-
-#sed -i "s/float multiplier = [0-9.]*;/float multiplier = $BRIGHTNESS;/" "$SHADER_FILE"
+}
+SHADER_EOF
 
 # Apply shader and create lock
 hyprshade on "$SHADER_FILE"
 touch "$LOCK_FILE"
+
+# Force full screen redraw to fix partial update issue
+hyprctl dispatch forcerendererreload
 
 echo "Brightness set to $BRIGHTNESS and lock created at $LOCK_FILE"
