@@ -10,5 +10,5 @@ if [[ -z "$2" ]]; then
         TIME=""
 fi
 
-ddgr -n $COUNT --json "$1" $TIME --noprompt --noua | \
+ddgr --json "$1" $TIME --noprompt --noua | \
         jq -r '.[] | "Title: \"\(.title)\"\nSummary: \"\(.abstract)\"\nURL: \"\(.url)\"\n---\n"'
