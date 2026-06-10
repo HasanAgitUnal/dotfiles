@@ -719,6 +719,7 @@ require('lazy').setup({
 --                                end,
 --                        },
 
+--[[
                         {
                                 "epwalsh/obsidian.nvim",
                                 version = "*",
@@ -750,11 +751,11 @@ require('lazy').setup({
                                         ui = { enable = false }, -- Set to false to allow render-markdown to work correctly
                                 },
                         },
-
+--]]
                         {
                                 'MeanderingProgrammer/render-markdown.nvim',
                                 dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-                                ft = { "markdown", "obsidian" },
+                                ft = { "markdown" },
                                 opts = {
                                         heading = {
                                                 sign = true,
@@ -778,6 +779,17 @@ require('lazy').setup({
                                         },
                                 },
                         },
+
+                        --[[
+                        {
+                                "OXY2DEV/markview.nvim",
+                                lazy = false,
+                                dependencies = {
+                                        "nvim-treesitter/nvim-treesitter",
+                                },
+                        },
+                        --]]
+
                 }, {
                         ui = {
                                 icons = vim.g.have_nerd_font and {} or {

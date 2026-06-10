@@ -81,6 +81,23 @@ hl("WhichKey", { fg = colors.cyan })
 hl("WhichKeyGroup", { fg = colors.magenta })
 hl("WhichKeyDesc", { fg = colors.fg })
 
+-- Markview
+--[[
+hl("MarkviewHeading1", { fg = colors.red, bold = true })
+hl("MarkviewHeading2", { fg = colors.blue, bold = true })
+hl("MarkviewHeading3", { fg = colors.cyan, bold = true })
+hl("MarkviewHeading4", { fg = colors.green, bold = true })
+hl("MarkviewHeading5", { fg = colors.yellow, bold = true })
+hl("MarkviewHeading6", { fg = colors.magenta, bold = true })
+
+hl("MarkviewCheckboxChecked", { fg = colors.cyan, bold = true })
+hl("MarkviewCheckboxUnchecked", { fg = colors.blue, bold = true })
+hl("MarkviewCheckboxImportant", { fg = colors.yellow, bold = true })
+hl("MarkviewCheckboxCancelled", { fg = colors.comment, bold = true })
+hl("MarkviewCheckboxProgress", { fg = colors.magenta, bold = true })
+hl("MarkviewCheckboxStriked", {})
+--]]
+
 -- RenderMarkdown
 hl("RenderMarkdownH1", { fg = colors.red, bold = true })
 hl("RenderMarkdownH2", { fg = colors.blue, bold = true })
