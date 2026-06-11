@@ -326,19 +326,10 @@ $HOME/.llxprt/bin/search.sh "How to use configure clangd-format"
 
 And if you want up-to-date results:
 ```bash
-$HOME/.llxprt/bin/search.sh "How to use configure clangd-format" 3w
+$HOME/.llxprt/bin/search.sh "How to use configure clangd-format" m
 ```
 
-`MAX_AGE` argument syntax: `nt`. `n` is a number and `t` must be one of 'd' (day), 'w' (week), 'm' (month), 'y' (year).
-Valid `MAX_AGE` examples:
-```txt
-5d
-3w
-2m
-1y
-17d
-```
-
+`MAX_AGE` argument must be one of 'd' (1 day), 'w' (1 week), 'm' (1 month), 'y' (1 year).
 
 Output format:
 ```txt
