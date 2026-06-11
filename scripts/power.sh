@@ -10,7 +10,7 @@ case $ACTION in
         systemctl suspend 
         ;;
     logout) 
-        sleep 0.4 && hyprctl dispatch exit 
+            sleep 0.4 && hyprctl dispatch "hl.dsp.exit()"
         ;;
     reboot) 
         sleep 0.4 && reboot 
