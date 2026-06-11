@@ -36,7 +36,6 @@ require('lazy').setup({
 
         'NMAC427/guess-indent.nvim',
 
-        -- See `:help gitsigns` to understand what the configuration keys do
         {
                 'lewis6991/gitsigns.nvim',
                 opts = {
