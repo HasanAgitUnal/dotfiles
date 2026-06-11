@@ -118,6 +118,9 @@ PS1='$(exit_code) \[\033[1;36m\]\w\[\033[0m\]$(git_branch) \[\033[32m\]> \[\033[
 
 fi
 
+PS2='\[\033[32m\]-\[\033[0m\] '
+PS3=$(echo -e "\033[32m?\033[0m ")
+
 # Enable color support of ls and grep commands
 if [ -x $PREFIX/bin/dircolors ]; then
         test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
