@@ -16,7 +16,7 @@ hl.on("hyprland.start", function ()
 
         -- AI Workspace
         hl.exec_cmd("mkdir -p /tmp/llxprt")
-        hl.exec_cmd("ln -sf " .. HOME .. "/dotfiles/.llxprt/sysprompts /tmp/llxprt/sys")
+        hl.exec_cmd("sh -c '!test -e /tmp/llxprt/sys && ln -sf " .. HOME .. "/dotfiles/.llxprt/sysprompts /tmp/llxprt/sys'")
 
         -- Clipboard
         hl.exec_cmd("cliphist wipe")
