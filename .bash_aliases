@@ -15,7 +15,7 @@ fi
 
 mkdir -p "$GEMINI_TMP"
 alias gt="cd $GEMINI_TMP && gemini"
-
+alias latexmk='podman run --rm -v "$PWD":/data:Z -w /data kjarosh/latex:full latexmk'
 alias ub='source $HOME/.bashrc'
 alias open='xdg-open'
 alias spp='while true; do clear; sensors; sleep 1; done;'
