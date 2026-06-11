@@ -51,6 +51,13 @@ hl.window_rule({
         center          = true
 })
 
+hl.window_rule({
+        name            = "fileroller",
+        match           = { class = "org.gnome.FileRoller" },
+        float           = true,
+        center          = true,
+        size            = { 800, 600 }
+})
 
 --
 -- Special Workspaces
