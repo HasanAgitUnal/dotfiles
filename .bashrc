@@ -108,18 +108,24 @@ PROMPT_DIRTRIM=0
 
 # Termux
 if [[ -e /storage/emulated/0 ]]; then
-PS1='$(exit_code) \[\033[1;36m\]\w\[\033[0m\]$(git_branch)
+export PS1='$(exit_code) \[\033[1;36m\]\w\[\033[0m\]$(git_branch)
 \[\033[0;32m\]λ \[\033[0m\]'
 
 # Normal
 else
-PS1='$(exit_code) \[\033[1;36m\]\w\[\033[0m\]$(git_branch) \[\033[32m\]> \[\033[1;34m\]\h \[\033[0;32m\]> \[\033[1;31m\]\u
+export PS1='$(exit_code) \[\033[1;36m\]\w\[\033[0m\]$(git_branch) \[\033[32m\]> \[\033[1;34m\]\h \[\033[0;32m\]> \[\033[1;31m\]\u
 \[\033[0;32m\]λ \[\033[0m\]'
 
 fi
 
-PS2='\[\033[32m\]-\[\033[0m\] '
-PS3=$(echo -e "\033[32m?\033[0m ")
+# Multiline
+export PS2='\[\033[32m\]-\[\033[0m\] '
+
+# Selection via select command
+export PS3=$(echo -e "\033[32m?\033[0m ")
+
+# Debugging mode (bash -x)
+export PS4=' \[\033[36m\]$LINENO \[\033[32m\]-> \[\033[0m\] '
 
 # Enable color support of ls and grep commands
 if [ -x $PREFIX/bin/dircolors ]; then
