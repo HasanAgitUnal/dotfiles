@@ -50,7 +50,7 @@ root () {
                         safelink "$file" "/etc/$name"
                 done
         else
-                echo -e "[ \033[33mWarning\033[0m ] /etc configs are not copied to copy them run:\n\tsudo $0 etc"
+                echo -e "[ \033[33mWarning\033[0m  ] /etc configs are not copied to copy them run:\n            sudo $0 etc"
         fi
 }
 
@@ -63,7 +63,7 @@ user () {
 
         # ~/.config
         mkdir -p "$HOME/.config"
-        for dir in "$DOTFILES_DIR/.config/"*/; do
+        for dir in "$DOTFILES_DIR/.config/"*; do
                 name=$(basename "$dir")
                 linkm "$name"
                 safelink "$dir" "$HOME/.config/$name"
@@ -105,9 +105,9 @@ fi
 
 # Run all if not $1 specified
 all=false
-echo -e "\033[33mW:\033[0m No mode specified use \"$0 user\" to install user configs or \"sudo $0 root\" to install system-wide configs or \"sudo $0 all\" to install both"
+echo -e "[ \033[33mWarning\033[0m  ] No mode specified use \"$0 user\" to install user configs or \"sudo $0 root\" to install system-wide configs or \"sudo $0 all\" to install both"
 if [[ $NO_ASK == "false" ]]; then
-        read confirmall -p "Install all? [Y/n]: "
+        read -p "$(echo -e "[ \033[34mAsk\033[0m      ] Install all? [Y/n]: ")" confirmall 
         if [[ $confirmall =~ ^[Yy]$ ]]; then
                 all=true
         fi
