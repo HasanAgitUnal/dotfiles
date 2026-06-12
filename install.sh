@@ -13,7 +13,7 @@ for arg in "$@"; do
 done
 
 linkm() {
-    echo -e "[ \033[3;35mlinking\033[0m ] $1"
+    echo -e "[ \033[35mLinking\033[0m  ] $1"
 }
 
 safelink() {
@@ -27,15 +27,15 @@ safelink() {
                         ln -sf "$src" "$dest"
                         return
                 fi
-                echo -e "[ \033[1;33mWarning\033[0m ] $name already exists"
-                read -p "Delete and relink it? [y/N]: " -n 1 -r
+                echo -e "[ \033[33mWarning\033[0m  ] $name already exists"
+                read -p "$(echo -e "[ \033[34mAsk\033[0m      ] Delete and relink it? [y/N]: ")" -n 1 -r
                 echo
                 if [[ $REPLY =~ ^[Yy]$ ]]; then
                         rm -rf "$dest"
                         ln -sf "$src" "$dest"
-                        echo -e "\033[36m$name (replaced)\033[0m"
+                        echo -e "[ \033[36mReplaced\033[0m ] $name"
                 else
-                        echo -e "\033[36m$name (skipped)\033[0m"
+                        echo -e "[ \033[36mSkipped\033[0m  ] $name"
                 fi
         else
                 ln -sf "$src" "$dest"
@@ -56,7 +56,7 @@ root () {
 
 user () {
         # ~/.*
-        for file in .bashrc .bash_aliases .zoxide_aliases .bash_env_vars .clang-format .inputrc .gemini .termux; do
+        for file in .bashrc .bash_aliases .zoxide_aliases .bash_env_vars .clang-format .inputrc .llxprt .termux; do
                 linkm "$file"
                 safelink "$DOTFILES_DIR/$file" "$HOME/$file"
         done
@@ -87,12 +87,14 @@ fi
 if [[ $1 == "root" ]]; then
         linkm "Linking /etc folders"
         root
+        echo -e "[ \033[1;32mFinished\033[0m ] Files are linked to $DOTFILES_DIR. DONT DELETE IT!!"
         exit 0
 fi
 
 if [[ $1 == "user" ]]; then
         linkm "Linking ~ folders"
         user
+        echo -e "[ \033[1;32mFinished\033[0m ] Files are linked to $DOTFILES_DIR. DONT DELETE IT!!"
         exit 0
 fi
 
@@ -119,4 +121,4 @@ if [[ $all == true ]]; then
         user
 fi
 
-echo -e "[ \033[1;32mCompleted\033[0m ] Files are linked to $DOTFILES_DIR. DONT DELETE IT!!"
+echo -e "[ \033[1;32mFinished\033[0m ] Files are linked to $DOTFILES_DIR. DONT DELETE IT!!"

@@ -50,5 +50,5 @@ x-scheme-handler/about=app.zen_browser.zen.desktop;
 x-scheme-handler/http=app.zen_browser.zen.desktop;
 x-scheme-handler/https=app.zen_browser.zen.desktop;
 x-scheme-handler/unknown=app.zen_browser.zen.desktop;
-application/pdf=onlyoffice-desktopeditors.desktop
+application/pdf=org.pwmt.zathura.desktop
 application/xml=app.zen_browser.zen.desktop;
