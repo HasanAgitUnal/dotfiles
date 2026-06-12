@@ -5,7 +5,11 @@ After=network.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/sudo /usr/bin/keyd
-Restart=always
+# prevent looping
+Restart=on-failure
+RestartSec=5s
+StartLimitIntervalSec=30s
+StartLimitBurst=3
 
 [Install]
 WantedBy=default.target
