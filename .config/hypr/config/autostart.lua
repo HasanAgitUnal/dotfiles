@@ -6,7 +6,7 @@ hl.on("hyprland.start", function ()
 
         -- I dont remember why I added this
         hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && hyprshade auto")
-        hl.exec_cmd("batsignal -w 15 -c 5 -D \"reboot\" -b")
+        hl.exec_cmd("batsignal -w 15 -c 5 -d 2 -D \"reboot\" -b")
 
         -- Things
         hl.exec_cmd("swaybg -i ~/dotfiles/images/wallpaper.jpg -m fill")
