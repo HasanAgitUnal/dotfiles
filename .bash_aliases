@@ -67,13 +67,10 @@ fdf() {
 }
 
 alert() {
-    eject
-#    for i in {1..5}; do
-#        brightnessctl --device='input3::capslock' set 1 >/dev/null
-#        sleep 0.5
-#        brightnessctl --device='input3::capslock' set 0 >/dev/null
-#        sleep 0.5
-#    done
+        "$@"
+        eject
+        echo -e "\a"
+        notify-send "Alert" "Finished: $*" -u critical
 }
 
 tuxrick () {

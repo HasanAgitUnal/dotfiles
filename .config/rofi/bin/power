@@ -5,18 +5,28 @@ selection=$(echo -e $menu | rofi -dmenu -i -p "Power   ")
 
 case $selection in
         *Shutdown)
+                notify-send "Power" "Shutting down..."
+                sleep 0.4
                 ~/dotfiles/scripts/power.sh shutdown
                 ;;
         *Reboot)
+                notify-send "Power" "Rebooting..."
+                sleep 0.4
                 ~/dotfiles/scripts/power.sh reboot
                 ;;
         *Sleep)
+                notify-send "Power" "Sleeping..."
+                sleep 0.4
                 ~/dotfiles/scripts/power.sh sleep
                 ;;
         *Lock)
+                notify-send "Power" "Locking..."
+                sleep 0.4
                 ~/dotfiles/scripts/power.sh lock
                 ;;
         *Log*)
+                notify-send "Power" "Logging out..."
+                sleep 0.4
                 ~/dotfiles/scripts/power.sh logout
                 ;;
         *)

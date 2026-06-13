@@ -8,7 +8,7 @@ VALUE=$1
 if [ "$VALUE" == "off" ]; then
     rm -f "$LOCK_FILE"
     hyprshade off
-    force_redraw
+    notify-send "[off] Extra Brightness" "Extra brightness is off"
     exit 0
 fi
 
@@ -53,5 +53,5 @@ SHADER_EOF
 hyprshade on "$SHADER_FILE"
 touch "$LOCK_FILE"
 
-
 echo "Brightness set to $BRIGHTNESS and lock created at $LOCK_FILE"
+notify-send "[$BRIGHTNESS] Extra Brightness" "Extra brightness is active!"

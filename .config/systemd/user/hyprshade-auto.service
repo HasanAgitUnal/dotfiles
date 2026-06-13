@@ -6,7 +6,7 @@ ConditionPathExists=!%h/.brightnesslock
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/hyprshade auto
+ExecStart=/home/melon/dotfiles/scripts/hyprshade_notify.sh
 
 [Install]
 WantedBy=graphical-session.target

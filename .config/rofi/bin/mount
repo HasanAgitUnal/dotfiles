@@ -7,7 +7,7 @@ INPUT_THEME="$HOME/.config/rofi/input.rasi"
 # Check dependencies
 for cmd in rofi sudo jq lsblk; do
     if ! command -v "$cmd" >/dev/null 2>&1; then
-        notify-send "Error: $cmd is not installed."
+        notify-send "Mount Disk" "Error: $cmd is not installed." -u critical
         exit 1
     fi
 done
@@ -26,14 +26,11 @@ else
 fi
 
 if [ -z "$devices" ]; then
-    rofi -dmenu -i -p "No devices found" -theme "$INPUT_THEME"
+    notify-send "Mount Disk" "No devices found"
     exit
 fi
 
 selected=$(echo "$devices" | rofi -dmenu -i -p "$prompt" -theme "$LIST_THEME")
-if [ -z "$selected" ] || [ "$selected" = "No devices found" ]; then
-    exit
-fi
 
 dev_path=$(echo "$selected" | awk '{print $1}')
 
@@ -49,12 +46,14 @@ passwd=$(rofi -dmenu -password -i -p "Sudo Password:" -theme "$INPUT_THEME" </de
 [ -z "$passwd" ] && exit
 
 # Validate password once
+sudo -k # clean cache
 auth_res=$(printf '%s\n' "$passwd" | sudo -S -v -p '' 2>&1)
 if [ $? -ne 0 ]; then
     msg="Auth Error: $auth_res"
     # Log length for debugging (safe)
     pass_len=${#passwd}
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Auth Fail | Len: $pass_len | Res: $auth_res" >> /tmp/rofi-mount.log
+    notify-send "Mount Disk" "Failed to auth" -u critical
     printf "Exit" | rofi -e "$msg"
     exit 1
 fi
@@ -85,9 +84,9 @@ fi
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Action: $action | Device: $dev_path | Status: $status | Result: $res" >> /tmp/rofi-mount.log
 
 if [ $status -eq 0 ]; then
-    msg="Success: $action completed."
+        notify-send "Mount Disk" "$action successful"
 else
-    msg="Error: $res"
+        printf "Exit" | rofi -e "Error: $res"
+        notify-send "Mount Disk" "$action failed" -u critical
 fi
 
-printf "Exit" | rofi -e "$msg"

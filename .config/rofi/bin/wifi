@@ -66,7 +66,8 @@ connections() {
     if [ $? -eq 0 ]; then
         notify-send "WiFi" "Connected to $wifi_name"
     else
-        notify-send "WiFi Error" "$res"
+        notify-send "WiFi" "Error"
+        rofi -e "$res"
     fi
 }
 
@@ -80,15 +81,18 @@ chosen=$(printf "$options" | rofi -dmenu -i -p "WiFi $power   " -theme "$LIST_TH
 case "$chosen" in
     *Turn\ Off)
             nmcli radio wifi off
+            notify-send "Wifi" "Turned off"
             ;;
     *Turn\ On)
             nmcli radio wifi on
+            notify-send "Wifi" "Turned on"
             ;;
     *Connections)
             connections
             ;;
     *Disconnect)
             nmcli device disconnect $(nmcli -t -f DEVICE,TYPE device | grep :wifi | cut -d: -f1 | head -n1)
+            notify-send "Wifi" "Disconnected"
             ;;
     *Manual\ Connect)
         ssid=$(rofi -dmenu -p "SSID:" -theme "$INPUT_THEME")

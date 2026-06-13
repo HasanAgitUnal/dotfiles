@@ -40,22 +40,40 @@ SELECTION=$(echo -e "$MENU" | rofi -dmenu -i -p "Switches   ")
 
 case $SELECTION in
         *"Night Mode Lock")
-                rm ~/.night_mode_lock || touch ~/.night_mode_lock
+                if [[ -f ~/.night_mode_lock ]]; then
+                        rm ~/.night_mode_lock
+                        notify-send "Night Mode Lock" "Removed Lock"
+                else
+                        touch ~/.night_mode_lock
+                        notify-send "Night Mode Lock" "Created Lock"
+                fi
                 ;;
+
         *"Night Mode")
                 hyprshade toggle night_mode
+                if [[ $(hyprshade current ) == "night_mode" ]]; then
+                        notify-send "Night Mode" "Activated"
+                else
+                        notify-send "Night Mode" "Deactivated"
+                fi
                 ;;
+
         *"FreshRSS")
                 if [[ $FRESHRSS -eq 1 ]]; then
                         podman-compose -f "$FRESHRSS_YML" stop
+                        notify-send "FreshRSS" "Finished Container"
                 else
                         podman freshrss start || podman-compose -f "$FRESHRSS_YML" up -d
+                        notify-send "FreshRSS" "Started Container"
                 fi
                 ;;
+
         *"qBittorrent")
                 if [[ $QBIT -eq 1 ]]; then
                         pkill qbittorrent-nox
+                        notify-send "qBittorrent" "Finished"
                 else
                         qbittorrent-nox &
+                        notify-send "qBittorrent" "Started"
                 fi
 esac

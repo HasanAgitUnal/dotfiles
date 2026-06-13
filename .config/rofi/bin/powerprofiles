@@ -33,17 +33,22 @@ selection=$(echo -e "$MENU" | rofi -dmenu -i -p "$PROMPT")
 case $selection in
         *"Unlock")
                 rm ~/.powerlock
+                notify-send "Power Profiles" "Lock Removed"
                 ;;
         *"Lock")
                 touch ~/.powerlock
+                notify-send "Power Profiles" "Created Lock"
                 ;;
         *"Performance")
                 powerprofilesctl set performance
+                notify-send "Power Profiles" "Set to Performance"
                 ;;
         *"Balanced")
                 powerprofilesctl set balanced
+                notify-send "Power Profiles" "Set to Balance"
                 ;;
         *"Power Saver")
                 powerprofilesctl set power-saver
+                notify-send "Power Profiles" "Set to Power Saver"
                 ;;
 esac
