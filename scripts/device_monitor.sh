@@ -7,7 +7,9 @@ THEME_DIR="$HOME/.local/share/sounds/${CANBERRA_XDG_SOUND_THEME_NAME:-modern-min
 udevadm monitor --udev --subsystem-match=usb | while read -r line; do
     if echo "$line" | grep -q "add"; then
         mpv "$THEME_DIR/stereo/device-added".* --no-terminal &
+        notify-send "A Device Added"
     elif echo "$line" | grep -q "remove"; then
         mpv "$THEME_DIR/stereo/device-removed".* --no-terminal &
+        notify-send "A Device Removed"
     fi
 done

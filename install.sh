@@ -44,10 +44,10 @@ safelink() {
 
 root () {
         if [ "$EUID" -eq 0 ]; then
-                for file in "$DOTFILES_DIR/system/etc/"*; do
-                        name=$(basename "$file")
-                        linkm "$name"
-                        safelink "$file" "/etc/$name"
+                mkdir -p "/etc/udev"
+                for dir in "keyd" "greetd" "udev/rules.d"; do
+                        linkm "$dir"
+                        safelink "$DOTFILES_DIR/system/etc/$dir" "/etc/$dir"
                 done
         else
                 echo -e "[ \033[33mWarning\033[0m  ] /etc configs are not copied to copy them run:\n            sudo $0 etc"
