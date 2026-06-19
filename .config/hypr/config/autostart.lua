@@ -16,8 +16,10 @@ hl.on("hyprland.start", function ()
         hl.exec_cmd("foot --server")
 
         -- AI Workspace
-        hl.exec_cmd("mkdir -p /tmp/llxprt")
-        hl.exec_cmd("sh -c '! test -e /tmp/llxprt/sys && ln -sf " .. HOME .. "/dotfiles/.llxprt/sysprompts /tmp/llxprt/sys'")
+        hl.exec_cmd("mkdir -p /tmp/llxprt/sys")
+
+        -- create symlink for systemprompts
+        hl.exec_cmd("for prompt in " .. HOME .. "/.llxprt/sysprompts/*; do ln -sf $prompt /tmp/llxprt/sys/$(basename $prompt); done")
 
         -- Clipboard
         hl.exec_cmd("cliphist wipe")
@@ -32,5 +34,5 @@ end)
 hl.on("hyprland.shutdown", function ()
         -- LLXPRT
         -- Clean symlink and directory
-        hl.exec_cmd("unlink /tmp/llxprt/sys && rm -rf /tmp/llxprt")
+        hl.exec_cmd("for file in /tmp/llxprt/sys/*; do unlink $file; done && rm -rf /tmp/llxprt")
 end)
