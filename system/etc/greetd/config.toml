@@ -2,5 +2,6 @@
 vt = 1
 
 [default_session]
-command = "start-hyprland -- --config /etc/greetd/hyprland.lua >/dev/null"
+command = "/usr/bin/start-hyprland -- -c /etc/nwg-hello/hyprland.lua"
+#command = "start-hyprland -- --config /etc/greetd/hyprland.lua >/dev/null"
 user = "greeter"

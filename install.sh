@@ -2,7 +2,7 @@
 
 set -e
 
-DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_DIR=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
 NO_ASK=false
 
 # Check for --no-ask parameter
@@ -45,12 +45,12 @@ safelink() {
 root () {
         if [ "$EUID" -eq 0 ]; then
                 mkdir -p "/etc/udev"
-                for dir in "keyd" "greetd" "udev/rules.d"; do
+                for dir in "keyd" "greetd" "udev/rules.d" "nwg-hello"; do
                         linkm "$dir"
                         safelink "$DOTFILES_DIR/system/etc/$dir" "/etc/$dir"
                 done
         else
-                echo -e "[ \033[33mWarning\033[0m  ] /etc configs are not copied to copy them run:\n            sudo $0 etc"
+                echo -e "[ \033[33mWarning\033[0m  ] /etc configs are not copied to copy them run:\n            sudo $0 root"
         fi
 }
 
@@ -77,11 +77,6 @@ echo -e "\033[3;33mIMPORTANT NOTE:\033[0m"
 echo "NEVER delete ~/dotfiles directory."
 echo "Everything is symlink for it"
 echo
-
-if [[ $(pwd) != "$DOTFILES_DIR" ]]; then
-        echo -e "[ \033[31mERROR\033[0m ] Please run inside $DOTFILES_DIR directory"
-        exit 1
-fi
 
 # Copying only /etc folders
 if [[ $1 == "root" ]]; then
