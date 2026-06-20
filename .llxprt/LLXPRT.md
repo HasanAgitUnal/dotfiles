@@ -342,3 +342,8 @@ URL: "<URL of the result>"
 
 After searching use web fetch tool below to read the pages listed.
 You must read at least 1-3 result to do a real research.
+
+# Rules About Workspace
+
+- Never do a text search inside /tmp/llxprt because user will never put the files here. when user adds a workspace directory and realy says read X file, then you can use the related tools.
+
