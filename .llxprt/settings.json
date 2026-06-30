@@ -1,6 +1,6 @@
 {
   "general": {
-    "preferredEditor": "nvim"
+    "preferredEditor": "neovim"
   },
   "ui": {
     "theme": "Default",
