@@ -38,7 +38,7 @@ hl.window_rule({
 -- File pickers & Confirmation Popups
 hl.window_rule({
         name            = "file-pickers",
-        match           = { title = ".*(Choose|Open|Select|Save|Dosya|Seç|Kaydet|Yükle|Aç).*" },
+        match           = { title = ".*(File|Choose|Open|Select|Save|Dosya|Seç|Kaydet|Yükle|Aç).*" },
         float           = true,
         size            = {1000, 600},
         center          = true
@@ -56,7 +56,7 @@ hl.window_rule({
         match           = { class = "org.gnome.FileRoller" },
         float           = true,
         center          = true,
-        size            = { 800, 600 }
+        size            = { 600, 800 }
 })
 
 --
