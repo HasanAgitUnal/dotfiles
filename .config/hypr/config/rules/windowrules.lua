@@ -38,7 +38,7 @@ hl.window_rule({
 -- File pickers & Confirmation Popups
 hl.window_rule({
         name            = "file-pickers",
-        match           = { title = ".*(File|Choose|Open|Select|Save|Dosya|Seç|Kaydet|Yükle|Aç).*" },
+        match           = { title = ".*([Ff]ile|[Cc]hoose|[Oo]pen|[Ss]elect|[Ss]ave|[Dd]osya|[Ss]eç|[Kk]aydet|[Yy]ükle|[Aa]ç).*" },
         float           = true,
         size            = {1000, 600},
         center          = true

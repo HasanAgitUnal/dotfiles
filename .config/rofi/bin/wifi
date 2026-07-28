@@ -75,7 +75,7 @@ connections() {
 get_status
 powertoggle=$([ "$power" = " " ] && echo "  Turn Off" || echo "  Turn On")
 
-options="$powertoggle\n󰖩  Connections\n󰖪  Disconnect\n󰌌  Manual Connect"
+options="$powertoggle\n󰖩  Connections\n󰖪  Disconnect\n  Force Rescan\n󰌌  Manual Connect"
 chosen=$(printf "$options" | rofi -dmenu -i -p "WiFi $power   " -theme "$LIST_THEME")
 
 case "$chosen" in
@@ -93,6 +93,11 @@ case "$chosen" in
     *Disconnect)
             nmcli device disconnect $(nmcli -t -f DEVICE,TYPE device | grep :wifi | cut -d: -f1 | head -n1)
             notify-send "Wifi" "Disconnected"
+            ;;
+    *Force\ Rescan)
+            notify-send "Wifi" "Scanning..."
+            nmcli d wifi list --rescan yes >/dev/null
+            notify-send "Wifi" "Scanned"
             ;;
     *Manual\ Connect)
         ssid=$(rofi -dmenu -p "SSID:" -theme "$INPUT_THEME")

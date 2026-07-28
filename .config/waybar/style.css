@@ -17,10 +17,12 @@
 tooltip {
         background-color: @bg-opaque;
         border: 2px solid @bg-alt3;
+        padding-top: 50px;
 }
 
 tooltip label {
         color: @fg1;
+        padding: 8px;
 }
 
 window#waybar {
@@ -37,7 +39,7 @@ window#waybar.hidden {
 }
 
 .modules-right {
-        min-width: 750px;
+        min-width: 780px;
 }
 
 button {
@@ -85,6 +87,7 @@ button:hover {
 #custom-archlogo,
 #privacy,
 #custom-syncthing,
+#custom-cputemp,
 #clock,
 #battery,
 #cpu,
@@ -254,6 +257,11 @@ button:hover {
         background-color: @bg-alt2;
         border-radius: 30px;
         margin: 0 4px;
+}
+
+#custom-cputemp.critical {
+        color: @fg4;
+        min-width: 47px;
 }
 
 #custom-shutdown,

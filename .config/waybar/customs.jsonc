@@ -43,6 +43,14 @@
                 "tooltip": true
         },
 
+        "custom/cputemp" : {
+                "format": "{}",
+                "return-type": "json",
+                "exec": "~/dotfiles/scripts/waybar/cputemp.sh",
+                "interval": 5,
+                "tooltip": true
+        },
+
         "custom/archlogo": {
                 "format": "",
                 "on-click": "~/dotfiles/.config/rofi/bin/rofi-menu",
