@@ -7,6 +7,7 @@ case $ACTION in
         ;;
     sleep) 
         hyprlock & 
+        sleep 1;
         systemctl suspend 
         ;;
     logout) 
