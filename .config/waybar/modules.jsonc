@@ -61,6 +61,7 @@
                 "format-icons": {
                         "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
                 },
+                "on-click": "~/dotfiles/.config/rofi/bin/wifi",
                 "tooltip": true,
                 "tooltip-format" : "{ipaddr}"
         },

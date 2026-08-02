@@ -47,6 +47,7 @@ alias lsblkd='lsblk -o NAME,FSTYPE,MOUNTPOINTS'
 alias n='nvim'
 alias ws="$HOME/.llxprt/bin/search.sh"
 alias makej='make -j$(nproc) --no-print-directory'
+alias t='$EDITOR $(mktemp)'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
