@@ -56,7 +56,7 @@ root () {
 
 user () {
         # ~/.*
-        for file in .bashrc .bash_aliases .zoxide_aliases .bash_env_vars .clang-format .inputrc .llxprt .termux; do
+        for file in .aider.conf.yml .bashrc .bash_aliases .zoxide_aliases .bash_env_vars .clang-format .inputrc .llxprt .termux; do
                 linkm "$file"
                 safelink "$DOTFILES_DIR/$file" "$HOME/$file"
         done
