@@ -132,8 +132,8 @@ if [ -x $PREFIX/bin/dircolors ]; then
         test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
         if which eza >/dev/null 2>/dev/null; then
-                alias eza='eza --icons'
-                alias ls='eza --icons'
+                alias eza='eza --icons always'
+                alias ls='eza --icons always'
                 alias ll='ls -algF -h --git'
         else
                 alias ls='ls --color=auto'
