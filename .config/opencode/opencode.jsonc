@@ -1,0 +1,85 @@
+{
+        "$schema": "https://opencode.ai/config.json",
+
+        // interactive shell to use
+        "shell": "bash",
+
+        // TODO: add mcp servers
+        // https://opencode.ai/docs/mcp-servers
+        //"mcp": {}
+
+        // all tools will ask 
+        "permission": {
+                "*": "ask",
+                "read": "allow"
+        },
+
+        // TODO: add agents here 
+        // https://opencode.ai/docs/agents
+        // "agent": {},
+        // "default-agent": "",
+
+        // subagent calling depth
+        "subagent_depth": 2,
+
+        // chat link sharing
+        "share": "disabled",
+
+        // TODO: add commands here
+        // it will be usefull to make main AGENTS.md simple
+        // https://opencode.ai/docs/commands
+        // "commands": {},
+
+        // TODO: customize keybindings
+        // https://opencode.ai/docs/keybinds
+        // "keybinds": {},
+
+        // snapshots to revert file changes
+        "snapshot": true,
+
+        // automaticaly update
+        "autoupdate": false,
+
+        // TODO: add formatter
+        // https://opencode.ai/docs/formatters
+        //"formatter": {},
+
+        // TODO: add LSP
+        // https://opencode.ai/docs/lsp
+        // "lsp": {},
+
+        // compact the chat
+        "compaction": {
+                "auto": true,
+                "prune": false,
+                "reserved": 10000
+        },
+
+        // ignore files
+        "watcher": {
+                "ignore": ["build/**", "compile_commands.json", ".cache/**", ".git/**"]
+        },
+
+        // plugins
+        // https://opencode.ai/docs/plugins
+        // "plugin": [],
+
+        // instructions
+        "instructions": ["AGENTS.md", "CONTRIBUTING.md", "~/dotfiles/ai/AGENT.md"],
+
+        // model
+        "model": "{env:AI_MAIN_MODEL}",
+
+        // providers
+        "provider": {
+                "custom_openai": {
+                        "npm": "@ai-sdk/openai-compatible",
+                        "name": "Custom OpenAI Compatible",
+                        "options": {
+                                "baseURL": "{env:OPENAI_API_BASE}",
+                                "apiKey": "{env:OPENAI_API_KEY}"
+                        }
+                }
+        }
+
+}

@@ -8,3 +8,9 @@ export LD_LIBRARY_PATH="/data/data/com.termux/files/usr/lib"
 export EDITOR=nvim
 export BROWSER=app.zen_browser.zen
 export TERMINAL=alacritty
+
+# load .env
+set -a
+source .env
+set +a
+
