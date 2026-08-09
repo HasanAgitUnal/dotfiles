@@ -1,7 +1,7 @@
 # Exit if not running interactively
 case $- in
     *i*) ;;
-      *) return;;
+      *) exit 0;;
 esac
 
 #####################################################################
@@ -17,7 +17,7 @@ shopt -s checkwinsize
 shopt -s globstar
 
 # Makes less can open non-text files with lesspipe
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Enable vi mode
 set -o vi
@@ -128,7 +128,7 @@ export PS3=$(echo -e "\033[32m?\033[0m ")
 export PS4=' \[\033[36m\]$LINENO \[\033[32m\]-> \[\033[0m\] '
 
 # Enable color support of ls and grep commands
-if [ -x $PREFIX/bin/dircolors ]; then
+if [[ -x $PREFIX/bin/dircolors ]]; then
         test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
         if which eza >/dev/null 2>/dev/null; then
@@ -149,11 +149,10 @@ if [ -x $PREFIX/bin/dircolors ]; then
         alias egrep='egrep --color=auto'
         alias yay='yay --color=auto'
         alias pacman='pacman --color=auto'
-
 fi
 
 # colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;33:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;33:note=01;36:caret=01;32:locus=01:quote=03'
 
 #####################################################################
 
@@ -179,4 +178,3 @@ elif [ -f $PREFIX/share/bash-completion/bash_completion ]; then
 fi
 
 # Start bash with $? = 0
-true
