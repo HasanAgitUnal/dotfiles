@@ -24,8 +24,10 @@ if [[ -d ~/projects ]]; then
 fi
 
 # load .env
-if [[ -f .env ]]; then
+function load_env() {
         set -a
-        source .env
+        source $1/.env
         set +a
-fi
+}
+
+load_env ~

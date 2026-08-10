@@ -16,7 +16,6 @@ hl.bind(mainMod .. " + F",              hl.dsp.window.float())
 hl.bind(mainMod .. " + S",              hl.dsp.layout("togglesplit"))
 
 -- Apps
-
 hl.bind(mainMod .. " + SPACE",          hl.dsp.exec_cmd(APPS.menu))
 hl.bind(mainMod .. " + Return",         hl.dsp.exec_cmd(APPS.terminal))
 hl.bind(mainMod .. " + E",              hl.dsp.exec_cmd(APPS.fileManager))
@@ -33,6 +32,21 @@ hl.bind(mainMod .. " + Print",          hl.dsp.exec_cmd("sh -c 'mpv " .. SOUND_T
 
 -- Clipboard
 hl.bind(mainMod .. " + V",              hl.dsp.exec_cmd([[cliphist list | rofi -dmenu -i -p "Clipboard" | cliphist decode | wl-copy]]))
+
+-- Change Workspace Layout with super shift d and m
+hl.bind(mainMod .. " + D",function()
+        local ws = hl.get_active_workspace()
+        if ws then
+                hl.workspace_rule({ workspace = tostring(ws.id), layout = "dwindle" })
+        end
+end)
+
+hl.bind(mainMod .. " + M",function()
+        local ws = hl.get_active_workspace()
+        if ws then
+                hl.workspace_rule({ workspace = tostring(ws.id), layout = "master" })
+        end
+end)
 
 -- Move focus
 hl.bind(mainMod .. " + H",              hl.dsp.focus({ direction = "left" }))
