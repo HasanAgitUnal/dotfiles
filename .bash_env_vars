@@ -10,7 +10,8 @@ export BROWSER=app.zen_browser.zen
 export TERMINAL=alacritty
 
 # load .env
-set -a
-source .env
-set +a
-
+if [[ -f .env ]]; then
+        set -a
+        source .env
+        set +a
+fi
