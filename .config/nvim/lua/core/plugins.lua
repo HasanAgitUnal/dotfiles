@@ -28,4 +28,5 @@ require('lazy').setup("plugins", {
                         lazy = '💤 ',
                 },
         },
+        concurrency = 3,
 })
