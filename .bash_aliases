@@ -7,7 +7,7 @@ if [[ -f ~/.zoxide_aliases ]]; then
         alias cd='z'
 fi
 
-if [[ -e /storage/emulated/0 ]]; then
+if [[ -e /sdcard ]]; then
         GEMINI_TMP="$PREFIX/tmp/gemini"
 else
         GEMINI_TMP="/tmp/gemini"

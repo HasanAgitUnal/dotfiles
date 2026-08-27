@@ -1,6 +1,6 @@
 # termux
-export EXT="/storage/emulated/091F-EDCF"
-export INT="/storage/emulated/0"
+export EXT="/storage/emulated/091F-EDCF" # change with your sdcard
+export INT="/sdcard"
 export INTD="$INT/Download"
 
 if [[ -d $INT ]]; then
