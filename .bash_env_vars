@@ -16,10 +16,8 @@ export TERMINAL=alacritty
 
 # add project build dirs to path
 if [[ -d ~/projects ]]; then
-        for p in ~/projects/*; do
-                if [[ -d $p/build/bin ]]; then
-                        export PATH="$p/build/bin:$PATH"
-                fi
+        for p in ~/projects/*/build/bin ~/projects/*/*/build/bin; do
+                export PATH="$p:$PATH"
         done
 fi
 

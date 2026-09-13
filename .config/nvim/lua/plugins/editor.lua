@@ -93,7 +93,11 @@ return {
         {
                 "stevearc/conform.nvim",
                 opts = {
-                        formatters_by_ft = { c = { "clang-format" }, cpp = { "clang-format" } },
+                        formatters_by_ft = {
+                                c = { "clang-format" },
+                                cpp = { "clang-format" },
+                                lua = { "stylua" }
+                        },
                         format_on_save = true,
                 },
         },

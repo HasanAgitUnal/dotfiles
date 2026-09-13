@@ -4,59 +4,59 @@
 
 -- Satty window large & floating
 hl.window_rule({
-        name            = "satty",
-        match           = { class = "com.gabm.satty" },
-        float           = true,
-        size            = {1320, 700},
-        center          = true
+	name = "satty",
+	match = { class = "com.gabm.satty" },
+	float = true,
+	size = { 1320, 700 },
+	center = true,
 })
 
 -- Fuckup maximizing
 hl.window_rule({
-        name            = "maximize-fucker",
-        match           = { class = ".*" },
-        suppress_event  = "maximize"
+	name = "maximize-fucker",
+	match = { class = ".*" },
+	suppress_event = "maximize",
 })
 
 -- Fix some dragging issues with XWayland
 -- Comes from default hyprland config
 hl.window_rule({
-        name            = "fix-xwayland-drags",
- 
-        match = {
-                class = "^$",
-                title = "^$",
-                xwayland = true,
-                float = true,
-                fullscreen = false,
-                pin = false
-        },
+	name = "fix-xwayland-drags",
 
-        no_focus = true
+	match = {
+		class = "^$",
+		title = "^$",
+		xwayland = true,
+		float = true,
+		fullscreen = false,
+		pin = false,
+	},
+
+	no_focus = true,
 })
 
 -- File pickers & Confirmation Popups
 hl.window_rule({
-        name            = "file-pickers",
-        match           = { title = ".*([Ff]ile|[Cc]hoose|[Oo]pen|[Ss]elect|[Ss]ave|[Dd]osya|[Ss]eç|[Kk]aydet|[Yy]ükle|[Aa]ç).*" },
-        float           = true,
-        size            = {1000, 600},
-        center          = true
+	name = "file-pickers",
+	match = { title = ".*([Ff]ile|[Cc]hoose|[Oo]pen|[Ss]elect|[Ss]ave|[Dd]osya|[Ss]eç|[Kk]aydet|[Yy]ükle|[Aa]ç).*" },
+	float = true,
+	size = { 1000, 600 },
+	center = true,
 })
 
 hl.window_rule({
-        name            = "confirmation-popups",
-        match           = { title = ".*(Confirm|Warn|Error|ERROR|Onayla|Uyarı|Hata|HATA).*" },
-        float           = true,
-        center          = true
+	name = "confirmation-popups",
+	match = { title = ".*(Confirm|Warn|Error|ERROR|Onayla|Uyarı|Hata|HATA).*" },
+	float = true,
+	center = true,
 })
 
 hl.window_rule({
-        name            = "fileroller",
-        match           = { class = "org.gnome.FileRoller" },
-        float           = true,
-        center          = true,
-        size            = { 600, 800 }
+	name = "fileroller",
+	match = { class = "org.gnome.FileRoller" },
+	float = true,
+	center = true,
+	size = { 600, 800 },
 })
 
 --
@@ -65,31 +65,31 @@ hl.window_rule({
 
 -- Web
 hl.window_rule({
-        name            = "web-workspace",
-        match           = { class = "app.zen_browser.zen|heluim-workspace" },
-        workspace       = 3
+	name = "web-workspace",
+	match = { class = "app.zen_browser.zen|helium" },
+	workspace = 3,
 })
 
 -- AI
 hl.window_rule({
-        name            = "ai-workspace",
-        match           = { class = "ai" },
-        workspace       = 4
+	name = "ai-workspace",
+	match = { class = "ai" },
+	workspace = 4,
 })
 
 hl.window_rule({
-        name            = "ai-canvas",
-        match = {
-                class     = "canvas",
-        },
-        float     = true,
-        size      = {800, 500},
-        workspace = 4
+	name = "ai-canvas",
+	match = {
+		class = "canvas",
+	},
+	float = true,
+	size = { 800, 500 },
+	workspace = 4,
 })
 
 -- Notes
 hl.window_rule({
-        name            = "notes-workspace",
-        match           = { class = "notes" },
-        workspace       = 5
+	name = "notes-workspace",
+	match = { class = "notes" },
+	workspace = 5,
 })
