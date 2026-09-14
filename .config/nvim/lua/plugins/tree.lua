@@ -4,9 +4,8 @@ return {
                 config = function()
                         require("nvim-tree").setup({
                                 filesystem_watchers = { enable = true },
-                                actions = { open_file = { quit_on_open = true } }
+                                actions = { open_file = { quit_on_open = true } },
                         })
-                end
-        }
+                end,
+        },
 }
-

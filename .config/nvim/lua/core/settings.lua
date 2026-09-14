@@ -1,8 +1,8 @@
 -- [[ Settings ]]
 
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = true
 
@@ -16,7 +16,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.o.mouse = 'nvi'
+vim.o.mouse = "nvi"
 
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
@@ -26,7 +26,7 @@ vim.o.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-        vim.o.clipboard = 'unnamedplus'
+        vim.o.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
@@ -43,7 +43,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.o.signcolumn = 'yes:1'
+vim.o.signcolumn = "yes:1"
 
 -- Decrease update time
 vim.o.updatetime = 300
@@ -64,10 +64,10 @@ vim.o.splitbelow = false
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.o.inccommand = 'nosplit'
+vim.o.inccommand = "nosplit"
 
 -- Show which line your cursor is on
 vim.o.cursorline = true
@@ -82,7 +82,7 @@ vim.o.confirm = true
 
 vim.loader.enable()
 
-vim.g.filetype = 'plugin indent on'
+vim.g.filetype = "plugin indent on"
 vim.g.syntax_on = true
 
 vim.opt.foldlevel = 2
@@ -94,17 +94,17 @@ vim.opt.shiftwidth = 0
 vim.opt.shiftround = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
-vim.opt.foldcolumn = 'auto'
+vim.opt.foldcolumn = "auto"
 vim.o.cmdheight = 2
 vim.o.spell = false
-vim.opt.spelloptions:append('camel')
-vim.opt.virtualedit = 'block'
+vim.opt.spelloptions:append("camel")
+vim.opt.virtualedit = "block"
 
-if vim.fn.executable('rg') == 1 then vim.opt.grepprg = 'rg --vimgrep' end
+if vim.fn.executable("rg") == 1 then
+        vim.opt.grepprg = "rg --vimgrep"
+end
 
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
 
 vim.opt.termguicolors = true
-
-
