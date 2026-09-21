@@ -108,11 +108,42 @@ return {
                                                 require("telescope.builtin").lsp_dynamic_workspace_symbols,
                                                 "Open Workspace Symbols"
                                         )
+
                                         map(
-                                                "<leader>glt",
+                                                "<leader>gly",
                                                 require("telescope.builtin").lsp_type_definitions,
-                                                "[G]oto [T]ype Definition"
+                                                "[G]oto T[y]pe Definition"
                                         )
+
+                                        if client and client.name == "texlab" then
+                                                map(
+                                                        "<leader>gle",
+                                                        "<cmd>TexlabFindEnvironments<CR>",
+                                                        "TexLab [E]nvironments"
+                                                )
+                                                map(
+                                                        "<leader>glc",
+                                                        "<cmd>TexlabChangeEnvironment<CR>",
+                                                        "TexLab [C]hange Environment"
+                                                )
+                                                map(
+                                                        "<leader>glx",
+                                                        "<cmd>TexlabCleanAuxiliary<CR>",
+                                                        "TexLab Clean Au[x]"
+                                                )
+                                                map(
+                                                        "<leader>glC",
+                                                        "<cmd>TexlabCleanArtifacts<CR>",
+                                                        "TexLab Clean Artifacts"
+                                                )
+                                                map(
+                                                        "<leader>glg",
+                                                        "<cmd>TexlabDependencyGraph<CR>",
+                                                        "TexLab Dependency [G]raph"
+                                                )
+                                        end
+
+                                        map("<leader>lt", "<cmd>VimtexTocOpen<CR>", "Vimtex: TOC")
 
                                         local function client_supports_method(client, method, bufnr)
                                                 if vim.fn.has("nvim-0.11") == 1 then
@@ -188,6 +219,23 @@ return {
                                         cmd = { "lua-language-server" },
                                         filetypes = { "lua" },
                                         single_file_support = true,
+                                },
+                                texlab = {
+                                        filetypes = { "tex", "plaintex", "bib" },
+                                        single_file_support = true,
+                                        settings = {
+                                                texlab = {
+                                                        chktex = {
+                                                                onOpenAndSave = true,
+                                                                onEdit = false,
+                                                        },
+                                                        diagnosticsDelay = 300,
+                                                        latexFormatter = "latexindent",
+                                                        latexindent = {
+                                                                modifyLineBreaks = false,
+                                                        },
+                                                },
+                                        },
                                 },
                         }
 
