@@ -75,75 +75,40 @@ return {
                                                         { buffer = event.buf, desc = "LSP: " .. desc }
                                                 )
                                         end
-                                        map("<leader>gln", vim.lsp.buf.rename, "[R]e[n]ame")
+                                        map("<leader>gn", vim.lsp.buf.rename, "[R]e[n]ame")
+                                        map("<leader>ga", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
                                         map(
-                                                "<leader>gla",
-                                                vim.lsp.buf.code_action,
-                                                "[G]oto Code [A]ction",
-                                                { "n", "x" }
-                                        )
-                                        map(
-                                                "<leader>glr",
+                                                "<leader>gr",
                                                 require("telescope.builtin").lsp_references,
                                                 "[G]oto [R]eferences"
                                         )
                                         map(
-                                                "<leader>gli",
+                                                "<leader>gi",
                                                 require("telescope.builtin").lsp_implementations,
                                                 "[G]oto [I]mplementation"
                                         )
                                         map(
-                                                "<leader>gld",
+                                                "<leader>gd",
                                                 require("telescope.builtin").lsp_definitions,
                                                 "[G]oto [D]efinition"
                                         )
                                         map("<leader>glD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
                                         map(
-                                                "<leader>glO",
+                                                "<leader>gO",
                                                 require("telescope.builtin").lsp_document_symbols,
                                                 "Open Document Symbols"
                                         )
                                         map(
-                                                "<leader>glW",
+                                                "<leader>gW",
                                                 require("telescope.builtin").lsp_dynamic_workspace_symbols,
                                                 "Open Workspace Symbols"
                                         )
 
                                         map(
-                                                "<leader>gly",
+                                                "<leader>gy",
                                                 require("telescope.builtin").lsp_type_definitions,
                                                 "[G]oto T[y]pe Definition"
                                         )
-
-                                        if client and client.name == "texlab" then
-                                                map(
-                                                        "<leader>gle",
-                                                        "<cmd>TexlabFindEnvironments<CR>",
-                                                        "TexLab [E]nvironments"
-                                                )
-                                                map(
-                                                        "<leader>glc",
-                                                        "<cmd>TexlabChangeEnvironment<CR>",
-                                                        "TexLab [C]hange Environment"
-                                                )
-                                                map(
-                                                        "<leader>glx",
-                                                        "<cmd>TexlabCleanAuxiliary<CR>",
-                                                        "TexLab Clean Au[x]"
-                                                )
-                                                map(
-                                                        "<leader>glC",
-                                                        "<cmd>TexlabCleanArtifacts<CR>",
-                                                        "TexLab Clean Artifacts"
-                                                )
-                                                map(
-                                                        "<leader>glg",
-                                                        "<cmd>TexlabDependencyGraph<CR>",
-                                                        "TexLab Dependency [G]raph"
-                                                )
-                                        end
-
-                                        map("<leader>lt", "<cmd>VimtexTocOpen<CR>", "Vimtex: TOC")
 
                                         local function client_supports_method(client, method, bufnr)
                                                 if vim.fn.has("nvim-0.11") == 1 then
@@ -154,6 +119,31 @@ return {
                                         end
 
                                         local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+                                        if client and client.name == "texlab" then
+                                                map(
+                                                        "<leader>ge",
+                                                        "<cmd>TexlabFindEnvironments<CR>",
+                                                        "TexLab [E]nvironments"
+                                                )
+                                                map(
+                                                        "<leader>gc",
+                                                        "<cmd>TexlabChangeEnvironment<CR>",
+                                                        "TexLab [C]hange Environment"
+                                                )
+                                                map("<leader>gx", "<cmd>TexlabCleanAuxiliary<CR>", "TexLab Clean Au[x]")
+                                                map(
+                                                        "<leader>gC",
+                                                        "<cmd>TexlabCleanArtifacts<CR>",
+                                                        "TexLab Clean Artifacts"
+                                                )
+                                                map(
+                                                        "<leader>gg",
+                                                        "<cmd>TexlabDependencyGraph<CR>",
+                                                        "TexLab Dependency [G]raph"
+                                                )
+                                        end
+
                                         if
                                                 client
                                                 and client_supports_method(
