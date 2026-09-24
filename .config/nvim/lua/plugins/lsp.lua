@@ -92,7 +92,7 @@ return {
                                                 require("telescope.builtin").lsp_definitions,
                                                 "[G]oto [D]efinition"
                                         )
-                                        map("<leader>glD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+                                        map("<leader>gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
                                         map(
                                                 "<leader>gO",
                                                 require("telescope.builtin").lsp_document_symbols,
@@ -225,6 +225,11 @@ return {
                                                                 modifyLineBreaks = false,
                                                         },
                                                 },
+                                        },
+                                },
+                                tinymist = {
+                                        settings = {
+                                                formatterMode = "typstyle",
                                         },
                                 },
                         }
