@@ -1,5 +1,5 @@
 vim.g.typst_pdf_viewer = "zathura"
-vim.g.typst_conceal = 1
+vim.g.typst_conceal = 0
 
 vim.keymap.set("n", "<leader>gtc", ":make<CR>", { desc = "Typst [C]ompile" })
 vim.keymap.set("n", "<leader>gtw", ":TypstWatch<CR>", { desc = "Typst [W]atch" })
