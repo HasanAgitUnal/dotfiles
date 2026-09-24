@@ -230,6 +230,8 @@ return {
                                 tinymist = {
                                         settings = {
                                                 formatterMode = "typstyle",
+                                                formatterIndentSize = 4,
+                                                formatterPrintWidth = 120,
                                         },
                                 },
                         }
