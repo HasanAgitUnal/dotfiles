@@ -27,6 +27,10 @@ window {
   padding: 15px;
 }
 
+entry {
+              cursor-width: 8px;
+}
+
 element {
   padding: 12;
   text-color: @fg-alt;
