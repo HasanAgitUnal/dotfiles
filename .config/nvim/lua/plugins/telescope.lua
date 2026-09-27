@@ -17,14 +17,6 @@ return {
                 },
                 config = function()
                         require("telescope").setup({
-                                --[[
-                                        defaults = {
-                                                mappings = {
-                                                        i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-                                                },
-                                        },
-                                        pickers = {}
-                                        --]]
                                 extensions = {
                                         ["ui-select"] = {
                                                 require("telescope.themes").get_dropdown(),

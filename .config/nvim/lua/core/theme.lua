@@ -22,13 +22,18 @@ M.apply = function()
         hl("FloatBorder", { fg = colors.cyan, bg = "NONE" })
         hl("WinSeparator", { fg = colors.comment, bg = "NONE" })
         hl("NormalFloat", { bg = "#171720" })
-        hl("CursorLineNr", { fg = cyan, bg = "NONE", bold = true })
+        hl("CursorLineNr", { fg = colors.cyan, bg = "NONE", bold = true })
         hl("LineNrAbove", { fg = "#555577", bg = "NONE" })
         hl("LineNrBelow", { fg = "#555577", bg = "NONE" })
         hl("CursorLineSign", { bg = "NONE" })
         hl("CursorLineFold", { bg = "NONE" })
         hl("SignColumn", { bg = "NONE" })
         hl("LineNr", { bg = "NONE" })
+
+        -- Flash.nvim
+        hl("FlashLabel", { bg = colors.red, fg = "#ffffff", bold = true })
+        hl("FlashMatch", { bg = colors.blue, fg = "#ffffff" })
+        hl("FlashBackdrop", { fg = "#666688" })
 
         -- Blink.cmp
         -- hl("BlinkCmpMenu", { bg = "#222233" })

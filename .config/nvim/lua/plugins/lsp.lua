@@ -228,6 +228,7 @@ return {
                                         },
                                 },
                                 tinymist = {
+                                        filetypes = { "typst" },
                                         settings = {
                                                 formatterMode = "none",
                                         },
