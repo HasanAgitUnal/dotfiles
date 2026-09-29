@@ -76,8 +76,8 @@
                         "npm": "@ai-sdk/openai-compatible",
                         "name": "Custom OpenAI Compatible",
                         "options": {
-                                "baseURL": "{env:OPENAI_API_BASE}",
-                                "apiKey": "{env:OPENAI_API_KEY}"
+                                "baseURL": "{env:OA_API_BASE}",
+                                "apiKey": "{env:OA_API_KEY}"
                         }
                 }
         }

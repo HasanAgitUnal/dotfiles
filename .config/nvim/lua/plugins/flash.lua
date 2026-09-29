@@ -3,15 +3,16 @@ return {
                 "folke/flash.nvim",
                 event = "VeryLazy",
                 opts = {
+                        labels = "asdfjklşghqwertyuıop",
                         modes = {
                                 search = {
                                         enabled = true,
                                 },
+                                char = {
+                                        keys = { "f", "F" }, -- do not override t and T
+                                        jump_labels = true,
+                                },
                         },
-                        char = {
-                                jump_labels = true,
-                        },
-                        labels = "asdfjklşghqwertyuıop",
                 },
                 keys = {
                         -- gw from helix
