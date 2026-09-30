@@ -13,6 +13,21 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         end,
 })
 
+-- remove old swap files at start
+vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+                local undodir = vim.fn.expand("~/.local/state/nvim/undo")
+                local cutoff = os.time() - (30 * 24 * 60 * 60) -- 30 day
+                for _, file in ipairs(vim.fn.readdir(undodir)) do
+                        local path = undodir .. "/" .. file
+                        local mtime = vim.fn.getftime(path)
+                        if mtime > 0 and mtime < cutoff then
+                                vim.fn.delete(path)
+                        end
+                end
+        end,
+})
+
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 

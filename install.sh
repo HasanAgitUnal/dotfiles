@@ -45,7 +45,7 @@ safelink() {
 root () {
         if [ "$EUID" -eq 0 ]; then
                 mkdir -p "/etc/udev"
-                for dir in "keyd" "greetd" "udev/rules.d" "nwg-hello"; do
+                for dir in "keyd" "greetd" "udev/rules.d" "nwg-hello" "snapper/configs"; do
                         linkm "$dir"
                         safelink "$DOTFILES_DIR/system/etc/$dir" "/etc/$dir"
                 done

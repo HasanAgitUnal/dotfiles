@@ -48,6 +48,7 @@ alias n='nvim'
 alias ws="$HOME/.llxprt/bin/search.sh"
 alias makej='make -j$(nproc) --no-print-directory'
 alias t='$EDITOR $(mktemp)'
+alias check_disk='sudo gdu / -i /.snapshots,/mnt,/dev,/sys,/run,/tmp,/proc,/boot,/archiso-tmp,/home/.snapshots'
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
