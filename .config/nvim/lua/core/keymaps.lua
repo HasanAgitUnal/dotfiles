@@ -58,41 +58,11 @@ vim.keymap.set("n", "<leader>dB", function()
         require("dap").set_breakpoint(vim.fn.input("Condition: "))
 end, { desc = "Add Conditional Breakpoint" })
 
--- Obsidian
-vim.api.nvim_create_autocmd("FileType", {
-        pattern = "markdown",
-        callback = function()
-                local opts = { buffer = true, silent = true }
-                vim.keymap.set("n", "<leader>n", "", { desc = "Obsidian [N]otes" })
-                vim.keymap.set(
-                        "n",
-                        "<leader>ns",
-                        "<cmd>ObsidianSearch<cr>",
-                        { desc = "Obsidian [S]earch", buffer = true }
-                )
-                vim.keymap.set(
-                        "n",
-                        "<leader>nn",
-                        "<cmd>ObsidianNew<cr>",
-                        { desc = "Obsidian [N]ew Note", buffer = true }
-                )
-                vim.keymap.set(
-                        "n",
-                        "<leader>nc",
-                        "<cmd>ObsidianToggleCheckbox<cr>",
-                        { desc = "Obsidian [C]heckbox Toggle", buffer = true }
-                )
-                vim.keymap.set(
-                        "v",
-                        "<leader>nl",
-                        "<cmd>ObsidianLink<cr>",
-                        { desc = "Obsidian [L]ink Selection", buffer = true }
-                )
-        end,
-})
-
 -- Other
 vim.keymap.set("n", "<leader>w", "<cmd>set wrap!<cr>", { desc = "Toggle Line [W]rap" })
 vim.keymap.set("n", "<leader>f", function()
         require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "[F]ormat buffer" })
+
+-- I have binding for altgr+n -> : and altgr+w -> [ . i cant type :w fast because of that. this command fixes it
+vim.cmd([[cnoreabbrev <expr> [ getcmdtype() ==# ':' && getcmdline() ==# '[' ? 'w' : '[']])
