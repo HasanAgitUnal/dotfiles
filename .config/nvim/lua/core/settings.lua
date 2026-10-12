@@ -35,6 +35,9 @@ vim.o.breakindent = true
 -- Disable line wrap
 vim.o.wrap = false
 
+-- break words when using wrap (can be toggled with <leader>w)
+vim.o.linebreak = true
+
 -- Save undo history
 vim.o.undofile = true
 
