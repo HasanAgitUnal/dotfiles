@@ -2,11 +2,12 @@
         Autostart
 --]]
 
-hl.on("hyprland.start", function ()
-
+hl.on("hyprland.start", function()
         -- I dont remember why I added this
-        hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && hyprshade auto")
-        hl.exec_cmd("batsignal -w 15 -c 5 -d 2 -D \"shutdown now\" -b")
+        hl.exec_cmd(
+                "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && hyprshade auto"
+        )
+        hl.exec_cmd('batsignal -w 15 -c 5 -d 2 -D "shutdown now" -b')
 
         -- Things
         hl.exec_cmd("swaybg -i ~/dotfiles/images/wallpaper.jpg -m fill")
@@ -19,7 +20,11 @@ hl.on("hyprland.start", function ()
         hl.exec_cmd("mkdir -p /tmp/ai/sys")
 
         -- create symlink for systemprompts
-        hl.exec_cmd("for prompt in " .. HOME .. "/dotfiles/ai/sysprompts/*; do ln -sf $prompt /tmp/ai/sys/$(basename $prompt); done")
+        hl.exec_cmd(
+                "for prompt in "
+                        .. HOME
+                        .. "/dotfiles/ai/sysprompts/*; do ln -sf $prompt /tmp/ai/sys/$(basename $prompt); done"
+        )
 
         -- Clipboard
         hl.exec_cmd("cliphist wipe")
@@ -28,11 +33,9 @@ hl.on("hyprland.start", function ()
 
         -- Startup Sound
         hl.exec_cmd("sh -c 'sleep 2 && mpv " .. SOUND_THEME .. "/stereo/desktop-login.*'")
-
 end)
 
-hl.on("hyprland.shutdown", function ()
-        -- LLXPRT
+hl.on("hyprland.shutdown", function()
         -- Clean symlink and directory
         hl.exec_cmd("for file in /tmp/ai/sys/*; do unlink $file; done && rm -rf /tmp/ai")
 end)
