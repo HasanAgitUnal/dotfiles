@@ -1,0 +1,91 @@
+baseMouseSpeed: 600.0
+baseScrollSpeed: 20.0
+
+layers:
+
+- name: initial
+  bindings:
+    ### KEYBOARD ###
+
+
+    ### MOUSE ###
+    # when a is held for 300ms, activate mouse layer
+    z: tap-hold z ; toggle-layer mouse ; 300
+
+    # movement on hp
+    kp8: move 0 -1 # up
+    kp2: move  0  1 # down
+    kp4: move -1  0 # left
+    kp6: move  1  0 # right
+    kp7: move -1 -1 # up-left
+    kp9: move 1 -1 # up-right
+    kp1: move -1 1 # down-left
+    kp3: move 1 1 # down-right
+
+    # actions on kp
+    kp0: tap-hold kp0 ; toggle-layer kpactions ; 50
+    kp5: button left
+    kpenter: speed 0.3
+
+#
+# MOUSE ACTIONS
+#
+
+# keypad mouse actions
+- name: kpactions
+  passThrough: false
+  bindings: 
+    # scroll
+    kp8: scroll up
+    kp2: scroll down
+    kp4: scroll left
+    kp6: scroll right
+    # buttons
+    kp7: button left
+    kp9: button right
+    kp5: button middle
+
+
+# mouse layer
+- name: mouse
+  # when true, keys that are not mapped keep their original meaning
+  passThrough: false
+  bindings:
+    # reload config
+    r: reload-config
+    # keep the mouse layer active
+    q: layer initial
+    space: layer mouse
+    
+    # mouse movement
+    l: move  1  0
+    h: move -1  0
+    j: move  0  1
+    k: move  0 -1
+    # scrolling keys
+    i: scroll up
+    n: scroll down
+    c: tap-hold c ; toggle-layer mouse-scroll ; 1
+    # speed control with left hand
+    t: speed 0.1
+    g: speed 0.3
+    v: speed 2.5
+    # movement with right hand
+    s: button left
+    d: button right
+    f: button middle
+
+- name: mouse-scroll
+  passThrough: false
+  bindings:
+    q: layer initial
+    space: layer mouse-scroll
+
+    k: scroll up
+    j: scroll down
+    h: scroll left
+    l: scroll right
+
+    t: speed 0.1
+    g: speed 0.3
+    v: speed 2.5

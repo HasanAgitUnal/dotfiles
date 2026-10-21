@@ -5,9 +5,11 @@ export INTD="$INT/Download"
 
 if [[ -d $INT ]]; then
         export JAVA_HOME="/data/data/com.termux/files/usr/lib/jvm"
-        export PATH="$JAVA_HOME/bin:$HOME/.local/bin:$PATH"
+        export PATH="$JAVA_HOME/bin:$PATH"
         export LD_LIBRARY_PATH="/data/data/com.termux/files/usr/lib:$LD_LIBRARY_PATH"
 fi
+
+export PATH="$HOME/.local/bin:$PATH"
 
 # apps
 export EDITOR=nvim
