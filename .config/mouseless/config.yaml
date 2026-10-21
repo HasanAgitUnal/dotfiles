@@ -27,7 +27,8 @@ layers:
 
     ### MOUSE ###
     # mouse layer
-    z: tap-hold z ; toggle-layer mouse ; 200
+    #z: tap-hold z ; toggle-layer mouse ; 200
+    leftalt: toggle-layer _toggle_mouse
 
     # movement on hp
     kp8: move 0 -1 # up
@@ -43,6 +44,12 @@ layers:
     kp0: tap-hold kp0 ; toggle-layer kpactions ; 50
     kp5: button left
     kpenter: speed 0.3
+
+- name: _toggle_mouse
+  passThrough: false
+  bindings:
+    z: toggle-layer mouse
+    _: leftalt + _
 
 # Good but ill dont use it
 # - name: sticky_shift
