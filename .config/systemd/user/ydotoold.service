@@ -1,0 +1,14 @@
+[Unit]
+Description=ydotoold virtual input daemon
+# After=default.target SATIRINI KALDIR (döngüyü bu yaratıyordu)
+StartLimitIntervalSec=30
+StartLimitBurst=3
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ydotoold --socket-path=%t/.ydotool_socket --socket-perm=0600
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target

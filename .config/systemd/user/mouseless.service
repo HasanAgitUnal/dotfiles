@@ -1,0 +1,16 @@
+[Unit]
+Description=mouseless keyboard-driven mouse
+After=ydotoold.service
+Requires=ydotoold.service
+StartLimitIntervalSec=30
+StartLimitBurst=3
+
+[Service]
+Type=simple
+Environment=YDOTOOL_SOCKET=%t/.ydotool_socket
+ExecStart=/usr/bin/mouseless --config %h/.config/mouseless/config.yaml
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
