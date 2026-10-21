@@ -24,7 +24,7 @@ return {
                                 end,
                                 desc = "Flash jump",
                         },
-                        -- select mode gw
+                        -- search mode gw
                         {
                                 "<c-s>",
                                 mode = { "c" },

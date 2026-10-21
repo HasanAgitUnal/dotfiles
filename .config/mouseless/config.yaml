@@ -1,16 +1,33 @@
-baseMouseSpeed: 600.0
+baseMouseSpeed: 400.0
 baseScrollSpeed: 20.0
+
+devicesExclude:
+- "ydotoold virtual device"
 
 layers:
 
 - name: initial
   bindings:
     ### KEYBOARD ###
+    # bind capslock as esc and ctrl, the classic
+    capslock: tap-hold-next esc ; leftctrl ; 200
+    esc: capslock
 
+    # i realy need this on my fucking laptop keyboard
+    up: rightshift
+    rightshift: up
+
+    # zooming via kp
+    kpplus: leftctrl+leftshift+k4  # ctrl + on trq layout
+    kpminus: leftctrl+equal        # ctrl - on trq layout
+
+    # shortcuts
+    #rightalt: tap-hold layer sticky_shift ; toggle-layer shortcuts ; 170
+    rightalt: toggle-layer shortcuts
 
     ### MOUSE ###
-    # when a is held for 300ms, activate mouse layer
-    z: tap-hold z ; toggle-layer mouse ; 300
+    # mouse layer
+    z: tap-hold z ; toggle-layer mouse ; 200
 
     # movement on hp
     kp8: move 0 -1 # up
@@ -26,6 +43,113 @@ layers:
     kp0: tap-hold kp0 ; toggle-layer kpactions ; 50
     kp5: button left
     kpenter: speed 0.3
+
+# Good but ill dont use it
+# - name: sticky_shift
+#   passThrough: false
+#   bindings:
+#     # bind all keys with shift
+#     _: multi leftshift+_ ; layer initial
+
+#
+# SHORTCUTS LAYOUT
+#
+
+- name: shortcuts
+  bindings:
+    # symbol shortcuts for trq layout
+    a: rightalt+k7     # {
+    s: rightalt+k0     # }
+    d: leftshift+k8    # (
+    f: leftshift+k9    # )
+    w: rightalt+k8     # [
+    e: rightalt+k9     # ]
+    r: 102nd           # <
+    t: leftshift+102nd # >
+    u: leftshift+k7    # /
+    m: leftshift+slash # :
+    n: rightalt+k4     # $
+    i: grave           # "
+    o: leftshift+k2    # '
+    b: leftshift+k0    # =
+    semicolon: leftshift+backslash # ;
+    y: leftshift+equal # _
+
+    # arrow keys with hjkl
+    h: left
+    j: down
+    k: up
+    l: right
+
+    # shift+tab shortcut
+    tab: leftshift+tab
+
+    # macros layer
+    v: layer macros
+
+    # other bindings are normal rightalt
+    _: rightalt+_
+
+#
+# MACROS
+#
+
+# NOTE: these macros made for trq layout!!
+- name: macros
+  passThrough: false
+  bindings:
+    # reload config
+    r: multi reload-config ; layer initial
+
+    # tty swithing (easier than f keys)
+    k1: multi leftalt+leftctrl+f1 ; layer initial
+    k2: multi leftalt+leftctrl+f2 ; layer initial
+    k3: multi leftalt+leftctrl+f3 ; layer initial
+    k4: multi leftalt+leftctrl+f4 ; layer initial
+    k5: multi leftalt+leftctrl+f5 ; layer initial
+    k6: multi leftalt+leftctrl+f6 ; layer initial
+
+    ### git actions ###
+
+    # git add . && gs enter
+    a: >-
+      multi
+      exec ydotool type -d 0 -D 1 "g't add / " ;
+      exec ydotool key 42:1 7:1 7:0 42:0 ;
+      exec ydotool key 42:1 7:1 7:0 42:0 ;
+      exec ydotool type -d 0 -D 1 " gs" ;
+      exec ydotool key 28:1 28:0 ;
+      layer initial
+
+    # git commit -m "" esc i
+    c: >-
+      multi
+      exec ydotool type -d 0 -D 1 "g't comm't =m " ;
+      exec ydotool key 41:1 41:0 ;
+      exec ydotool key 41:1 41:0 ;
+      exec ydotool key 1:1 1:0 ;
+      exec ydotool type -d 0 -D 1 "'" ;
+      layer initial
+
+    # git push main esc b h i
+    p: >-
+      multi
+      exec ydotool type -d 0 -D 1 "g't push  ma'n" ;
+      exec ydotool key 1:1 1:0 ;
+      exec ydotool type -d 0 -D 1 "bh'" ;
+      layer initial
+
+    # git pull main esc b h i
+    u: >-
+      multi
+      exec ydotool type -d 0 -D 1 "g't pull  ma'n" ;
+      exec ydotool key 1:1 1:0 ;
+      exec ydotool type -d 0 -D 1 "bh'" ;
+      layer initial
+
+    # exit layer otherwise
+    _: layer initial
+
 
 #
 # MOUSE ACTIONS
@@ -51,8 +175,6 @@ layers:
   # when true, keys that are not mapped keep their original meaning
   passThrough: false
   bindings:
-    # reload config
-    r: reload-config
     # keep the mouse layer active
     q: layer initial
     space: layer mouse
@@ -67,9 +189,9 @@ layers:
     n: scroll down
     c: tap-hold c ; toggle-layer mouse-scroll ; 1
     # speed control with left hand
-    t: speed 0.1
-    g: speed 0.3
-    v: speed 2.5
+    t: speed 0.3
+    v: speed 3.0
+    g: speed 0.5
     # movement with right hand
     s: button left
     d: button right
