@@ -1,0 +1,65 @@
+#
+#       Theme
+#
+
+set n-completion-items 7
+set completion-bg "#171720"
+set completion-fg "#bfbfbf"
+set completion-group-bg "#111117"
+set completion-group-fg "#d0d0d0"
+set completion-highlight-bg "#6bc7dd"
+set completion-highlight-fg "#171720"
+
+set default-bg "#111117"
+set default-fg "#bfbfbf"
+
+set inputbar-bg "#171720"
+set inputbar-fg "#6bc7dd"
+
+set notification-bg "#ee79c6"
+set notification-fg "#171720"
+set notification-error-bg "#fe1858"
+set notification-error-fg "#171720"
+set notification-warning-bg "#e1ea8c"
+set notification-warning-fg "#171720"
+
+set statusbar-bg "#171720"
+set statusbar-fg "#bfbfbf"
+
+set highlight-active-color "rgba(241, 250, 141, 0.5)"
+set highlight-color "rgba(32, 124, 138, 0.5)"
+set highlight-fg "rgba(30, 30, 50, 0.5)"
+
+set index-bg "#111117"
+set index-fg "#bfbfbf"
+
+set index-active-bg "#6bc7dd"
+set index-active-fg "#111117"
+
+# invert colors
+set recolor true
+set recolor-reverse-video true
+set recolor-keephue true
+
+set render-loading-bg "#171720"
+set render-loading-fg "#bfbfbf"
+
+
+#
+#       Settings
+#
+
+set font "CaskaydiaCove NF normal 9"
+# show [s]tatus bar, [h]orizontal and [v]ertical scrollbars
+set guioptions "shv"
+# double click to follow link
+set double-click-follow true
+# do not center search results
+set search-hadjust false
+# do not show a notification when selecting text
+set selection-notification false
+# use ~ instead of $HOME
+set statusbar-home-tilde true
+set window-title-home-tilde true
+# centered zoom
+set zoom-center true
