@@ -49,7 +49,7 @@ set render-loading-fg "#bfbfbf"
 #       Settings
 #
 
-set font "CaskaydiaCove NF normal 9"
+set font "CaskaydiaCove NF normal 12"
 # show [s]tatus bar, [h]orizontal and [v]ertical scrollbars
 set guioptions "shv"
 # double click to follow link
