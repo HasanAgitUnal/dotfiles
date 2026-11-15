@@ -42,7 +42,7 @@ connections() {
     while IFS=: read -r bars signal security ssid; do
         [ -z "$ssid" ] && continue
         icon=$(get_icon "$signal")
-        lock=$([ "$security" != "--" ] && echo "󰌾" || echo "󰦞")
+        lock=$([ -n "$security" ] && echo " " || echo "  ")
         formatted_list+="$icon    $lock    $ssid\n"
     done <<< "$raw_list"
 
