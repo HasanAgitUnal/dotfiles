@@ -15,13 +15,13 @@ hl.config({
 
                 col = {
                         inactive_border = "#22222899",
-                        active_border = { 
-                                colors = { "#33335577", "#55559977" }, 
-                                angle  = 315
-                        }
+                        active_border = {
+                                colors = { "#33335577", "#55559977" },
+                                angle = 315,
+                        },
                 },
         },
- 
+
         decoration = {
                 rounding = 4,
                 rounding_power = 2,
@@ -41,8 +41,8 @@ hl.config({
                 shadow = {
                         enabled = true,
                         range = 6,
-                        render_power = 5,
+                        render_power = 4,
                         color = "#171720cc",
-                }
-        }
+                },
+        },
 })
