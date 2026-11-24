@@ -82,6 +82,9 @@ layers:
     semicolon: leftshift+backslash # ;
     y: leftshift+equal # _
 
+    capslock: esc
+    c: capslock
+
     # arrow keys with hjkl
     h: left
     j: down
