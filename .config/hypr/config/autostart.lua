@@ -7,13 +7,26 @@ hl.on("hyprland.start", function()
         hl.exec_cmd(
                 "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && hyprshade auto"
         )
+
+        -- battery notification
         hl.exec_cmd('batsignal -w 15 -c 5 -d 2 -D "shutdown now" -b')
 
-        -- Things
+        -- polkit agent
+        hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+
+        -- walpaper
         hl.exec_cmd("swaybg -i ~/dotfiles/images/wallpaper.jpg -m fill")
+
+        -- cursor
         hl.exec_cmd("hyprctl setcursor LyraB-cursors 32")
+
+        -- bar
         hl.exec_cmd("waybar")
+
+        -- notification daemon
         hl.exec_cmd("dunst")
+
+        -- foot server
         hl.exec_cmd("foot --server")
 
         -- AI Workspace

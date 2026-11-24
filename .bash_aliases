@@ -92,3 +92,39 @@ rick () {
         pkill -f "curl ascii.live/rick"
         clear
 }
+
+penv () {
+        # add project build dirs to path
+        if [[ -d ~/projects ]]; then
+                for p in ~/projects/*/build ~/projects/*/*/build; do
+                        export PATH="$p:$p/bin:$PATH"
+                done
+        fi
+}
+
+mesonb () {
+        case "$1" in
+                build)
+                        if [ ! -d "build/meson-info" ]; then
+                                meson setup build
+                        fi
+                        meson compile -C build
+                        ;;
+                debug)
+                        if [ ! -d "build/meson-info" ]; then
+                                meson setup build -Dbuildtype=debug
+                        fi
+                        meson compile -C build
+                        ;;
+                clean)
+                        rm -rf "./build/"
+                        ;;
+                log)
+                        tail -F "./build/debug.log"
+                        ;;
+                *)
+                        echo "Invalid command: $1" >&2
+                        exit 1
+                        ;;
+        esac
+}

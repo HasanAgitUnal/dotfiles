@@ -16,13 +16,6 @@ export EDITOR=nvim
 export BROWSER=app.zen_browser.zen
 export TERMINAL=alacritty
 
-# add project build dirs to path
-if [[ -d ~/projects ]]; then
-        for p in ~/projects/*/build/bin ~/projects/*/*/build/bin; do
-                export PATH="$p:$PATH"
-        done
-fi
-
 # load .env
 function load_env() {
         set -a
